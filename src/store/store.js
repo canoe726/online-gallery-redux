@@ -7,6 +7,7 @@ import { home } from './reducers/homeReducer';
 import { info } from './reducers/infoReducer';
 import { exhibition } from './reducers/exhibitionReducer';
 import { notice } from './reducers/noticeReducer';
+import { loading } from './reducers/loadingReducer';
 import { error } from './reducers/errorReducer';
 
 const logger = store => next => action => {
@@ -32,6 +33,7 @@ const storeFactory = (initialState = stateData) =>
       info,
       exhibition,
       notice,
+      loading,
       error
     }),
     initialState

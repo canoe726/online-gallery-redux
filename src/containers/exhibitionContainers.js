@@ -2,9 +2,7 @@ import { connect } from 'react-redux';
 
 import AppExhibition from '../components/ui/exhibition/AppExhibition';
 
-import {
-  initExhibitionData
-} from '../actions/exhibitionActions';
+import { initExhibitionData } from '../actions/exhibitionActions';
 
 export const Exhibition = connect(
   state => ({

@@ -64,6 +64,12 @@
             }
         ]
     },
+    "loading": {
+        "masonryLoading": {
+            "isLoading": false,
+            "loadingImage": "./samples/masonry_loading.gif"
+        }
+    },
     "error": {
         "backgroundImage": "./samples/artwork_d_6.jpg"
     }
