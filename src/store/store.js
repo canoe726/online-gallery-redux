@@ -6,6 +6,7 @@ import { menu } from './reducers/menuReducer';
 import { home } from './reducers/homeReducer';
 import { info } from './reducers/infoReducer';
 import { exhibition } from './reducers/exhibitionReducer';
+import { exhibitionDetail } from './reducers/exhibitionDetailReducer';
 import { notice } from './reducers/noticeReducer';
 import { loading } from './reducers/loadingReducer';
 import { error } from './reducers/errorReducer';
@@ -32,6 +33,7 @@ const storeFactory = (initialState = stateData) =>
       home,
       info,
       exhibition,
+      exhibitionDetail,
       notice,
       loading,
       error

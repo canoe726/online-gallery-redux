@@ -1,0 +1,57 @@
+$beforeColor: white;
+$afterColor: white;
+$mediumblu: #1e272d;
+
+.close-container {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 20px;
+  height: 25px;
+  cursor: pointer;
+
+  &:hover .close-leftright {
+    transform: rotate(-45deg);
+    background-color: $afterColor;
+  }
+
+  &:hover .close-rightleft {
+    transform: rotate(45deg);
+    background-color: $afterColor;
+  }
+
+  &:hover label {
+    opacity: 1;
+  }
+
+  .close-leftright {
+    height: 2px;
+    width: 20px;
+    position: absolute;
+    margin-top: 12px;
+    background-color: $beforeColor;
+    transform: rotate(45deg);
+    transition: all 0.3s ease-in;
+  }
+
+  .close-rightleft {
+    height: 2px;
+    width: 20px;
+    position: absolute;
+    margin-top: 12px;
+    background-color: $beforeColor;
+    transform: rotate(-45deg);
+    transition: all 0.3s ease-in;
+  }
+
+  label {
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease-in;
+    opacity: 0;
+  }
+}

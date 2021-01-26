@@ -33,10 +33,13 @@
         ]
     },
     "exhibition": {
+        "isFetching": false,
         "exhibitionList": []
     },
     "exhibitionDetail": {
-        "exhibitionDetailList": []
+        "slideIdx": 0,
+        "exhibitionDetailList": [],
+        "pictureList": []
     },
     "artist": {
         "artistList": []
@@ -66,7 +69,6 @@
     },
     "loading": {
         "masonryLoading": {
-            "isLoading": false,
             "loadingImage": "./samples/masonry_loading.gif"
         }
     },

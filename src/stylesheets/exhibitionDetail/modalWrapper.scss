@@ -1,0 +1,208 @@
+#modal-wrapper {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  transform: scale(0);
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.7);
+
+  &.sketch {
+    transform: scale(1);
+    .modal-background {
+      background: rgba(0, 0, 0, 0);
+      animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+      .modal {
+        background-color: transparent;
+        animation: modalFadeIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)
+          forwards;
+        .modal-img,
+        .modal-video {
+          opacity: 0;
+          position: relative;
+          animation: modalContentFadeIn 0.5s 1s
+            cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+        .modal-svg {
+          rect {
+            animation: sketchIn 3s 0.5s cubic-bezier(0.165, 0.84, 0.44, 1)
+              forwards;
+          }
+        }
+      }
+    }
+    &.out {
+      animation: quickScaleDown 0s 0.5s linear forwards;
+      .modal-background {
+        animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        .modal {
+          animation: modalFadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1)
+            forwards;
+          .modal-img,
+          .modal-video {
+            animation: modalContentFadeOut 0.5s
+              cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+          }
+          .modal-svg {
+            rect {
+              animation: sketchOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1)
+                forwards;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .modal-background {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+
+    .modal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      height: 90%;
+      border-radius: 3px;
+      font-weight: 300;
+      overflow: hidden;
+
+      .hidden {
+        display: none;
+      }
+
+      .modal-img {
+        background: rgba(0, 0, 0, 0);
+        width: 100%;
+        height: 100%;
+        object-fit: scale-down;
+        // transition: .3s ease;
+        opacity: 0;
+      }
+
+      .modal-video {
+        background: rgba(0, 0, 0, 0);
+        width: 100%;
+        height: 100%;
+        object-fit: scale-down;
+        opacity: 0;
+      }
+
+      .modal-svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border-radius: 3px;
+
+        rect {
+          width: 100%;
+          height: 100%;
+          stroke: white;
+          stroke-width: 3px;
+          stroke-dasharray: 10000;
+          stroke-dashoffset: 10000;
+        }
+      }
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      background: rgba(0, 0, 0, 0);
+    }
+    100% {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      background: rgba(0, 0, 0, 0.7);
+    }
+    100% {
+      background: rgba(0, 0, 0, 0);
+    }
+  }
+
+  @keyframes quickScaleDown {
+    0% {
+      transform: scale(1);
+    }
+    99.9% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  @keyframes sketchIn {
+    0% {
+      stroke-dashoffset: 10000;
+      stroke: white;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      stroke: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  @keyframes sketchOut {
+    0% {
+      stroke-dashoffset: 0;
+      stroke: rgba(255, 255, 255, 0.1);
+    }
+    100% {
+      stroke-dashoffset: 10000;
+      stroke: white;
+    }
+  }
+
+  @keyframes modalFadeIn {
+    0% {
+      background-color: transparent;
+    }
+    100% {
+      background-color: rgba(0, 0, 0, 0);
+    }
+  }
+
+  @keyframes modalFadeOut {
+    0% {
+      background-color: rgba(0, 0, 0, 0);
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+
+  @keyframes modalContentFadeIn {
+    0% {
+      opacity: 0;
+      top: -20px;
+    }
+    100% {
+      opacity: 1;
+      top: 0;
+    }
+  }
+
+  @keyframes modalContentFadeOut {
+    0% {
+      opacity: 1;
+      top: 0px;
+    }
+    100% {
+      opacity: 0;
+      top: -20px;
+    }
+  }
+}
