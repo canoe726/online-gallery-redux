@@ -10,14 +10,15 @@ class AppMenu extends React.Component {
     const { isClose, toggleNavBar } = this.props;
     return (
       <div className="header-menu">
-        <NavBar isClose={isClose} toggleNavBar={toggleNavBar}></NavBar>
-
+        <NavBar
+          isClose={isClose}
+          toggleNavBar={toggleNavBar}
+        ></NavBar>
         <div className="gallery-logo">
           <Link to="/">
               <div className="gallery-name">Online - Gallery</div>
           </Link>
         </div>
-
         <Search></Search>
       </div>
     );

@@ -3,10 +3,12 @@ import { Route, Switch } from 'react-router-dom';
 
 import '../stylesheets/App.scss';
 
-import {
-  Menu,
-  Home
-} from './containers';
+import { Menu } from '../containers/menuContainer';
+import { Home } from '../containers/homeContainer';
+import { Info } from '../containers/infoContainer';
+import { Exhibition } from '../containers/exhibitionContainers';
+import { Notice } from '../containers/noticeContainers';
+import { Error } from '../containers/errorContainers';
 
 const App = () => {
   return (
@@ -14,6 +16,10 @@ const App = () => {
       <Menu></Menu>
       <Switch>
         <Route exact path="/" component={Home}></Route>
+        <Route exact path="/info" component={Info}></Route>
+        <Route exact path="/exhibition" component={Exhibition}></Route>
+        <Route exact path="/notice" component={Notice}></Route>
+        <Route component={Error}></Route>
       </Switch>
     </div>
   );

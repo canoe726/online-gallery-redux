@@ -1,8 +1,4 @@
-import C from './constants';
-
-export const toggleNavBar = () => ({
-  type: C.TOGGLE_NAVBAR
-});
+import C from '../constants/homeConstants';
 
 export const initHomeBanner = (data) => ({
   type: C.INIT_HOME_BANNER,

@@ -21,6 +21,7 @@ class Search extends React.Component {
   }
 
   checkCurrentUrl () {
+    console.log('search update');
     const pathname = window.location.pathname;
     const validPaths = ['/exhibition', '/artist'];
     const result = validPaths.filter(path => path === pathname);

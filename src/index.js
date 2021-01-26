@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import storeFactory from './store';
+import storeFactory from './store/store';
 
 const store = storeFactory();
 

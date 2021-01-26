@@ -1,28 +1,15 @@
 import { connect } from 'react-redux';
 
-import AppMenu from './ui/menu/AppMenu';
-import AppHome from './ui/home/AppHome';
+import AppHome from '../components/ui/home/AppHome';
 
 import {
-  toggleNavBar,
   initHomeBanner,
   initHomeExhibition,
   initHomeArtist,
   changeHomeBannerIdx,
   changeHomeExhibitionCardIdx,
   changeHomeArtistCardIdx
-} from '../actions';
-
-export const Menu = connect(
-  state => ({
-    isClose: state.menu.navBar.isClose
-  }),
-  dispatch => ({
-    toggleNavBar () {
-      dispatch(toggleNavBar());
-    }
-  })
-)(AppMenu);
+} from '../actions/homeActions';
 
 export const Home = connect(
   state => ({

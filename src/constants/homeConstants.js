@@ -1,5 +1,4 @@
-const constants = {
-  TOGGLE_NAVBAR: 'TOGGLE_NAVBAR',
+const homeConstants = {
   INIT_HOME_BANNER: 'INIT_HOME_BANNER',
   INIT_HOME_EXHIBITION: 'INIT_HOME_EXHIBITION',
   INIT_HOME_ARTIST: 'INIT_HOME_ARTIST',
@@ -8,4 +7,4 @@ const constants = {
   CHANGE_HOME_ARTIST_CARD_IDX: 'CHANGE_HOME_BANNER_IDX'
 };
 
-export default constants;
+export default homeConstants;

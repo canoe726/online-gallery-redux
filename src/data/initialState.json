@@ -23,5 +23,48 @@
         "artist": [],
         "artistCardSize": 4,
         "artistCardIdx": 0
+    },
+    "info": {
+        "notice": "",
+        "backgroundImages": [
+            "./samples/info1.jpg",
+            "./samples/info2.jpg",
+            "./samples/info3.jpg"
+        ]
+    },
+    "exhibition": {
+        "exhibitionList": []
+    },
+    "exhibitionDetail": {
+        "exhibitionDetailList": []
+    },
+    "artist": {
+        "artistList": []
+    },
+    "artistDetail": {
+        "artistDetailList": []
+    },
+    "notice": {
+        "notices": [
+            {
+                "title": "공지사항 1",
+                "contents": "공지사항 1 입니다."
+            },
+            {
+                "title": "공지사항 2",
+                "contents": "공지사항 2 입니다."
+            },
+            {
+                "title": "공지사항 3",
+                "contents": "공지사항 3 입니다."
+            },
+            {
+                "title": "공지사항 4",
+                "contents": "공지사항 4 입니다."
+            }
+        ]
+    },
+    "error": {
+        "backgroundImage": "./samples/artwork_d_6.jpg"
     }
 }

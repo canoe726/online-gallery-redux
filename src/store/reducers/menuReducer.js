@@ -1,4 +1,4 @@
-import C from '../../constants';
+import C from '../../constants/menuConstants';
 
 export const menu = (state = {}, action) => {
   switch (action.type) {

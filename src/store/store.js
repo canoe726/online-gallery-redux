@@ -4,6 +4,10 @@ import stateData from '../data/initialState.json';
 
 import { menu } from './reducers/menuReducer';
 import { home } from './reducers/homeReducer';
+import { info } from './reducers/infoReducer';
+import { exhibition } from './reducers/exhibitionReducer';
+import { notice } from './reducers/noticeReducer';
+import { error } from './reducers/errorReducer';
 
 const logger = store => next => action => {
   console.groupCollapsed('디스패칭', action.type);
@@ -24,7 +28,11 @@ const storeFactory = (initialState = stateData) =>
   applyMiddleware(logger, saver, thunk)(createStore)(
     combineReducers({
       menu,
-      home
+      home,
+      info,
+      exhibition,
+      notice,
+      error
     }),
     initialState
   );
