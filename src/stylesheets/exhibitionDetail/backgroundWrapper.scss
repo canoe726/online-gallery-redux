@@ -2,6 +2,8 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  opacity: 1;
+  transition: 1s ease;
 
   .hero-section {
     .img {
@@ -21,4 +23,8 @@
       height: 100%;
     }
   }
+}
+
+.background-wrapper.active {
+  opacity: 0;
 }

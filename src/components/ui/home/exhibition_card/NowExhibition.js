@@ -18,9 +18,9 @@ class NowExhibition extends React.Component {
             ? exhibition.map((item, idx) =>
                 (idx < (exhibitionCardSize + exhibitionCardIdx))
                   ? <ExhibitionCard
-                    key={idx}
-                    data={item}
-                  ></ExhibitionCard>
+                      key={idx}
+                      data={item}
+                    ></ExhibitionCard>
                   : null)
             : '불러오는중...'
           }

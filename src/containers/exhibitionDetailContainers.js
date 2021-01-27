@@ -2,17 +2,26 @@ import { connect } from 'react-redux';
 
 import AppExhibitionDetail from '../components/ui/exhibitionDetail/AppExhibitionDetail';
 
-import { changeSlideIdx, initExhibitionDetailData, initPictureData } from '../actions/exhibitionDetailActions';
+import {
+  changeSlideIdx,
+  initExhibitionDetailData,
+  initPictureData,
+  toggleModal
+} from '../actions/exhibitionDetailActions';
 
 export const ExhibitionDetail = connect(
   state => ({
     slideIdx: state.exhibitionDetail.slideIdx,
+    modalActive: state.exhibitionDetail.modalActive,
     exhibitionDetailList: state.exhibitionDetail.exhibitionDetailList,
     pictureList: state.exhibitionDetail.pictureList
   }),
   dispatch => ({
     changeSlideIdx (slideIdx) {
       dispatch(changeSlideIdx(slideIdx));
+    },
+    toggleModal (modalActive) {
+      dispatch(toggleModal(modalActive));
     },
     async initExhibitionDetailData () {
       const response = await fetch('https://api.harvardartmuseums.org/exhibition?apikey=954c59e1-2588-4641-adbc-9e90a3b6ebb0&size=10&page=1');
@@ -32,7 +41,7 @@ export const ExhibitionDetail = connect(
                 holding: 'art gallery 1',
                 material: 'oil paint',
                 participants: 'kim & lee',
-                image: './samples/artwork1.jpg',
+                image: '/samples/artwork1.jpg',
                 originalHorizSize: 25,
                 originalVertSize: 30,
                 position: 'left',
@@ -40,16 +49,16 @@ export const ExhibitionDetail = connect(
               },
               exhibitionItemBackground: {
                 type: 'IMAGE',
-                value: './samples/artwork_d_1.jpg',
-                bgm: './samples/background_music1.mp3'
+                value: '/samples/artwork_d_1.jpg',
+                bgm: '/samples/background_music1.mp3'
               },
               exhibitionItemNote: {
                 note: 'this artwork is made by kim & lee',
                 textSize: 12,
-                textColor: 'rgb(255,255,255)',
-                bgColor: 'rgb(0,0,0)',
+                textColor: 'rgb(159,57,255)',
+                bgColor: 'rgb(0,0,50)',
                 borderColor: 'red',
-                round: 6,
+                round: 50,
                 padding: 16,
                 position: 'right',
                 positionHorizSize: 30,
@@ -66,7 +75,7 @@ export const ExhibitionDetail = connect(
                 holding: 'art gallery 2',
                 material: 'water paint',
                 participants: 'kim & lee & park',
-                image: './samples/artwork2.jpg',
+                image: '/samples/artwork2.jpg',
                 originalHorizSize: 20,
                 originalVertSize: 60,
                 position: 'right',
@@ -74,8 +83,8 @@ export const ExhibitionDetail = connect(
               },
               exhibitionItemBackground: {
                 type: 'COLOR',
-                value: './samples/artwork_d_2.jpg',
-                bgm: './samples/background_music2.mp3'
+                value: '/samples/artwork_d_2.jpg',
+                bgm: '/samples/background_music2.mp3'
               },
               exhibitionItemNote: {
                 note: 'awesome!',
@@ -100,7 +109,7 @@ export const ExhibitionDetail = connect(
                 holding: 'art gallery 3',
                 material: '...object',
                 participants: 'kim',
-                image: './samples/artwork3.jpg',
+                image: '/samples/artwork3.jpg',
                 originalHorizSize: 40,
                 originalVertSize: 50,
                 position: 'left',
@@ -108,7 +117,7 @@ export const ExhibitionDetail = connect(
               },
               exhibitionItemBackground: {
                 type: 'VIDEO',
-                value: './samples/art_background.mp4',
+                value: '/samples/art_background.mp4',
                 bgm: ''
               },
               exhibitionItemNote: {

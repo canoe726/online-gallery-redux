@@ -5,6 +5,11 @@ export const changeSlideIdx = (idx) => ({
   slideIdx: idx
 });
 
+export const toggleModal = (modalActive) => ({
+  type: C.TOGGLE_MODAL,
+  modalActive: modalActive
+});
+
 export const initExhibitionDetailData = (data) => ({
   type: C.INIT_EXHIBITION_DETAIL_DATA,
   exhibitionDetailList: data

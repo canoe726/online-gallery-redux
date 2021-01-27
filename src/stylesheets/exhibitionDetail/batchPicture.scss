@@ -1,4 +1,4 @@
-.batch-wrapper {
+.batch-picture {
   z-index: 20;
   cursor: pointer;
   position: absolute;
@@ -20,4 +20,8 @@
     width: 100%;
     object-fit: scale-down;
   }
+}
+
+.batch-picture.active {
+  opacity: 0;
 }

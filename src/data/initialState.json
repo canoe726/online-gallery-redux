@@ -38,6 +38,7 @@
     },
     "exhibitionDetail": {
         "slideIdx": 0,
+        "modalActive": 0,
         "exhibitionDetailList": [],
         "pictureList": []
     },

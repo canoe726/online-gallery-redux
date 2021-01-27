@@ -3,9 +3,7 @@ import C from '../../constants/exhibitionDetailConstants';
 export const exhibitionDetailList = (state, action) => {
   switch (action.type) {
     case C.INIT_EXHIBITION_DETAIL_DATA:
-      return [
-        action.exhibitionDetailList
-      ];
+      return action.exhibitionDetailList;
     default :
       return state;
   }
@@ -28,6 +26,11 @@ export const exhibitionDetail = (state = {}, action) => {
       return {
         ...state,
         slideIdx: action.slideIdx
+      };
+    case C.TOGGLE_MODAL:
+      return {
+        ...state,
+        modalActive: action.modalActive
       };
     case C.INIT_EXHIBITION_DETAIL_DATA:
       return {

@@ -15,8 +15,8 @@ class AppNotice extends React.Component {
           {notices.length > 0
             ? notices.map((notice, idx) =>
                 <NoticeItem
-                key={idx}
-                notice={notice}
+                  key={idx}
+                  notice={notice}
                 ></NoticeItem>)
             : '불러오는중...'}
         </div>
