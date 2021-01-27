@@ -10,27 +10,10 @@ class BackgroundMusic extends React.Component {
     this.stopBackgroundMusic = this.stopBackgroundMusic.bind(this);
   }
 
-  componentDidMount () {
-    // const backgroundMusicWrapper = document.querySelector('.background-music');
-    // const backgroundMusic = document.querySelector('.background-music .music');
-    // const musicSource = backgroundMusic.querySelector('source');
-    // const bgm = this.props.data.bgm;
-    // if (bgm.length > 0) {
-    //   musicSource.src = bgm;
-    //   backgroundMusic.volume = 0.15;
-    //   // at first not allowed autoplay music
-    //   //   backgroundMusic.load();
-    //   //   backgroundMusic.volume = 0.15;
-    //   //   backgroundMusic.play();
-    // } else {
-    //   backgroundMusicWrapper.classList.add('hidden');
-    //   // backgroundMusic.pause();
-    // }
-  }
-
   render () {
+    const { data } = this.props;
     return (
-      <div className="background-music">
+      <div className={data.bgm.length > 0 ? 'background-music' : 'background-music active'}>
         <div className="turn-music-btn" onClick={this.volumeBackgroundMusic}>
           <i className="fas fa-volume-up"></i>
         </div>
@@ -42,7 +25,7 @@ class BackgroundMusic extends React.Component {
         </div>
         {/* autoPlay={true}  */}
         <audio className="music">
-          <source src={this.props.data.bgm} type="audio/mpeg"/>
+          <source src={data.bgm} type="audio/mpeg"/>
         </audio>
       </div>
     );

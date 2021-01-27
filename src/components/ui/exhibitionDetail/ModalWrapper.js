@@ -16,6 +16,15 @@ class ModalWrapper extends React.Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
+  componentDidUpdate () {
+    setTimeout(() => {
+      const modalImg = document.querySelector('.modal-img');
+      modalImg.style.transform = 'scale(1) translate(0px,0px)';
+      const modalVideo = document.querySelector('.modal-video');
+      modalVideo.style.transform = 'scale(1) translate(0px,0px)';
+    }, 500);
+  }
+
   render () {
     const { modalActive, data } = this.props;
     return (
@@ -48,7 +57,6 @@ class ModalWrapper extends React.Component {
               className={modalActive ? 'modal-img' : 'modal-img hidden'}
               src={data.exhibitionItem.image}
               alt="modal-img"
-              style={{ transform: 'scale(1) translate(0px,0px)' }}
             ></img>
             <video className="modal-video hidden"></video>
 

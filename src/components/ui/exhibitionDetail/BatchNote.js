@@ -6,6 +6,10 @@ class BatchNote extends React.Component {
     this.activeContentAnimation();
   }
 
+  componentDidUpdate () {
+    this.activeContentAnimation();
+  }
+
   render () {
     const { note, textSize, textColor, bgColor, borderColor, round, padding } = this.props.data.exhibitionItemNote;
     const { participants } = this.props.data.exhibitionItem;
@@ -35,13 +39,13 @@ class BatchNote extends React.Component {
     const batchNote = document.querySelector('.batch-note');
     setTimeout(() => {
       batchNote.classList.remove('active');
-    }, 500);
+    }, 1000);
 
     const contents = document.querySelectorAll('.batch-note .content');
     contents.forEach((content, idx) => {
       setTimeout(() => {
         content.classList.add('active');
-      }, 1000 * (idx + 1));
+      }, 1000 + (600 * idx));
     });
   }
 }

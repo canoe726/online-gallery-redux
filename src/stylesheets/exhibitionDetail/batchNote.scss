@@ -5,19 +5,14 @@
   right: 10%;
   width: 35%;
   height: 30%;
-  // background-color: black;
-  // color: white;
-  transition: 1.5s ease;
+  transition: 0.5s ease;
   opacity: 1;
   overflow: hidden;
   overflow-y: auto;
   display: grid;
 
-  @mixin fadeText($direction: top, $offset: 2em, $transition: 2s ease-out) {
-    // text-color : dark
+  @mixin fadeText($direction: top, $offset: 2em, $transition: 0.5s ease-out) {
     $color: #fff;
-
-    // direction : top
     $deg: 180deg;
     $pos: bottom;
 
@@ -56,7 +51,7 @@
     }
   }
 
-  .author {
+  .artist {
     justify-content: flex-end;
     margin-top: 1em;
     text-align: end;

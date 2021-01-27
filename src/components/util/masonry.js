@@ -23,6 +23,7 @@ function resizeMasonryItem (item) {
 // 모든 masonry-item 에 대해서 크기 조정
 function resizeAllMasonryItems () {
   const allItems = document.querySelectorAll('.masonry-item');
+  console.log(allItems);
   allItems.forEach(item => {
     resizeMasonryItem(item);
   });

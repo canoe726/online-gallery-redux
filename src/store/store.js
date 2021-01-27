@@ -7,6 +7,7 @@ import { home } from './reducers/homeReducer';
 import { info } from './reducers/infoReducer';
 import { exhibition } from './reducers/exhibitionReducer';
 import { exhibitionDetail } from './reducers/exhibitionDetailReducer';
+import { artist } from './reducers/artistReducer';
 import { notice } from './reducers/noticeReducer';
 import { loading } from './reducers/loadingReducer';
 import { error } from './reducers/errorReducer';
@@ -34,6 +35,7 @@ const storeFactory = (initialState = stateData) =>
       info,
       exhibition,
       exhibitionDetail,
+      artist,
       notice,
       loading,
       error

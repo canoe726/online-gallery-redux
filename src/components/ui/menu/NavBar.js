@@ -19,17 +19,17 @@ class NavBar extends React.Component {
               <button className={this.props.isClose ? 'menu-toggle' : 'menu-toggle is-active'} onClick={this.props.toggleNavBar}>Menu</button>
           </div>
           <div id="main-side-nav" className={this.props.isClose ? 'nav-menus' : 'nav-menus open'}>
-              <Link to="/info">
-              <div>온라인 갤러리 소개</div>
+              <Link to="/info" onClick={() => console.log('click')}>
+                <div>온라인 갤러리 소개</div>
               </Link>
-              <Link to="/exhibition">
-              <div>온라인 갤러리</div>
+              <Link to="/exhibition" onClick={() => console.log('click')}>
+                < div>온라인 갤러리</div>
               </Link>
-              <Link to="/author">
-              <div>작가 소개</div>
+              <Link to="/artist">
+                <div>작가 소개</div>
               </Link>
               <Link to="/notice">
-              <div>공지사항</div>
+                <div>공지사항</div>
               </Link>
           </div>
       </div>

@@ -13,7 +13,7 @@ class BatchPicture extends React.Component {
   }
 
   render () {
-    const { data } = this.props;
+    const { data, slideIdx } = this.props;
     return (
       <div className="batch-picture load-next active" onClick={this.activeModal}>
         {data.length > 0
@@ -22,6 +22,7 @@ class BatchPicture extends React.Component {
               key={idx}
               idx={idx}
               length={data.length}
+              slideIdx={slideIdx}
               data={item}
             ></BatchItem>)
           : '불러오는중...'}
@@ -42,7 +43,7 @@ class BatchPicture extends React.Component {
   }
 }
 
-const BatchItem = ({ idx, length, data }) => {
+const BatchItem = ({ idx, length, slideIdx, data }) => {
   return (
     <div
       className={
@@ -53,7 +54,11 @@ const BatchItem = ({ idx, length, data }) => {
             : 'hero-section'
       }
       >
-      <img className="img" src={data.exhibitionItem.image} alt={`batch-img-item-${idx + 1}`}></img>
+      <img
+        className="img lazy"
+        data-src={data.exhibitionItem.image}
+        alt={`batch-img-item-${idx + 1}`}
+      ></img>
     </div>
   );
 };
@@ -68,6 +73,7 @@ BatchPicture.propTypes = {
 BatchItem.propTypes = {
   idx: PropTypes.number,
   length: PropTypes.number,
+  slideIdx: PropTypes.number,
   data: PropTypes.object
 };
 

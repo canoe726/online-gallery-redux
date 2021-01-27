@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../../../stylesheets/exhibition/exhibition.scss';
+import '../../../stylesheets/artist/artist.scss';
 
 import MasonryItem from './MasonryItem';
 import { resizeAllMasonryItems } from '../../util/masonry';
 import { MasonryLoading } from '../../../containers/loadingContainers';
-import { lazyLoad } from '../../util/lazyLoading';
 
-class AppExhibition extends React.Component {
+class AppArtist extends React.Component {
   constructor (props) {
     super(props);
 
@@ -19,30 +18,26 @@ class AppExhibition extends React.Component {
   }
 
   componentDidMount () {
-    this.props.initExhibitionData();
-    lazyLoad();
-    window.addEventListener('load', this.resizeAllMasonryItems);
+    this.props.initArtistData();
     window.addEventListener('resize', this.resizeAllMasonryItems);
     window.addEventListener('scroll', this.infinityScroll);
   }
 
   componentWillUnmount () {
-    window.removeEventListener('load', this.resizeAllMasonryItems);
     window.removeEventListener('resize', this.resizeAllMasonryItems);
-    window.removeEventListener('scroll', this.infinityScroll);
   }
 
   render () {
-    const { isFetching, exhibitionList } = this.props;
+    const { isFetching, artistList } = this.props;
     return (
-      <div className="exhibition-wrapper">
+      <div className="artist-wrapper">
         <div className="masonry-wrapper">
           <div className="masonry">
-            {exhibitionList.length > 0
-              ? exhibitionList.map((item, idx) =>
+            {artistList.length > 0
+              ? artistList.map((item, idx) =>
                 <MasonryItem
                   key={idx}
-                  exhibitionItem={item}
+                  artistItem={item}
                 ></MasonryItem>)
               : '불러오는중...'
             }
@@ -64,16 +59,16 @@ class AppExhibition extends React.Component {
 
     // 스크롤이 최하단이면서 fetch 중이 아닐 때 호출
     if (scrollTop + clientHeight >= scrollHeight && !this.props.isFetching) {
-      this.props.addExhibitionData();
+      this.props.addArtistData();
     }
   }
 }
 
-AppExhibition.propTypes = {
-  exhibitionList: PropTypes.array,
+AppArtist.propTypes = {
+  artistList: PropTypes.array,
   isFetching: PropTypes.bool,
-  initExhibitionData: PropTypes.func,
-  addExhibitionData: PropTypes.func
+  initArtistData: PropTypes.func,
+  addArtistData: PropTypes.func
 };
 
-export default AppExhibition;
+export default AppArtist;

@@ -10,7 +10,7 @@ import ModalWrapper from './ModalWrapper';
 
 class ExhibitionDetailItem extends React.Component {
   render () {
-    const { slideIdx, modalActive, data, toggleModal } = this.props;
+    const { slideIdx, modalActive, data, toggleModal, changeSlideIdx } = this.props;
     return (
       <div className="exhibition-detail-item">
         <BackgroundMusic
@@ -19,6 +19,7 @@ class ExhibitionDetailItem extends React.Component {
 
         <BackgroundWrapper
           slideIdx={slideIdx}
+          changeSlideIdx={changeSlideIdx}
           data={data}
         ></BackgroundWrapper>
 

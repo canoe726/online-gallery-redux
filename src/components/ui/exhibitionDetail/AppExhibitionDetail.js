@@ -5,16 +5,23 @@ import '../../../stylesheets/exhibitionDetail/exhibitionDetail.scss';
 
 import ExhibitionDetailItem from './ExhibitionDetailItem';
 
+import { lazyLoad } from '../../util/lazyLoading';
+
 class AppExhibitionDetail extends React.Component {
   componentDidMount () {
     this.props.initExhibitionDetailData();
+    lazyLoad();
+  }
+
+  componentDidUpdate () {
+    lazyLoad();
   }
 
   render () {
     const { slideIdx, modalActive, exhibitionDetailList, changeSlideIdx, toggleModal } = this.props;
     return (
       <div className="exhibition-detail-wrapper">
-        {exhibitionDetailList.length > 0
+        {exhibitionDetailList && exhibitionDetailList.length > 0
           ? <ExhibitionDetailItem
               slideIdx={slideIdx}
               modalActive={modalActive}

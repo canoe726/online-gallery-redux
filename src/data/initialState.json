@@ -27,12 +27,13 @@
     "info": {
         "notice": "",
         "backgroundImages": [
-            "./samples/info1.jpg",
-            "./samples/info2.jpg",
-            "./samples/info3.jpg"
+            "/samples/info1.jpg",
+            "/samples/info2.jpg",
+            "/samples/info3.jpg"
         ]
     },
     "exhibition": {
+        "noMoreData": false,
         "isFetching": false,
         "exhibitionList": []
     },
@@ -43,6 +44,8 @@
         "pictureList": []
     },
     "artist": {
+        "noMoreData": false,
+        "isFetching": false,
         "artistList": []
     },
     "artistDetail": {
@@ -70,10 +73,10 @@
     },
     "loading": {
         "masonryLoading": {
-            "loadingImage": "./samples/masonry_loading.gif"
+            "loadingImage": "/samples/masonry_loading.gif"
         }
     },
     "error": {
-        "backgroundImage": "./samples/artwork_d_6.jpg"
+        "backgroundImage": "/samples/artwork_d_6.jpg"
     }
 }

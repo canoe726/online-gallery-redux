@@ -1,4 +1,4 @@
-.author-wrapper {
+.artist-wrapper {
   @import "../loading/masonryLoading.scss";
 
   margin: 60px 1em 0 1em;
@@ -31,6 +31,7 @@
         transform: translate(-50%, -50%);
         transition: 0.5s ease;
         opacity: 0;
+        text-align: center;
 
         .caption {
           color: black;
@@ -38,7 +39,7 @@
           font-weight: bold;
         }
 
-        .author {
+        .artist {
           margin-top: 20px;
         }
       }

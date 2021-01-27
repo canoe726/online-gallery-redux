@@ -1,5 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import { lazyLoad } from '../../util/lazyLoading';
 
 class MasonryItem extends React.Component {
   constructor (props) {
@@ -7,16 +10,22 @@ class MasonryItem extends React.Component {
     this.resizeMasonryItem = this.resizeMasonryItem.bind(this);
   }
 
+  componentDidMount () {
+    lazyLoad();
+  }
+
   render () {
-    const { exhibitionItem } = this.props;
+    const { artistItem } = this.props;
     return (
-      <div className="masonry-item">
-        <img className="item-img lazy" data-src={exhibitionItem.posterImage}></img>
-        <div className="caption-wrapper">
-          <div className="caption image">{exhibitionItem.title}</div>
-          <div className="caption artist">{exhibitionItem.participants}</div>
+      <Link to={`/artist/${artistItem.artistId}`}>
+        <div className="masonry-item" onLoad={this.resizeMasonryItem}>
+          <img className="item-img lazy" data-src={artistItem.profileImage}></img>
+          <div className="caption-wrapper">
+            <div className="caption nickname">{artistItem.nickname}</div>
+            <div className="caption artist">{artistItem.introduction}</div>
+          </div>
         </div>
-      </div>
+      </Link>
     );
   }
 
@@ -35,7 +44,7 @@ class MasonryItem extends React.Component {
 }
 
 MasonryItem.propTypes = {
-  exhibitionItem: PropTypes.object
+  artistItem: PropTypes.object
 };
 
 export default MasonryItem;

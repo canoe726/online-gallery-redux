@@ -1,7 +1,7 @@
 // import { resizeMasonryItem } from './masonry';
 
 function lazyLoad () {
-  const lazyImages = [].slice.call(document.querySelectorAll('img.lazy'));
+  const lazyImages = [].slice.call(document.querySelectorAll('.lazy'));
 
   if ('IntersectionObserver' in window) {
     const lazyImageObserver = new IntersectionObserver((entries, observer) => {
