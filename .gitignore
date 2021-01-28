@@ -13,7 +13,6 @@
 
 # cache
 eslintcache
-yarn.lock
 package-lock.json
 
 # misc
