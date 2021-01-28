@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import '../../../stylesheets/info/info.scss';
 
 import SliderItem from './SliderItem';
+import { PageLoading } from '../../../containers/loadingContainers';
 import { setFullPage } from '../../util/fullPage';
 
 class AppInfo extends React.Component {
@@ -35,7 +36,7 @@ class AppInfo extends React.Component {
                   notice={notice}
                   backgroundImage={image}
                 ></SliderItem>)
-              : '불러오는중...'
+              : <PageLoading></PageLoading>
             }
         </div>
       </div>

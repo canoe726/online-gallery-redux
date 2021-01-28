@@ -1,24 +1,24 @@
 // import { resizeMasonryItem } from './masonry';
 
 function lazyLoad () {
-  const lazyImages = [].slice.call(document.querySelectorAll('.lazy'));
+  const lazyItems = [].slice.call(document.querySelectorAll('.lazy'));
 
   if ('IntersectionObserver' in window) {
-    const lazyImageObserver = new IntersectionObserver((entries, observer) => {
+    const lazyItemObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const lazyImage = entry.target;
-          lazyImage.src = lazyImage.dataset.src;
-          lazyImage.classList.remove('lazy');
-          lazyImageObserver.unobserve(lazyImage);
+          const lazyItem = entry.target;
+          lazyItem.src = lazyItem.dataset.src;
+          lazyItem.classList.remove('lazy');
+          lazyItemObserver.unobserve(lazyItem);
 
         //   checkUrl(lazyImage);
         }
       });
     });
 
-    lazyImages.forEach(lazyImage => {
-      lazyImageObserver.observe(lazyImage);
+    lazyItems.forEach(lazyImage => {
+      lazyItemObserver.observe(lazyImage);
     });
   } else {
     console.log('not supported');

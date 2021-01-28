@@ -5,22 +5,20 @@ import '../../../stylesheets/exhibition/exhibition.scss';
 
 import MasonryItem from './MasonryItem';
 import { resizeAllMasonryItems } from '../../util/masonry';
-import { MasonryLoading } from '../../../containers/loadingContainers';
-import { lazyLoad } from '../../util/lazyLoading';
+import { PageLoading, MasonryLoading } from '../../../containers/loadingContainers';
 
 class AppExhibition extends React.Component {
   constructor (props) {
     super(props);
-
-    window.scrollTo(0, 0);
 
     this.resizeAllMasonryItems = resizeAllMasonryItems.bind(this);
     this.infinityScroll = this.infinityScroll.bind(this);
   }
 
   componentDidMount () {
+    window.scrollTo(0, 0);
     this.props.initExhibitionData();
-    lazyLoad();
+
     window.addEventListener('load', this.resizeAllMasonryItems);
     window.addEventListener('resize', this.resizeAllMasonryItems);
     window.addEventListener('scroll', this.infinityScroll);
@@ -38,13 +36,13 @@ class AppExhibition extends React.Component {
       <div className="exhibition-wrapper">
         <div className="masonry-wrapper">
           <div className="masonry">
-            {exhibitionList.length > 0
+            {(exhibitionList.length > 0 && exhibitionList[0] !== undefined)
               ? exhibitionList.map((item, idx) =>
                 <MasonryItem
                   key={idx}
                   exhibitionItem={item}
                 ></MasonryItem>)
-              : '불러오는중...'
+              : <PageLoading></PageLoading>
             }
           </div>
         </div>

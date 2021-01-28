@@ -12,11 +12,6 @@ class AppMasonryLoading extends React.Component {
   }
 }
 
-// export function toggleMasonryLoading () {
-//   const loadingWrapper = document.querySelector('.masonry-loading-wrapper');
-//   loadingWrapper.classList.toggle('hidden');
-// };
-
 AppMasonryLoading.propTypes = {
   loadingImage: PropTypes.string
 };

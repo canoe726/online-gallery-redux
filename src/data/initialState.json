@@ -72,8 +72,14 @@
         ]
     },
     "loading": {
+        "pageLoading": {
+            "loadingImage": "/samples/page_loading.gif"
+        },
         "masonryLoading": {
             "loadingImage": "/samples/masonry_loading.gif"
+        },
+        "elementLoading": {
+            "loadingImage": "/samples/element_loading.gif"
         }
     },
     "error": {

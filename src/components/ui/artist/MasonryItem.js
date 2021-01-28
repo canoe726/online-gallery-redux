@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { lazyLoad } from '../../util/lazyLoading';
 
@@ -15,17 +16,19 @@ class MasonryItem extends React.Component {
   }
 
   render () {
-    const { artistItem } = this.props;
+    const { history, artistItem } = this.props;
     return (
-      <Link to={`/artist/${artistItem.artistId}`}>
-        <div className="masonry-item" onLoad={this.resizeMasonryItem}>
-          <img className="item-img lazy" data-src={artistItem.profileImage}></img>
-          <div className="caption-wrapper">
-            <div className="caption nickname">{artistItem.nickname}</div>
-            <div className="caption artist">{artistItem.introduction}</div>
-          </div>
+      <div
+        className="masonry-item"
+        onLoad={this.resizeMasonryItem}
+        onClick={() => history.push(`/artist/${artistItem.artistId}`)}
+        >
+        <img className="item-img lazy" data-src={artistItem.profileImage}></img>
+        <div className="caption-wrapper">
+          <div className="caption nickname">{artistItem.nickname}</div>
+          <div className="caption artist">{artistItem.introduction}</div>
         </div>
-      </Link>
+      </div>
     );
   }
 
@@ -39,12 +42,13 @@ class MasonryItem extends React.Component {
     const itemImg = target;
     const rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
 
-    target.parentNode.parentNode.style.gridRowEnd = 'span ' + rowSpan;
+    target.parentNode.style.gridRowEnd = 'span ' + rowSpan;
   }
 }
 
 MasonryItem.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
   artistItem: PropTypes.object
 };
 
-export default MasonryItem;
+export default withRouter(MasonryItem);

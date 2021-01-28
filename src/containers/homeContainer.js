@@ -107,7 +107,7 @@ export const Home = connect(
             {
               artistId: '0',
               name: 'AAA',
-              nickname: 'A',
+              nickname: 'A nickname',
               profileImage: '/samples/artist1.jpg',
               introduction: 'A 입니다.',
               note: '안녕하세요'
@@ -115,7 +115,7 @@ export const Home = connect(
             {
               artistId: '1',
               name: 'BBB',
-              nickname: 'B',
+              nickname: 'B nickname',
               profileImage: '/samples/artist2.jpg',
               introduction: 'B 입니다.',
               note: '안녕하세요'
@@ -123,7 +123,7 @@ export const Home = connect(
             {
               artistId: '2',
               name: 'CCC',
-              nickname: 'C',
+              nickname: 'C nickname',
               profileImage: '/samples/artist3.jpg',
               introduction: 'C 입니다.',
               note: '안녕하세요'
@@ -131,7 +131,7 @@ export const Home = connect(
             {
               artistId: '3',
               name: 'DDD',
-              nickname: 'D',
+              nickname: 'D nickname',
               profileImage: '/samples/artist4.jpg',
               introduction: 'D 입니다.',
               note: '안녕하세요'
@@ -139,7 +139,7 @@ export const Home = connect(
             {
               artistId: '4',
               name: 'EEE',
-              nickname: 'E',
+              nickname: 'E nickname',
               profileImage: '/samples/artist5.jpg',
               introduction: 'E 입니다.',
               note: '안녕하세요'
@@ -147,7 +147,7 @@ export const Home = connect(
             {
               artistId: '5',
               name: 'FFF',
-              nickname: 'F',
+              nickname: 'F nickname',
               profileImage: '/samples/artist6.jpg',
               introduction: 'F 입니다.',
               note: '안녕하세요'
@@ -155,7 +155,7 @@ export const Home = connect(
             {
               artistId: '60',
               name: 'GGG',
-              nickname: 'G',
+              nickname: 'G nickname',
               profileImage: '/samples/artist7.jpg',
               introduction: 'G 입니다.',
               note: '안녕하세요'
@@ -163,7 +163,7 @@ export const Home = connect(
             {
               artistId: '7',
               name: 'HHH',
-              nickname: 'H',
+              nickname: 'H nickname',
               profileImage: '/samples/artist8.jpg',
               introduction: 'H 입니다.',
               note: '안녕하세요'

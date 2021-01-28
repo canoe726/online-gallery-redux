@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import BannerCard from './BannerCard';
+import { ElementLoading } from '../../../../containers/loadingContainers';
 
 class HorizontalBanner extends React.Component {
   componentDidMount () {
@@ -13,14 +14,14 @@ class HorizontalBanner extends React.Component {
     return (
         <div className="horizontal-banner">
           <div className="banner-card-wrapper">
-          {banner.length > 0
-            ? banner.map((item, idx) =>
-              <BannerCard
-                key={idx}
-                data={item}
-                isShow={idx === bannerIdx}
-              ></BannerCard>)
-            : '불러오는중...'}
+            {banner.length > 0
+              ? banner.map((item, idx) =>
+                <BannerCard
+                  key={idx}
+                  data={item}
+                  isShow={idx === bannerIdx}
+                ></BannerCard>)
+              : <ElementLoading></ElementLoading>}
           </div>
           <div className="prev" onClick={() => this.changeSlide(-1)}>&#10094;</div>
           <div className="next" onClick={() => this.changeSlide(1)}>&#10095;</div>

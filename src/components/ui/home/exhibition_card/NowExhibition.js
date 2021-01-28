@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ExhibitionCard from './ExhibitionCard';
+import { ElementLoading } from '../../../../containers/loadingContainers';
 
 class NowExhibition extends React.Component {
   componentDidMount () {
@@ -19,10 +20,11 @@ class NowExhibition extends React.Component {
                 (idx < (exhibitionCardSize + exhibitionCardIdx))
                   ? <ExhibitionCard
                       key={idx}
+                      exhibitionCardSize={exhibitionCardSize}
                       data={item}
                     ></ExhibitionCard>
                   : null)
-            : '불러오는중...'
+            : <ElementLoading></ElementLoading>
           }
         </div>
       </div>

@@ -2,7 +2,7 @@ import C from '../constants/artistConstants';
 
 export const initArtistData = (data) => ({
   type: C.INIT_ARTIST_DATA,
-  exhibitionList: data
+  artistList: data
 });
 
 export const addArtistData = (data) => ({

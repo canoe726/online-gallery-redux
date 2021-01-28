@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import '../../../stylesheets/exhibitionDetail/exhibitionDetail.scss';
 
 import ExhibitionDetailItem from './ExhibitionDetailItem';
-
+import { PageLoading } from '../../../containers/loadingContainers';
 import { lazyLoad } from '../../util/lazyLoading';
 
 class AppExhibitionDetail extends React.Component {
   componentDidMount () {
     this.props.initExhibitionDetailData();
-    lazyLoad();
   }
 
   componentDidUpdate () {
@@ -29,7 +28,7 @@ class AppExhibitionDetail extends React.Component {
               changeSlideIdx={changeSlideIdx}
               toggleModal={toggleModal}
             ></ExhibitionDetailItem>
-          : '로딩중...'
+          : <PageLoading></PageLoading>
         }
       </div>
     );

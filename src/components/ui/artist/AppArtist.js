@@ -5,26 +5,29 @@ import '../../../stylesheets/artist/artist.scss';
 
 import MasonryItem from './MasonryItem';
 import { resizeAllMasonryItems } from '../../util/masonry';
-import { MasonryLoading } from '../../../containers/loadingContainers';
+import { PageLoading, MasonryLoading } from '../../../containers/loadingContainers';
 
 class AppArtist extends React.Component {
   constructor (props) {
     super(props);
-
-    window.scrollTo(0, 0);
 
     this.resizeAllMasonryItems = resizeAllMasonryItems.bind(this);
     this.infinityScroll = this.infinityScroll.bind(this);
   }
 
   componentDidMount () {
+    window.scrollTo(0, 0);
     this.props.initArtistData();
+
+    window.addEventListener('load', this.resizeAllMasonryItems);
     window.addEventListener('resize', this.resizeAllMasonryItems);
     window.addEventListener('scroll', this.infinityScroll);
   }
 
   componentWillUnmount () {
+    window.removeEventListener('load', this.resizeAllMasonryItems);
     window.removeEventListener('resize', this.resizeAllMasonryItems);
+    window.removeEventListener('scroll', this.infinityScroll);
   }
 
   render () {
@@ -39,7 +42,7 @@ class AppArtist extends React.Component {
                   key={idx}
                   artistItem={item}
                 ></MasonryItem>)
-              : '불러오는중...'
+              : <PageLoading></PageLoading>
             }
           </div>
         </div>

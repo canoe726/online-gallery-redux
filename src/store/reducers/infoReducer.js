@@ -5,8 +5,7 @@ export const info = (state = {}, action) => {
     case C.INIT_INFO_DATA:
       return {
         ...state,
-        // notice: action.notice
-        notice: '이것은 홈페이지 소개 테스트 글입니다.'
+        notice: action.notice
       };
     default:
       return state;

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ArtistCard from './ArtistCard';
+import { ElementLoading } from '../../../../containers/loadingContainers';
 
 class ArtistIntroduction extends React.Component {
   componentDidMount () {
@@ -19,10 +20,11 @@ class ArtistIntroduction extends React.Component {
                 (idx < (artistCardSize + artistCardIdx))
                   ? <ArtistCard
                       key={idx}
+                      artistCardSize={artistCardSize}
                       data={item}
                     ></ArtistCard>
                   : null)
-            : '불러오는중...'
+            : <ElementLoading></ElementLoading>
           }
         </div>
       </div>
