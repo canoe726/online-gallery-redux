@@ -80,11 +80,11 @@
     opacity: 1;
   }
 
-  @import "./backgroundWrapper.scss";
+  @import "backgroundWrapper.scss";
 
-  @import "./batchPicture.scss";
+  @import "batchPicture.scss";
 
-  @import "./batchNote.scss";
+  @import "batchNote.scss";
 
   .artwork-dot {
     z-index: 20;
@@ -121,6 +121,6 @@
     display: none;
   }
 
-  @import "./modalWrapper.scss";
-  @import "./closeIcon.scss";
+  @import "modalWrapper.scss";
+  @import "closeIcon.scss";
 }
