@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import '../../../stylesheets/artist/artist.scss';
 
 import MasonryItem from './MasonryItem';
+import NoMoreData from './NoMoreData';
 import { resizeAllMasonryItems } from '../../util/masonry';
 import { PageLoading, MasonryLoading } from '../../../containers/loadingContainers';
 
@@ -31,7 +32,7 @@ class AppArtist extends React.Component {
   }
 
   render () {
-    const { isFetching, artistList } = this.props;
+    const { noMoreData, noMoreDataImage, isFetching, artistList } = this.props;
     return (
       <div className="artist-wrapper">
         <div className="masonry-wrapper">
@@ -46,11 +47,15 @@ class AppArtist extends React.Component {
             }
           </div>
         </div>
-        {this.props.isFetching
-          ? <MasonryLoading
-              isFetching={isFetching}
-            ></MasonryLoading>
-          : ''}
+        {noMoreData
+          ? <NoMoreData
+              noMoreDataImage={noMoreDataImage}
+            ></NoMoreData>
+          : isFetching
+            ? <MasonryLoading
+                isFetching={isFetching}
+              ></MasonryLoading>
+            : ''}
       </div>
     );
   }
@@ -69,6 +74,8 @@ class AppArtist extends React.Component {
 
 AppArtist.propTypes = {
   artistList: PropTypes.array,
+  noMoreData: PropTypes.bool,
+  noMoreDataImage: PropTypes.string,
   isFetching: PropTypes.bool,
   initArtistData: PropTypes.func,
   addArtistData: PropTypes.func

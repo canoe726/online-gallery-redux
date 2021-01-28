@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import '../../../stylesheets/exhibition/exhibition.scss';
 
 import MasonryItem from './MasonryItem';
+import NoMoreData from './NoMoreData';
 import { resizeAllMasonryItems } from '../../util/masonry';
 import { PageLoading, MasonryLoading } from '../../../containers/loadingContainers';
 
@@ -31,7 +32,7 @@ class AppExhibition extends React.Component {
   }
 
   render () {
-    const { isFetching, exhibitionList } = this.props;
+    const { noMoreData, noMoreDataImage, isFetching, exhibitionList } = this.props;
     return (
       <div className="exhibition-wrapper">
         <div className="masonry-wrapper">
@@ -46,11 +47,15 @@ class AppExhibition extends React.Component {
             }
           </div>
         </div>
-        {this.props.isFetching
-          ? <MasonryLoading
+        {noMoreData
+          ? <NoMoreData
+              noMoreDataImage={noMoreDataImage}
+            ></NoMoreData>
+          : isFetching
+            ? <MasonryLoading
               isFetching={isFetching}
-            ></MasonryLoading>
-          : ''}
+              ></MasonryLoading>
+            : ''}
       </div>
     );
   }
@@ -69,6 +74,8 @@ class AppExhibition extends React.Component {
 
 AppExhibition.propTypes = {
   exhibitionList: PropTypes.array,
+  noMoreData: PropTypes.bool,
+  noMoreDataImage: PropTypes.string,
   isFetching: PropTypes.bool,
   initExhibitionData: PropTypes.func,
   addExhibitionData: PropTypes.func

@@ -28,6 +28,11 @@ export const artist = (state = {}, action) => {
         ...state,
         isFetching: action.isFetching
       };
+    case C.TOGGLE_NO_MORE_DATA:
+      return {
+        ...state,
+        noMoreData: action.noMoreData
+      };
     default:
       return state;
   }

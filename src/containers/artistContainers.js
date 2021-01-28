@@ -2,16 +2,21 @@ import { connect } from 'react-redux';
 
 import AppArtist from '../components/ui/artist/AppArtist';
 
-import { initArtistData, addArtistData, toggleIsFetching } from '../actions/artistActions';
+import { initArtistData, addArtistData, toggleIsFetching, toggleNoMoreData } from '../actions/artistActions';
 
 export const Artist = connect(
   state => ({
     artistList: state.artist.artistList,
+    noMoreData: state.artist.noMoreData,
+    noMoreDataImage: state.artist.noMoreDataImage,
     isFetching: state.artist.isFetching
   }),
   dispatch => ({
     toggleIsFetching (isFetching) {
       dispatch(toggleIsFetching(isFetching));
+    },
+    toggleNoMoreData (noMoreData) {
+      dispatch(toggleNoMoreData(noMoreData));
     },
     async initArtistData () {
       const response = await fetch('https://api.harvardartmuseums.org/exhibition?apikey=954c59e1-2588-4641-adbc-9e90a3b6ebb0&size=10&page=1');
