@@ -31,7 +31,7 @@ export const Home = connect(
         dispatch(initHomeBanner(
           [
             {
-              bannerImgPath: '/samples/banner1.jpg',
+              bannerImgPath: 'https://dev-online-gallery-images.s3.ap-northeast-2.amazonaws.com/exhibition/1/item/1/1_%E1%84%8B%E1%85%A1%E1%84%92%E1%85%A1%E1%84%86%E1%85%A9%E1%84%90%E1%85%A6%E1%86%AF6105%E1%84%92%E1%85%A9.jpg',
               bannerUrl: '/'
             },
             {
