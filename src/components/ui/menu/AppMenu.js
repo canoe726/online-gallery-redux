@@ -16,7 +16,7 @@ class AppMenu extends React.Component {
         ></NavBar>
         <div className="gallery-logo">
           <Link to="/">
-              <div className="gallery-name">Online - Gallery</div>
+              <div className="gallery-name">Online Gallery</div>
           </Link>
         </div>
         <Search></Search>

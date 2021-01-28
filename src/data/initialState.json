@@ -51,7 +51,10 @@
         "artistList": []
     },
     "artistDetail": {
-        "artistDetailList": []
+        "noMoreData": false,
+        "isFetching": false,
+        "artistDetailData": {},
+        "artistDetailPictureList": []
     },
     "notice": {
         "notices": [
@@ -82,6 +85,11 @@
         },
         "elementLoading": {
             "loadingImage": "/samples/element_loading.gif"
+        },
+        "noMoreLoading": {
+            "exhibitionImage": "/samples/no_more_data_exhibition.jpg",
+            "artistImage": "/samples/no_more_data_artist.jpg",
+            "artistDetailImage": "/samples/no_more_data_artist_detail.jpg"
         }
     },
     "error": {
