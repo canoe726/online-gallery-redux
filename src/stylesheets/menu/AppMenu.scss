@@ -17,9 +17,8 @@
   }
 
   .hidden {
-    // visibility: collapse;
     opacity: 0;
   }
 
-  @import "./search.scss";
+  @import "search.scss";
 }

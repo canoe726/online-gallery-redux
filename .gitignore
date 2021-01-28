@@ -12,9 +12,9 @@
 /build
 
 # cache
-.eslintcache
-.yarn.lock
-.package-lock.json
+eslintcache
+yarn.lock
+package-lock.json
 
 # misc
 .DS_Store
