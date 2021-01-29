@@ -18,11 +18,15 @@ class ArtistDetailItem extends React.Component {
   componentDidMount () {
     window.scrollTo(0, 0);
 
+    window.addEventListener('load', this.resizeAllMasonryItems);
+    window.addEventListener('resize', this.resizeAllMasonryItems);
     window.addEventListener('scroll', this.heroScrollZoom);
     window.addEventListener('scroll', this.infinityScroll);
   }
 
   componentWillUnmount () {
+    window.removeEventListener('load', this.resizeAllMasonryItems);
+    window.removeEventListener('resize', this.resizeAllMasonryItems);
     window.removeEventListener('scroll', this.heroScrollZoom);
     window.removeEventListener('scroll', this.infinityScroll);
   }

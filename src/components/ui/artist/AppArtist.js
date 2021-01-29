@@ -36,7 +36,7 @@ class AppArtist extends React.Component {
       <div className="artist-wrapper">
         <div className="masonry-wrapper">
           <div className="masonry">
-            {artistList.length > 0
+            {!artistList.length > 0
               ? artistList.map((item, idx) =>
                 <MasonryItem
                   key={idx}
