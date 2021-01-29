@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import '../../../stylesheets/artist/artist.scss';
 
 import MasonryItem from './MasonryItem';
-import NoMoreData from './NoMoreData';
 import { resizeAllMasonryItems } from '../../util/masonry';
-import { PageLoading, MasonryLoading } from '../../../containers/loadingContainers';
+import { PageLoading, MasonryLoading, NoMoreLoading } from '../../../containers/loadingContainers';
 
 class AppArtist extends React.Component {
   constructor (props) {
@@ -32,7 +31,7 @@ class AppArtist extends React.Component {
   }
 
   render () {
-    const { noMoreData, noMoreDataImage, isFetching, artistList } = this.props;
+    const { noMoreData, isFetching, artistList } = this.props;
     return (
       <div className="artist-wrapper">
         <div className="masonry-wrapper">
@@ -43,14 +42,14 @@ class AppArtist extends React.Component {
                   key={idx}
                   artistItem={item}
                 ></MasonryItem>)
-              : <PageLoading></PageLoading>
-            }
+              : <PageLoading></PageLoading>}
           </div>
         </div>
         {noMoreData
-          ? <NoMoreData
-              noMoreDataImage={noMoreDataImage}
-            ></NoMoreData>
+          ? <NoMoreLoading
+              pageIdx={1}
+              caption={'모든 아티스트를 불러 왔습니다.'}
+            ></NoMoreLoading>
           : isFetching
             ? <MasonryLoading
                 isFetching={isFetching}
@@ -65,9 +64,11 @@ class AppArtist extends React.Component {
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
 
-    // 스크롤이 최하단이면서 fetch 중이 아닐 때 호출
-    if (scrollTop + clientHeight >= scrollHeight && !this.props.isFetching) {
-      this.props.addArtistData();
+    // 스크롤이 최하단이면서 fetch 중이 아니면서 데이터가 더 있을 때 호출
+    if (scrollTop + clientHeight >= scrollHeight) {
+      if (!this.props.isFetching && !this.props.noMoreData) {
+        this.props.addArtistData();
+      }
     }
   }
 }
@@ -75,7 +76,6 @@ class AppArtist extends React.Component {
 AppArtist.propTypes = {
   artistList: PropTypes.array,
   noMoreData: PropTypes.bool,
-  noMoreDataImage: PropTypes.string,
   isFetching: PropTypes.bool,
   initArtistData: PropTypes.func,
   addArtistData: PropTypes.func

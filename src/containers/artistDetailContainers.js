@@ -30,27 +30,39 @@ export const ArtistDetail = connect(
       dispatch(toggleNoMoreData(noMoreData));
     },
     async initArtistDetailData (id) {
+      dispatch(toggleIsFetching(true));
       const response = await fetch(OG_API.SAMPLE);
-      // const response = await fetch(`${ROOT + ARTIST}/${id}`);
       // console.log(`${OG_API.ROOT + OG_API.ARTIST}/${id}`);
       if (response.ok) {
-        // const data = await response.json();
+        const data = await response.json();
         // console.log(data);
-        // dispatch(addExhibitionData(data));
-        dispatch(initArtistDetailData(DUMMY.INIT_ARTIST_DETAIL_DATA));
+        // const data = null;
+        if (data) {
+          dispatch(initArtistDetailData(DUMMY.INIT_ARTIST_DETAIL_DATA));
+          dispatch(toggleIsFetching(false));
+        } else {
+          dispatch(toggleIsFetching(false));
+          dispatch(toggleNoMoreData(true));
+        }
       }
     },
     initArtistDetailPictureData () {
       dispatch(initArtistDetailPictureData([]));
     },
     async addArtistDetailPictureData (id) {
+      dispatch(toggleIsFetching(true));
       const response = await fetch(OG_API.SAMPLE);
-      // const response = await fetch();
       if (response.ok) {
-        // const data = await response.json();
+        const data = await response.json();
         // console.log(data);
-        // dispatch(addExhibitionData(data));
-        dispatch(addArtistDetailPictureData(DUMMY.ADD_ARTIST_DETAIL_PICTURE));
+        // const data = null;
+        if (data) {
+          dispatch(addArtistDetailPictureData(DUMMY.ADD_ARTIST_DETAIL_PICTURE));
+          dispatch(toggleIsFetching(false));
+        } else {
+          dispatch(toggleIsFetching(false));
+          dispatch(toggleNoMoreData(true));
+        }
       }
     }
   })

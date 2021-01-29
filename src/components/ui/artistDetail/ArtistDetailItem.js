@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ArtistInfoWrapper from './ArtistInfoWrapper';
-import MasonryWrapper from './MasonryWrapper';
+import MasonryItem from './MasonryItem';
 
 import { resizeAllMasonryItems } from '../../util/masonry';
+import { MasonryLoading, NoMoreLoading } from '../../../containers/loadingContainers';
 
 class ArtistDetailItem extends React.Component {
   constructor (props) {
@@ -15,15 +16,20 @@ class ArtistDetailItem extends React.Component {
   }
 
   componentDidMount () {
+    window.scrollTo(0, 0);
+
     window.addEventListener('scroll', this.heroScrollZoom);
+    window.addEventListener('scroll', this.infinityScroll);
   }
 
   componentWillUnmount () {
     window.removeEventListener('scroll', this.heroScrollZoom);
+    window.removeEventListener('scroll', this.infinityScroll);
   }
 
   render () {
-    const { noMoreData, artistDetailData, artistDetailPictureList } = this.props;
+    const { noMoreData, isFetching, artistDetailData, artistDetailPictureList } = this.props;
+    console.log(noMoreData, isFetching, artistDetailPictureList, artistDetailData);
     return (
       <div className="artist-detail-item">
         <div className="thumbnail-wrapper zoom">
@@ -32,10 +38,27 @@ class ArtistDetailItem extends React.Component {
         <ArtistInfoWrapper
           artistDetailData={artistDetailData}
         ></ArtistInfoWrapper>
-        <MasonryWrapper
-          noMoreData={noMoreData}
-          artistDetailPictureList={artistDetailPictureList}
-        ></MasonryWrapper>
+        <div className="masonry-wrapper">
+          <div className="masonry">
+            {artistDetailPictureList.length > 0
+              ? artistDetailPictureList.map((item, idx) =>
+                <MasonryItem
+                  key={idx}
+                  artworkItem={item}
+                ></MasonryItem>)
+              : ''}
+          </div>
+        </div>
+        {noMoreData
+          ? <NoMoreLoading
+              pageIdx={2}
+              caption={'작가의 작품을 모두 불러왔습니다.'}
+            ></NoMoreLoading>
+          : isFetching
+            ? <MasonryLoading
+                isFetching={isFetching}
+              ></MasonryLoading>
+            : ''}
       </div>
     );
   }
@@ -45,9 +68,11 @@ class ArtistDetailItem extends React.Component {
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
 
-    // 스크롤이 최하단이면서 fetch 중이 아닐 때 호출
-    if (scrollTop + clientHeight >= scrollHeight && !this.props.isFetching) {
-      this.props.addArtistDetailPictureData();
+    // 스크롤이 최하단이면서 fetch 중이 아니면서 데이터가 더 있을 때 호출
+    if (scrollTop + clientHeight >= scrollHeight) {
+      if (!this.props.isFetching && !this.props.noMoreData) {
+        this.props.addArtistDetailPictureData();
+      }
     }
   }
 
@@ -55,8 +80,12 @@ class ArtistDetailItem extends React.Component {
     const scrollY = window.scrollY;
     const zoomImg = document.querySelector('.zoom img');
     const scaleRatio = (100 + scrollY / 5) / 100;
-    if (Math.floor(scaleRatio) > 2) return;
-    zoomImg.style.transform = `translate3d(-50%, -${scrollY / 50}%, 0) scale(${scaleRatio})`;
+    if (Math.floor(scaleRatio) > 2) {
+      zoomImg.style.opacity = '0';
+    } else {
+      zoomImg.style.opacity = '1';
+      zoomImg.style.transform = `translate3d(-50%, -${scrollY / 50}%, 0) scale(${scaleRatio})`;
+    }
   }
 }
 

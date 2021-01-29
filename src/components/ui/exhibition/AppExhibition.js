@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import '../../../stylesheets/exhibition/exhibition.scss';
 
 import MasonryItem from './MasonryItem';
-import NoMoreData from './NoMoreData';
 import { resizeAllMasonryItems } from '../../util/masonry';
-import { PageLoading, MasonryLoading } from '../../../containers/loadingContainers';
+import { PageLoading, NoMoreLoading, MasonryLoading } from '../../../containers/loadingContainers';
 
 class AppExhibition extends React.Component {
   constructor (props) {
@@ -32,7 +31,7 @@ class AppExhibition extends React.Component {
   }
 
   render () {
-    const { noMoreData, noMoreDataImage, isFetching, exhibitionList } = this.props;
+    const { noMoreData, isFetching, exhibitionList } = this.props;
     return (
       <div className="exhibition-wrapper">
         <div className="masonry-wrapper">
@@ -48,12 +47,13 @@ class AppExhibition extends React.Component {
           </div>
         </div>
         {noMoreData
-          ? <NoMoreData
-              noMoreDataImage={noMoreDataImage}
-            ></NoMoreData>
+          ? <NoMoreLoading
+              pageIdx={0}
+              caption={'데이터를 모두 불러 왔습니다.'}
+            ></NoMoreLoading>
           : isFetching
             ? <MasonryLoading
-              isFetching={isFetching}
+                isFetching={isFetching}
               ></MasonryLoading>
             : ''}
       </div>
@@ -65,9 +65,11 @@ class AppExhibition extends React.Component {
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
 
-    // 스크롤이 최하단이면서 fetch 중이 아닐 때 호출
-    if (scrollTop + clientHeight >= scrollHeight && !this.props.isFetching) {
-      this.props.addExhibitionData();
+    // 스크롤이 최하단이면서 fetch 중이 아니면서 데이터가 더 있을 때 호출
+    if (scrollTop + clientHeight >= scrollHeight) {
+      if (!this.props.isFetching && !this.props.noMoreData) {
+        this.props.addExhibitionData();
+      }
     }
   }
 }
@@ -75,7 +77,6 @@ class AppExhibition extends React.Component {
 AppExhibition.propTypes = {
   exhibitionList: PropTypes.array,
   noMoreData: PropTypes.bool,
-  noMoreDataImage: PropTypes.string,
   isFetching: PropTypes.bool,
   initExhibitionData: PropTypes.func,
   addExhibitionData: PropTypes.func

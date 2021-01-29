@@ -13,7 +13,6 @@ export const Artist = connect(
   state => ({
     artistList: state.artist.artistList,
     noMoreData: state.artist.noMoreData,
-    noMoreDataImage: state.artist.noMoreDataImage,
     isFetching: state.artist.isFetching
   }),
   dispatch => ({
@@ -24,25 +23,39 @@ export const Artist = connect(
       dispatch(toggleNoMoreData(noMoreData));
     },
     async initArtistData () {
+      dispatch(toggleIsFetching(true));
       const response = await fetch(OG_API.SAMPLE);
       if (response.ok) {
-        // const data = await response.json();
+        const data = await response.json();
         // console.log(data);
         // dispatch(addArtistData(data));
-        dispatch(initArtistData(DUMMY.INIT_ARTIST_DATA));
-        dispatch(toggleIsFetching(false));
+        // const data = null;
+        if (data) {
+          dispatch(initArtistData(DUMMY.INIT_ARTIST_DATA));
+          dispatch(toggleIsFetching(false));
+        } else {
+          dispatch(toggleIsFetching(false));
+          dispatch(toggleNoMoreData(true));
+        }
       } else {
         dispatch(toggleIsFetching(true));
       }
     },
     async addArtistData () {
+      dispatch(toggleIsFetching(true));
       const response = await fetch(OG_API.SAMPLE);
       if (response.ok) {
-        // const data = await response.json();
+        const data = await response.json();
         // console.log(data);
         // dispatch(addArtistData(data));
-        dispatch(addArtistData(DUMMY.ADD_ARTIST_DATA));
-        dispatch(toggleIsFetching(false));
+        // const data = null;
+        if (data) {
+          dispatch(addArtistData(DUMMY.ADD_ARTIST_DATA));
+          dispatch(toggleIsFetching(false));
+        } else {
+          dispatch(toggleIsFetching(false));
+          dispatch(toggleNoMoreData(true));
+        }
       } else {
         dispatch(toggleIsFetching(true));
       }

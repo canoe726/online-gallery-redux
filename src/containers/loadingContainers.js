@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AppPageLoading from '../components/ui/loading/AppPageLoading';
 import AppMasonryLoading from '../components/ui/loading/AppMasonryLoading';
 import AppElementLoading from '../components/ui/loading/AppElementLoading';
+import AppNoMoreLoading from '../components/ui/loading/AppNoMoreLoading';
 
 export const PageLoading = connect(
   state => ({
@@ -21,3 +22,11 @@ export const ElementLoading = connect(
     loadingImage: state.loading.elementLoading.loadingImage
   })
 )(AppElementLoading);
+
+export const NoMoreLoading = connect(
+  state => ({
+    exhibitionImage: state.loading.noMoreLoading.exhibitionImage,
+    artistImage: state.loading.noMoreLoading.artistImage,
+    artistDetailImage: state.loading.noMoreLoading.artistDetailImage
+  })
+)(AppNoMoreLoading);

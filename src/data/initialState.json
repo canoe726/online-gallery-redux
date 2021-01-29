@@ -34,7 +34,6 @@
     },
     "exhibition": {
         "noMoreData": false,
-        "noMoreDataImage": "/samples/no_more_data_exhibition.jpg",
         "isFetching": false,
         "exhibitionList": []
     },
@@ -46,7 +45,6 @@
     },
     "artist": {
         "noMoreData": false,
-        "noMoreDataImage": "/samples/no_more_data_artist.jpg",
         "isFetching": false,
         "artistList": []
     },

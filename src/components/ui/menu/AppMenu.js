@@ -7,7 +7,7 @@ import Search from './Search';
 
 class AppMenu extends React.Component {
   render () {
-    const { isClose, toggleNavBar } = this.props;
+    const { isClose, isSearch, toggleNavBar, toggleIsSearch } = this.props;
     return (
       <div className="header-menu">
         <NavBar
@@ -19,7 +19,10 @@ class AppMenu extends React.Component {
               <div className="gallery-name">Online Gallery</div>
           </Link>
         </div>
-        <Search></Search>
+        <Search
+          isSearch={isSearch}
+          toggleIsSearch={toggleIsSearch}
+        ></Search>
       </div>
     );
   };
@@ -27,7 +30,9 @@ class AppMenu extends React.Component {
 
 AppMenu.propTypes = {
   isClose: PropTypes.bool,
-  toggleNavBar: PropTypes.func
+  isSearch: PropTypes.bool,
+  toggleNavBar: PropTypes.func,
+  toggleIsSearch: PropTypes.func
 };
 
 export default AppMenu;

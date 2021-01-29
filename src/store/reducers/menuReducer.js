@@ -9,11 +9,11 @@ export const menu = (state = {}, action) => {
           isClose: !state.navBar.isClose
         }
       };
-    case C.TOGGLE_SEARCH:
+    case C.TOGGLE_IS_SEARCH:
       return {
         ...state,
         search: {
-          isSearch: state.search.isSearch
+          isSearch: action.isSearch
         }
       };
     default:

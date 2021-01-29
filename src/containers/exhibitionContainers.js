@@ -13,7 +13,6 @@ export const Exhibition = connect(
   state => ({
     exhibitionList: state.exhibition.exhibitionList,
     noMoreData: state.exhibition.noMoreData,
-    noMoreDataImage: state.exhibition.noMoreDataImage,
     isFetching: state.exhibition.isFetching
   }),
   dispatch => ({
@@ -24,18 +23,26 @@ export const Exhibition = connect(
       dispatch(toggleNoMoreData(noMoreData));
     },
     async initExhibitionData () {
+      dispatch(toggleIsFetching(true));
       const response = await fetch(OG_API.SAMPLE);
       if (response.ok) {
-        // const data = await response.json();
+        const data = await response.json();
         // console.log(data);
         // dispatch(initExhibitionData(data));
-        dispatch(initExhibitionData(DUMMY.INIT_EXHIBITION_DATA));
-        dispatch(toggleIsFetching(false));
+        // const data = null;
+        if (data) {
+          dispatch(initExhibitionData(DUMMY.INIT_EXHIBITION_DATA));
+          dispatch(toggleIsFetching(false));
+        } else {
+          dispatch(toggleIsFetching(false));
+          dispatch(toggleNoMoreData(true));
+        }
       } else {
         dispatch(toggleIsFetching(true));
       }
     },
     async addExhibitionData () {
+      dispatch(toggleIsFetching(true));
       const response = await fetch(OG_API.SAMPLE);
       if (response.ok) {
         const data = await response.json();
