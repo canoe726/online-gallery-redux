@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ArtistInfoWrapper from './ArtistInfoWrapper';
 import MasonryItem from './MasonryItem';
+// import GridGallery from './GridGallery';
 
 import { resizeAllMasonryItems } from '../../util/masonry';
 import { MasonryLoading, NoMoreLoading } from '../../../containers/loadingContainers';
@@ -42,6 +43,15 @@ class ArtistDetailItem extends React.Component {
         <ArtistInfoWrapper
           artistDetailData={artistDetailData}
         ></ArtistInfoWrapper>
+
+        {/* <div className="grid-gallery-wrapper">
+          <div className="title">작품 둘러보기</div>
+          <GridGallery
+            artistDetailPictureList={artistDetailPictureList}
+          ></GridGallery>
+          <div className="title">더보기</div>
+        </div> */}
+
         <div className="masonry-wrapper">
           <div className="masonry">
             {artistDetailPictureList.length > 0

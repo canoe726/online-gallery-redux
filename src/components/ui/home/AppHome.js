@@ -14,10 +14,8 @@ class AppHome extends React.Component {
       banner,
       bannerIdx,
       exhibition,
-      exhibitionCardSize,
       exhibitionCardIdx,
       artist,
-      artistCardSize,
       artistCardIdx,
       initHomeBanner,
       initHomeExhibition,
@@ -34,13 +32,11 @@ class AppHome extends React.Component {
         ></HorizontalBanner>
         <NowExhibition
           exhibition={exhibition}
-          exhibitionCardSize={exhibitionCardSize}
           exhibitionCardIdx={exhibitionCardIdx}
           initHomeExhibition={initHomeExhibition}
         ></NowExhibition>
         <ArtistIntroduction
           artist={artist}
-          artistCardSize={artistCardSize}
           artistCardIdx={artistCardIdx}
           initHomeArtist={initHomeArtist}
         ></ArtistIntroduction>
@@ -54,10 +50,8 @@ AppHome.propTypes = {
   banner: PropTypes.array,
   bannerIdx: PropTypes.number,
   exhibition: PropTypes.array,
-  exhibitionCardSize: PropTypes.number,
   exhibitionCardIdx: PropTypes.number,
   artist: PropTypes.array,
-  artistCardSize: PropTypes.number,
   artistCardIdx: PropTypes.number,
   initHomeBanner: PropTypes.func,
   initHomeExhibition: PropTypes.func,

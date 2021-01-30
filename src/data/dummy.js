@@ -17,7 +17,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: '0',
       title: '전시제목 1',
-      posterImage: '/samples/artwork1.jpg'
+      posterImage: 'http://www.online-gallery.co.kr:8081/image/artist/profile/profileSample2.jpg'
     },
     {
       exhibitionId: '1',

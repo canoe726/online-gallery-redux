@@ -21,11 +21,9 @@ export const Home = connect(
     banner: state.home.banner,
     bannerIdx: state.home.bannerIdx,
     exhibition: state.home.exhibition,
-    exhibitionCardSize: 4,
-    exhibitionCardIdx: 0,
+    exhibitionCardIdx: state.home.exhibitionCardIdx,
     artist: state.home.artist,
-    artistCardSize: 4,
-    artistCardIdx: 0
+    artistCardIdx: state.home.artistCardIdx
   }),
   dispatch => ({
     async initHomeBanner () {

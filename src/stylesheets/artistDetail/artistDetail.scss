@@ -20,133 +20,72 @@
       }
     }
 
-    .container {
-      width: 100%;
-      height: 100%;
-      padding: 1% 0 5% 0;
-      position: relative;
-      background: white;
-      display: flex;
-      flex: auto;
-      flex-direction: column;
+    .grid-gallery-wrapper {
+      margin-top: 60px;
+      padding: 10px;
 
-      .item {
-        display: flex;
-        flex: auto;
+      .title {
+        text-align: center;
+        font-size: larger;
+        font-weight: bold;
+        margin: 5% 0 5% 0;
+      }
 
-        #timeline {
+      .grid-gallery {
+        display: grid;
+        cursor: pointer;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+
+        .grid-item {
           position: relative;
-          display: table;
-          height: 100%;
-          margin: 5em auto 0 auto;
+          padding: 20px 10px 0px 10px;
 
-          .section-line {
-            padding: 0 14px 0 14px;
-            &:after {
-              content: "";
-              width: 2px;
-              position: absolute;
-              top: 0.5rem;
-              bottom: 0em;
-              left: 120px;
-              z-index: 1;
-              background: #c5c5c5;
-            }
+          .img-item {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            transition: 1s ease;
           }
 
-          .section-wrapper {
-            position: relative;
+          .img-item:hover {
+            opacity: 0.3;
+          }
 
-            .section-header {
-              position: sticky;
-              top: 5em;
-              color: #888;
-              margin: 0;
-              font-size: 1.2em;
-              font-weight: 500;
+          .img-item:hover + .caption-wrapper {
+            opacity: 1;
+            pointer-events: none;
+          }
+
+          .lazy {
+            opacity: 0;
+          }
+
+          .caption-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: 0.5s ease;
+            opacity: 0;
+            text-align: center;
+
+            .caption {
+              color: black;
+              font-size: large;
+              font-weight: bold;
             }
 
-            .secton-item-wrapper {
-              position: relative;
-              padding-bottom: 1.5em;
-              margin-bottom: 2.5em;
-
-              h4 {
-                position: absolute;
-                bottom: 0;
-                font-size: 1em;
-                font-weight: 400;
-                line-height: 1.2em;
-                margin: 0;
-                padding: 0 0 0 150px;
-                color: #c5c5c5;
-              }
-
-              .secton-item {
-                list-style-type: none;
-                padding: 0 0 0 140px;
-                margin: -1.35rem 0 1em;
-                max-width: 32rem;
-                font-size: 1em;
-                &:last-child {
-                  margin: {
-                    bottom: 0;
-                  }
-                }
-                &:first-of-type:after {
-                  content: "";
-                  width: 10px;
-                  height: 10px;
-                  background: #c5c5c5;
-                  border: 2px solid #ffffff;
-                  border-radius: 50%;
-                  position: absolute;
-                  left: 100px;
-                  top: 3px;
-                  z-index: 2;
-                }
-                a:hover {
-                  transition: 0.5s ease;
-                  color: #bebebe;
-                }
-                li {
-                  margin-left: 0.5rem;
-                  &:not(:first-child) {
-                    margin-top: 1.5rem;
-                  }
-                }
-                li:first-child {
-                  font-weight: bold;
-                }
-              }
+            .artist {
+              margin-top: 20px;
             }
           }
         }
       }
     }
 
-    // .info-wrapper {
-    //   width: 100%;
-    //   height: 100%;
-    //   padding: 1% 0 5% 0;
-    //   position: relative;
-    //   background: white;
-    //   box-shadow: 0px -10px 60px rgba(0, 0, 0, 0.25);
-
-    //   section {
-    //     .intro {
-    //       font-size: 1.5em;
-    //       font-weight: bold;
-    //     }
-
-    //     div {
-    //       margin-top: 1em;
-    //       padding-left: 2em;
-    //       padding-right: 2em;
-    //       line-height: 3em;
-    //     }
-    //   }
-    // }
+    @import "infoWrapper.scss";
 
     @import "masonryItem.scss";
   }
