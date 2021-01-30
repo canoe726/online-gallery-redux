@@ -499,31 +499,82 @@ const DUMMY_DATA = {
       introduction: '안녕하세요 작가 kim 입니다.',
       note: '작가 kim 의 노트 입니다.'
     },
-    artistGroups: {
-      name: 'kim 의 그룹이름',
-      startAt: '2021.01.21',
-      endAt: '2021.01.22',
-      position: '작가'
-    },
-    artistCareers: {
-      title: '전시 1',
-      type: '오프라인',
-      address: '서울특별시 강남구',
-      date: '2021.01.21'
-    },
-    artistEducations: {
-      type: '대학교',
-      name: '서울대학교',
-      entranceAt: '2015',
-      graduationAt: '2020',
-      degree: '학사',
-      state: '졸업'
-    },
-    artistPrizes: {
-      title: '교내 공모전',
-      date: '2019.01.29',
-      organization: '서울대학교'
-    }
+    artistGroups: [
+      {
+        name: 'kim 의 그룹이름 1',
+        startAt: '2021.01.21',
+        endAt: '2021.01.22',
+        position: '작가'
+      },
+      {
+        name: 'kim 의 그룹이름 2',
+        startAt: '2021.01.22',
+        endAt: '2021.01.23',
+        position: '팀장'
+      },
+      {
+        name: 'kim 의 그룹이름 3',
+        startAt: '2021.01.23',
+        endAt: '2021.01.24',
+        position: '작가'
+      }
+    ],
+    artistCareers: [
+      {
+        title: '전시 1',
+        type: '오프라인',
+        address: '서울특별시 강남구',
+        date: '2021.01.21'
+      },
+      {
+        title: '전시 2',
+        type: '온라인',
+        address: 'https://www.google.com/',
+        date: '2021.01.22'
+      },
+      {
+        title: '전시 3',
+        type: '오프라인',
+        address: '서울특별시 중구',
+        date: '2021.01.23'
+      },
+      {
+        title: '전시 4',
+        type: '온라인',
+        address: 'https://www.naver.com/',
+        date: '2021.01.24'
+      }
+    ],
+    artistEducations: [
+      {
+        type: '고등학교',
+        name: '서울고등학교',
+        entranceAt: '2011',
+        graduationAt: '2014',
+        degree: '인문계',
+        state: '졸업'
+      },
+      {
+        type: '대학교',
+        name: '서울대학교',
+        entranceAt: '2015',
+        graduationAt: '2020',
+        degree: '학사',
+        state: '졸업'
+      }
+    ],
+    artistPrizes: [
+      {
+        title: '교내 공모전',
+        date: '2019.01.29',
+        organization: '서울대학교'
+      },
+      {
+        title: '서울시 공모전',
+        date: '2019.01.30',
+        organization: '서울시'
+      }
+    ]
   },
   ADD_ARTIST_DETAIL_PICTURE: [
     {

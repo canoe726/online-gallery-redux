@@ -10,6 +10,7 @@ import { lazyLoad } from '../../util/lazyLoading';
 class AppExhibitionDetail extends React.Component {
   componentDidMount () {
     this.props.initExhibitionDetailData();
+    lazyLoad();
   }
 
   componentDidUpdate () {

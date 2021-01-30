@@ -15,11 +15,15 @@ class AppInfo extends React.Component {
 
   componentDidMount () {
     window.addEventListener('wheel', this.setFullPage);
+    // mobile wheel
+    window.addEventListener('touchmove', this.setFullPage);
     this.props.initInfoData();
   }
 
   componentWillUnmount () {
     window.removeEventListener('wheel', this.setFullPage);
+    // mobile wheel
+    window.removeEventListener('touchmove', this.setFullPage);
   }
 
   render () {

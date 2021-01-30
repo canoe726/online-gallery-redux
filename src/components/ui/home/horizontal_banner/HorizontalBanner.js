@@ -5,8 +5,22 @@ import BannerCard from './BannerCard';
 import { ElementLoading } from '../../../../containers/loadingContainers';
 
 class HorizontalBanner extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.homeBannerInterval = null;
+  }
+
   componentDidMount () {
     this.props.initHomeBanner();
+
+    this.homeBannerInterval = setInterval(() => {
+      this.changeSlide(1);
+    }, 7000);
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.homeBannerInterval);
   }
 
   render () {
@@ -28,7 +42,11 @@ class HorizontalBanner extends React.Component {
           <div className="banner-dot">
             {banner.length > 0
               ? banner.map((item, idx) =>
-                <span key={idx} className={idx === bannerIdx ? 'dot active' : 'dot'}></span>)
+                <span
+                  key={idx}
+                  className={idx === bannerIdx ? 'dot active' : 'dot'}
+                  onClick={() => this.dotChangeSlide(idx)}
+                ></span>)
               : ''
             }
           </div>
@@ -36,7 +54,12 @@ class HorizontalBanner extends React.Component {
     );
   }
 
+  dotChangeSlide (idx) {
+    this.props.changeHomeBannerIdx(idx);
+  }
+
   changeSlide (plus) {
+    console.log('click btn');
     const length = this.props.banner.length;
     let bannerIdx = this.props.bannerIdx;
     bannerIdx += plus;

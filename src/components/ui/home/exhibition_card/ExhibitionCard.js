@@ -11,12 +11,11 @@ class ExhibitionCard extends React.Component {
   }
 
   render () {
-    const { history, exhibitionCardSize, data } = this.props;
+    const { history, data } = this.props;
     return (
       <div
         className="card-item"
         onClick={() => history.push(`/exhibition/${data.exhibitionId}`)}
-        style={{ width: `${100 / exhibitionCardSize}%` }}
         >
         <img className="cover-img lazy" data-src={data.posterImage}></img>
         <div className="caption-wrapper">
@@ -29,7 +28,6 @@ class ExhibitionCard extends React.Component {
 
 ExhibitionCard.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
-  exhibitionCardSize: PropTypes.number,
   data: PropTypes.object
 };
 

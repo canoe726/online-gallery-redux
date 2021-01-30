@@ -11,12 +11,11 @@ class ArtistCard extends React.Component {
   }
 
   render () {
-    const { history, artistCardSize, data } = this.props;
+    const { history, data } = this.props;
     return (
       <div
         className="card-item"
         onClick={() => history.push(`/artist/${data.artistId}`)}
-        style={{ width: `${100 / artistCardSize}%` }}
         >
         <img className="cover-img lazy" data-src={data.profileImage}></img>
         <div className="caption-wrapper">
@@ -29,7 +28,6 @@ class ArtistCard extends React.Component {
 
 ArtistCard.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
-  artistCardSize: PropTypes.number,
   data: PropTypes.object
 };
 

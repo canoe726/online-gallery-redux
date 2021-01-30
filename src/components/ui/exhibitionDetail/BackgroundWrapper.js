@@ -20,6 +20,7 @@ class BackgroundWrapper extends React.Component {
       <div
         className="background-wrapper load-next active"
         onWheel={this.wheelChangeExhibition}
+        onTouchMove={this.wheelChangeExhibition}
       >
         {data.length > 0
           ? data.map((item, idx) =>
