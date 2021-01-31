@@ -15,9 +15,9 @@ class ArtworkDot extends React.Component {
             const ret = [];
             for (let idx = 0; idx < length; idx++) {
               if (idx === slideIdx) {
-                ret.push(<span key={idx} className="dot active"></span>);
+                ret.push(<span key={idx} className="dot active" onClick={(e) => this.slideItem(e, idx, length)}></span>);
               } else {
-                ret.push(<span key={idx} className="dot"></span>);
+                ret.push(<span key={idx} className="dot" onClick={(e) => this.slideItem(e, idx, length)}></span>);
               }
             }
             return ret;
@@ -32,6 +32,10 @@ class ArtworkDot extends React.Component {
     setTimeout(() => {
       backgroundWrapper.classList.remove('active');
     }, 500);
+  }
+
+  slideItem (e, idx, length) {
+    console.log(e, idx, length);
   }
 }
 

@@ -19,7 +19,9 @@ class ArtistCard extends React.Component {
         >
         <img className="cover-img lazy" data-src={data.profileImage}></img>
         <div className="caption-wrapper">
-            <div className="caption-text">{data.nickname}</div>
+            <div className="caption-text title">{data.nickname}</div>
+            <div className="caption-text">{data.introduction}</div>
+            <div className="caption-text">{data.note}</div>
         </div>
       </div>
     );

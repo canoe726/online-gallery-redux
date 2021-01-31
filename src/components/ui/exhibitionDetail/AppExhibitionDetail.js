@@ -8,6 +8,11 @@ import { PageLoading } from '../../../containers/loadingContainers';
 import { lazyLoad } from '../../util/lazyLoading';
 
 class AppExhibitionDetail extends React.Component {
+  constructor (props) {
+    super(props);
+    this.posterSlideUp = this.posterSlideUp.bind(this);
+  }
+
   componentDidMount () {
     this.props.initExhibitionDetailData();
     lazyLoad();
@@ -17,10 +22,20 @@ class AppExhibitionDetail extends React.Component {
     lazyLoad();
   }
 
+  componentWillUnmount () {
+    this.props.changeSlideIdx(0);
+  }
+
   render () {
     const { slideIdx, modalActive, exhibitionDetailList, changeSlideIdx, toggleModal } = this.props;
     return (
       <div className="exhibition-detail-wrapper">
+        <div
+          className="exhibition-poster"
+          onClick={this.posterSlideUp}
+        >
+          <img className="poster-img" src="/samples/galleryPoster1.jpg"></img>
+        </div>
         {exhibitionDetailList && exhibitionDetailList.length > 0
           ? <ExhibitionDetailItem
               slideIdx={slideIdx}
@@ -33,6 +48,11 @@ class AppExhibitionDetail extends React.Component {
         }
       </div>
     );
+  }
+
+  posterSlideUp (e) {
+    const target = e.target;
+    target.parentNode.classList.add('active');
   }
 }
 

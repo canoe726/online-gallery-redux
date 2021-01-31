@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ArtistInfoWrapper from './ArtistInfoWrapper';
-import MasonryItem from './MasonryItem';
-// import GridGallery from './GridGallery';
+import GridGallery from './GridGallery';
 
 import { resizeAllMasonryItems } from '../../util/masonry';
 import { MasonryLoading, NoMoreLoading } from '../../../containers/loadingContainers';
@@ -13,7 +12,7 @@ class ArtistDetailItem extends React.Component {
     super(props);
 
     this.resizeAllMasonryItems = resizeAllMasonryItems.bind(this);
-    this.infinityScroll = this.infinityScroll.bind(this);
+    this.loadMoreArtwork = this.loadMoreArtwork.bind(this);
   }
 
   componentDidMount () {
@@ -22,14 +21,12 @@ class ArtistDetailItem extends React.Component {
     window.addEventListener('load', this.resizeAllMasonryItems);
     window.addEventListener('resize', this.resizeAllMasonryItems);
     window.addEventListener('scroll', this.heroScrollZoom);
-    window.addEventListener('scroll', this.infinityScroll);
   }
 
   componentWillUnmount () {
     window.removeEventListener('load', this.resizeAllMasonryItems);
     window.removeEventListener('resize', this.resizeAllMasonryItems);
     window.removeEventListener('scroll', this.heroScrollZoom);
-    window.removeEventListener('scroll', this.infinityScroll);
   }
 
   render () {
@@ -44,24 +41,25 @@ class ArtistDetailItem extends React.Component {
           artistDetailData={artistDetailData}
         ></ArtistInfoWrapper>
 
-        {/* <div className="grid-gallery-wrapper">
+        <div className="grid-gallery-wrapper">
           <div className="title">작품 둘러보기</div>
-          <GridGallery
-            artistDetailPictureList={artistDetailPictureList}
-          ></GridGallery>
-          <div className="title">더보기</div>
-        </div> */}
-
-        <div className="masonry-wrapper">
-          <div className="masonry">
+          <div className="grid-gallery">
             {artistDetailPictureList.length > 0
               ? artistDetailPictureList.map((item, idx) =>
-                <MasonryItem
+                <GridGallery
                   key={idx}
-                  artworkItem={item}
-                ></MasonryItem>)
+                  item={item}
+                ></GridGallery>
+                )
               : ''}
           </div>
+          {noMoreData
+            ? ''
+            : !isFetching
+                ? <div className="more">
+                    <div onClick={this.loadMoreArtwork}>더보기</div>
+                  </div>
+                : ''}
         </div>
         {noMoreData
           ? <NoMoreLoading
@@ -77,19 +75,6 @@ class ArtistDetailItem extends React.Component {
     );
   }
 
-  infinityScroll () {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
-
-    // 스크롤이 최하단이면서 fetch 중이 아니면서 데이터가 더 있을 때 호출
-    if (scrollTop + clientHeight >= scrollHeight) {
-      if (!this.props.isFetching && !this.props.noMoreData) {
-        this.props.addArtistDetailPictureData();
-      }
-    }
-  }
-
   heroScrollZoom () {
     const scrollY = window.scrollY;
     const zoomImg = document.querySelector('.zoom img');
@@ -100,6 +85,10 @@ class ArtistDetailItem extends React.Component {
       zoomImg.style.opacity = '1';
       zoomImg.style.transform = `translate3d(-50%, -${scrollY / 50}%, 0) scale(${scaleRatio})`;
     }
+  }
+
+  loadMoreArtwork () {
+    this.props.addArtistDetailPictureData();
   }
 }
 

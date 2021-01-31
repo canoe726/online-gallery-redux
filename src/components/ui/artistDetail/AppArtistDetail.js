@@ -13,6 +13,7 @@ class AppArtistDetail extends React.Component {
 
     this.props.initArtistDetailData();
     this.props.initArtistDetailPictureData();
+    this.props.addArtistDetailPictureData();
   }
 
   render () {

@@ -26,8 +26,9 @@ class MasonryItem extends React.Component {
       >
         <img className="item-img lazy" data-src={exhibitionItem.posterImage}></img>
         <div className="caption-wrapper">
-          <div className="caption image">{exhibitionItem.title}</div>
-          <div className="caption artist">{exhibitionItem.participants}</div>
+          <div className="caption title">{exhibitionItem.title}</div>
+          <div className="caption participants">{exhibitionItem.participants}</div>
+          <div className="caption date">{exhibitionItem.startAt} ~ {exhibitionItem.endAt}</div>
         </div>
       </div>
     );

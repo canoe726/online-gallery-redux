@@ -143,10 +143,43 @@ const BackgroundItem = ({ idx, length, data }) => {
         : data.exhibitionItemBackground.type === 'COLOR'
           ? <img className="img lazy" data-src={data.exhibitionItemBackground.value} alt={`background-img-item-${idx + 1}`}></img>
           : data.exhibitionItemBackground.type === 'VIDEO'
-            ? <video className="video lazy" data-src={data.exhibitionItemBackground.value} alt={`background-img-item-${idx + 1}`}></video>
+            ? <video
+                className="video play lazy"
+                data-src={data.exhibitionItemBackground.value}
+                alt={`background-img-item-${idx + 1}`}
+                autoPlay={true}
+                muted={true}
+                onClick={(e) => toggleVideo(e)}
+                onEnded={(e) => whenEnded(e)}
+              ></video>
             : '잘못된 타입 입니다.'}
     </div>
   );
+
+  function toggleVideo (e) {
+    const target = e.target;
+    console.log(target);
+    if (target.classList.contains('ended')) {
+      target.classList.remove('ended');
+      target.classList.add('play');
+      target.play();
+      return;
+    }
+
+    if (target.classList.contains('play')) {
+      target.classList.remove('play');
+      target.pause();
+    } else {
+      target.classList.add('play');
+      target.play();
+    }
+  }
+
+  function whenEnded (e) {
+    const target = e.target;
+    target.classList.remove('play');
+    target.classList.add('ended');
+  }
 };
 
 BackgroundWrapper.propTypes = {

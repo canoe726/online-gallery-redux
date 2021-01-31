@@ -8,8 +8,7 @@ class AppNoMoreLoading extends React.Component {
     const { pageIdx, caption, exhibitionImage, artistImage, artistDetailImage } = this.props;
     return (
       <div
-        className="no-more-data-wrapper"
-        style={pageIdx === 2 ? { marginTop: '0px' } : {}}>
+        className="no-more-data-wrapper">
         <img
           className="no-more-data-image"
           src={pageIdx === 0

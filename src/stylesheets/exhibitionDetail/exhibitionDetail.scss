@@ -4,6 +4,27 @@
   overflow: hidden;
   position: relative;
 
+  .exhibition-poster {
+    position: fixed;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    transition: 1.5s ease;
+
+    .poster-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .exhibition-poster.active {
+    transform: translate(0, -100%);
+  }
+
   .exhibition-detail-item {
     width: 100%;
     height: 100%;
@@ -32,52 +53,52 @@
     .background-music.active {
       opacity: 0;
     }
-  }
 
-  .hero-section {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: 1.5s ease;
-    transform: translate(0px, 100%);
-  }
+    .hero-section {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: 1.5s ease;
+      transform: translate(0px, 100%);
+    }
 
-  .load-prev .hero-section {
-    z-index: 1;
-    transform: translate(0px, -100%);
-    opacity: 0;
-  }
+    .load-prev .hero-section {
+      z-index: 1;
+      transform: translate(0px, -100%);
+      opacity: 0;
+    }
 
-  .load-prev .hero-section.prev {
-    z-index: 5;
-    transform: translate(0px, 100%);
-    opacity: 0;
-  }
+    .load-prev .hero-section.prev {
+      z-index: 5;
+      transform: translate(0px, 100%);
+      opacity: 0;
+    }
 
-  .load-prev .hero-section.active {
-    z-index: 10;
-    transform: translate(0px, 0%);
-    opacity: 1;
-  }
+    .load-prev .hero-section.active {
+      z-index: 10;
+      transform: translate(0px, 0%);
+      opacity: 1;
+    }
 
-  .load-next .hero-section {
-    z-index: 1;
-    transform: translate(0px, 100%);
-    opacity: 0;
-  }
+    .load-next .hero-section {
+      z-index: 1;
+      transform: translate(0px, 100%);
+      opacity: 0;
+    }
 
-  .load-next .hero-section.prev {
-    z-index: 5;
-    transform: translate(0px, -100%);
-    opacity: 0;
-  }
+    .load-next .hero-section.prev {
+      z-index: 5;
+      transform: translate(0px, -100%);
+      opacity: 0;
+    }
 
-  .load-next .hero-section.active {
-    z-index: 10;
-    transform: translate(0px, 0%);
-    opacity: 1;
+    .load-next .hero-section.active {
+      z-index: 10;
+      transform: translate(0px, 0%);
+      opacity: 1;
+    }
   }
 
   @import "backgroundWrapper.scss";

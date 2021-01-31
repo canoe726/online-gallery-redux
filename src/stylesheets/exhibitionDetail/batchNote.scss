@@ -10,45 +10,13 @@
   overflow: hidden;
   overflow-y: auto;
   display: grid;
-
-  @mixin fadeText($direction: top, $offset: 2em, $transition: 0.5s ease-out) {
-    $color: #fff;
-    $deg: 180deg;
-    $pos: bottom;
-
-    $color: #000;
-    mix-blend-mode: screen;
-
-    &::after {
-      padding: 8px;
-      background: linear-gradient($deg, transparent, $color $offset) no-repeat
-        $pos center / 100% 100%;
-
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      pointer-events: none;
-      transition: $transition;
-    }
-
-    &.active::after {
-      background-size: 100% 0%;
-    }
-  }
+  background-color: transparent;
 
   .content {
-    color: white;
     padding: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    @supports (mix-blend-mode: screen) {
-      @include fadeText(top, 3rem);
-    }
   }
 
   .artist {

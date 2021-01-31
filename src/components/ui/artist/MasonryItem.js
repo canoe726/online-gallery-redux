@@ -26,7 +26,8 @@ class MasonryItem extends React.Component {
         <img className="item-img lazy" data-src={artistItem.profileImage}></img>
         <div className="caption-wrapper">
           <div className="caption nickname">{artistItem.nickname}</div>
-          <div className="caption artist">{artistItem.introduction}</div>
+          <div className="caption introduction">{artistItem.introduction}</div>
+          <div className="caption artist">{artistItem.note}</div>
         </div>
       </div>
     );

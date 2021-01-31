@@ -17,42 +17,42 @@ const DUMMY_DATA = {
     {
       exhibitionId: '0',
       title: '전시제목 1',
-      posterImage: 'http://www.online-gallery.co.kr:8081/image/artist/profile/profileSample2.jpg'
+      posterImage: '/samples/galleryPoster1.jpg'
     },
     {
       exhibitionId: '1',
       title: '전시제목 2',
-      posterImage: '/samples/artwork2.jpg'
+      posterImage: '/samples/galleryPoster2.jpg'
     },
     {
       exhibitionId: '2',
       title: '전시제목 3',
-      posterImage: '/samples/artwork3.jpg'
+      posterImage: '/samples/galleryPoster3.jpg'
     },
     {
       exhibitionId: '3',
       title: '전시제목 4',
-      posterImage: '/samples/artwork4.jpg'
+      posterImage: '/samples/galleryPoster4.jpg'
     },
     {
       exhibitionId: '4',
       title: '전시제목 5',
-      posterImage: '/samples/artwork5.jpg'
+      posterImage: '/samples/galleryPoster5.jpg'
     },
     {
       exhibitionId: '5',
       title: '전시제목 6',
-      posterImage: '/samples/artwork6.jpg'
+      posterImage: '/samples/galleryPoster6.jpg'
     },
     {
       exhibitionId: '6',
       title: '전시제목 7',
-      posterImage: '/samples/artwork7.jpg'
+      posterImage: '/samples/galleryPoster7.jpg'
     },
     {
       exhibitionId: '7',
       title: '전시제목 8',
-      posterImage: '/samples/artwork8.jpg'
+      posterImage: '/samples/galleryPoster8.jpg'
     }
   ],
   HOME_ARTIST: [
@@ -126,7 +126,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 2,
       title: '전시회 2',
-      posterImage: '/samples/artwork2.jpg',
+      posterImage: '/samples/galleryPoster2.jpg',
       startAt: '2021.01.22',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -134,7 +134,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 1,
       title: '전시회 1',
-      posterImage: '/samples/artwork1.jpg',
+      posterImage: '/samples/galleryPoster1.jpg',
       startAt: '2021.01.21',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -142,7 +142,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 3,
       title: '전시회 3',
-      posterImage: '/samples/artwork3.jpg',
+      posterImage: '/samples/galleryPoster3.jpg',
       startAt: '2021.01.23',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -150,7 +150,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 4,
       title: '전시회 4',
-      posterImage: '/samples/artwork4.jpg',
+      posterImage: '/samples/galleryPoster4.jpg',
       startAt: '2021.01.24',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -158,7 +158,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 8,
       title: '전시회 8',
-      posterImage: '/samples/artwork8.jpg',
+      posterImage: '/samples/galleryPoster8.jpg',
       startAt: '2021.01.28',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -166,7 +166,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 6,
       title: '전시회 6',
-      posterImage: '/samples/artwork6.jpg',
+      posterImage: '/samples/galleryPoster6.jpg',
       startAt: '2021.01.26',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -174,7 +174,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 7,
       title: '전시회 7',
-      posterImage: '/samples/artwork7.jpg',
+      posterImage: '/samples/galleryPoster7.jpg',
       startAt: '2021.01.27',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -182,7 +182,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 5,
       title: '전시회 5',
-      posterImage: '/samples/artwork5.jpg',
+      posterImage: '/samples/galleryPoster5.jpg',
       startAt: '2021.01.25',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -192,7 +192,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 1,
       title: '전시회 1',
-      posterImage: '/samples/artwork1.jpg',
+      posterImage: '/samples/galleryPoster1.jpg',
       startAt: '2021.01.21',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -200,7 +200,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 2,
       title: '전시회 2',
-      posterImage: '/samples/artwork2.jpg',
+      posterImage: '/samples/galleryPoster2.jpg',
       startAt: '2021.01.22',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -208,7 +208,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 3,
       title: '전시회 3',
-      posterImage: '/samples/artwork3.jpg',
+      posterImage: '/samples/galleryPoster3.jpg',
       startAt: '2021.01.23',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -216,7 +216,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 4,
       title: '전시회 4',
-      posterImage: '/samples/artwork4.jpg',
+      posterImage: '/samples/galleryPoster4.jpg',
       startAt: '2021.01.24',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -224,7 +224,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 5,
       title: '전시회 5',
-      posterImage: '/samples/artwork5.jpg',
+      posterImage: '/samples/galleryPoster5.jpg',
       startAt: '2021.01.25',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -232,7 +232,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 6,
       title: '전시회 6',
-      posterImage: '/samples/artwork6.jpg',
+      posterImage: '/samples/galleryPoster6.jpg',
       startAt: '2021.01.26',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -240,7 +240,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 7,
       title: '전시회 7',
-      posterImage: '/samples/artwork7.jpg',
+      posterImage: '/samples/galleryPoster7.jpg',
       startAt: '2021.01.27',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -248,7 +248,7 @@ const DUMMY_DATA = {
     {
       exhibitionId: 8,
       title: '전시회 8',
-      posterImage: '/samples/artwork8.jpg',
+      posterImage: '/samples/galleryPoster8.jpg',
       startAt: '2021.01.28',
       endAt: '2021.01.31',
       participants: '김영배, 이원기'
@@ -279,9 +279,9 @@ const DUMMY_DATA = {
       exhibitionItemNote: {
         note: 'this artwork is made by kim & lee',
         textSize: 12,
-        textColor: 'rgb(159,57,255)',
-        bgColor: 'rgb(0,0,50)',
-        borderColor: 'red',
+        textColor: 'white',
+        bgColor: 'black',
+        borderColor: 'blue',
         round: 50,
         padding: 16,
         position: 'right',
@@ -313,8 +313,8 @@ const DUMMY_DATA = {
       exhibitionItemNote: {
         note: 'awesome!',
         textSize: 16,
-        textColor: 'rgb(255,255,255)',
-        bgColor: 'rgb(0,0,0)',
+        textColor: 'black',
+        bgColor: 'white',
         borderColor: 'red',
         round: 16,
         padding: 20,
@@ -347,9 +347,9 @@ const DUMMY_DATA = {
       exhibitionItemNote: {
         note: '벌써 시간이 새벽 3시...',
         textSize: 13,
-        textColor: 'rgb(255,255,255)',
-        bgColor: 'rgb(0,0,0)',
-        borderColor: 'red',
+        textColor: 'black',
+        bgColor: 'lightblue',
+        borderColor: 'yellow',
         round: 0,
         padding: 14,
         position: 'right',
@@ -580,57 +580,43 @@ const DUMMY_DATA = {
     {
       exhibitionId: 1,
       exhibitionItem: {
-        value: '/samples/artwork_d_1.jpg',
+        value: '/samples/artist_d_1.jpg',
         title: '전시 1'
       }
     },
     {
       exhibitionId: 2,
       exhibitionItem: {
-        value: '/samples/artwork_d_2.jpg',
+        value: '/samples/artist_d_2.jpg',
         title: '전시 2'
       }
     },
     {
       exhibitionId: 3,
       exhibitionItem: {
-        value: '/samples/artwork_d_3.jpg',
+        value: '/samples/artist_d_3.jpg',
         title: '전시 3'
       }
     },
     {
       exhibitionId: 4,
       exhibitionItem: {
-        value: '/samples/artwork_d_4.jpg',
+        value: '/samples/artist_d_4.jpg',
         title: '전시 4'
       }
     },
     {
       exhibitionId: 5,
       exhibitionItem: {
-        value: '/samples/artwork_d_5.jpg',
+        value: '/samples/artist_d_5.jpg',
         title: '전시 5'
       }
     },
     {
       exhibitionId: 6,
       exhibitionItem: {
-        value: '/samples/artwork_d_6.jpg',
+        value: '/samples/artist_d_6.jpg',
         title: '전시 6'
-      }
-    },
-    {
-      exhibitionId: 7,
-      exhibitionItem: {
-        value: '/samples/artwork_d_7.jpg',
-        title: '전시 7'
-      }
-    },
-    {
-      exhibitionId: 8,
-      exhibitionItem: {
-        value: '/samples/artwork_d_8.jpg',
-        title: '전시 8'
       }
     }
   ]
