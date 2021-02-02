@@ -7,9 +7,9 @@ import {
   initExhibitionDetailData,
   initPictureData,
   toggleModal
-} from '../actions/exhibitionDetailActions';
+} from '../modules/exhibitionDetailModule';
 
-import OG_API from '../constants/onlineGalleryApiConstants';
+import OG_API from '../data/onlineGalleryApiConstants';
 
 // delete this
 import DUMMY from '../data/dummy';

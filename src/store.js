@@ -1,17 +1,17 @@
 import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import stateData from '../data/initialState.json';
+import stateData from './data/initialState.json';
 
-import { menu } from './reducers/menuReducer';
-import { home } from './reducers/homeReducer';
-import { info } from './reducers/infoReducer';
-import { exhibition } from './reducers/exhibitionReducer';
-import { exhibitionDetail } from './reducers/exhibitionDetailReducer';
-import { artist } from './reducers/artistReducer';
-import { artistDetail } from './reducers/artistDetailReducer';
-import { notice } from './reducers/noticeReducer';
-import { loading } from './reducers/loadingReducer';
-import { error } from './reducers/errorReducer';
+import menu from './modules/menuModule';
+import home from './modules/homeModule';
+import info from './modules/infoModule';
+import exhibition from './modules/exhibitionModule';
+import exhibitionDetail from './modules/exhibitionDetailModule';
+import artist from './modules/artistModule';
+import artistDetail from './modules/artistDetailModule';
+import notice from './modules/noticeModule';
+import loading from './modules/loadingModule';
+import error from './modules/errorModule';
 
 const logger = store => next => action => {
   console.groupCollapsed('디스패칭', action.type);

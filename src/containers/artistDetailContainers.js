@@ -8,9 +8,9 @@ import {
   initArtistDetailData,
   initArtistDetailPictureData,
   addArtistDetailPictureData
-} from '../actions/artistDetailActions';
+} from '../modules/artistDetailModule';
 
-import OG_API from '../constants/onlineGalleryApiConstants';
+import OG_API from '../data/onlineGalleryApiConstants';
 
 // delete this
 import DUMMY from '../data/dummy';

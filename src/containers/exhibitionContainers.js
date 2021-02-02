@@ -2,9 +2,14 @@ import { connect } from 'react-redux';
 
 import AppExhibition from '../components/ui/exhibition/AppExhibition';
 
-import { initExhibitionData, addExhibitionData, toggleIsFetching, toggleNoMoreData } from '../actions/exhibitionActions';
+import {
+  initExhibitionData,
+  addExhibitionData,
+  toggleIsFetching,
+  toggleNoMoreData
+} from '../modules/exhibitionModule';
 
-import OG_API from '../constants/onlineGalleryApiConstants';
+import OG_API from '../data/onlineGalleryApiConstants';
 
 // delete this
 import DUMMY from '../data/dummy';

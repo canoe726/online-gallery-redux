@@ -4,9 +4,9 @@ import AppInfo from '../components/ui/info/AppInfo';
 
 import {
   initInfoData
-} from '../actions/infoActions';
+} from '../modules/infoModule';
 
-import OG_API from '../constants/onlineGalleryApiConstants';
+import OG_API from '../data/onlineGalleryApiConstants';
 
 // delete this
 import DUMMY from '../data/dummy';

@@ -2,9 +2,14 @@ import { connect } from 'react-redux';
 
 import AppArtist from '../components/ui/artist/AppArtist';
 
-import { initArtistData, addArtistData, toggleIsFetching, toggleNoMoreData } from '../actions/artistActions';
+import {
+  initArtistData,
+  addArtistData,
+  toggleIsFetching,
+  toggleNoMoreData
+} from '../modules/artistModule';
 
-import OG_API from '../constants/onlineGalleryApiConstants';
+import OG_API from '../data/onlineGalleryApiConstants';
 
 // delete this
 import DUMMY from '../data/dummy';

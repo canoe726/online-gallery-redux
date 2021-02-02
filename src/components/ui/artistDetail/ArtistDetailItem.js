@@ -31,7 +31,6 @@ class ArtistDetailItem extends React.Component {
 
   render () {
     const { noMoreData, isFetching, artistDetailData, artistDetailPictureList } = this.props;
-    console.log(noMoreData, isFetching, artistDetailPictureList, artistDetailData);
     return (
       <div className="artist-detail-item">
         <div className="thumbnail-wrapper zoom">

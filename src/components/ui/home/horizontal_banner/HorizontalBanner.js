@@ -59,7 +59,6 @@ class HorizontalBanner extends React.Component {
   }
 
   changeSlide (plus) {
-    console.log('click btn');
     const length = this.props.banner.length;
     let bannerIdx = this.props.bannerIdx;
     bannerIdx += plus;

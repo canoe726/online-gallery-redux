@@ -9,9 +9,9 @@ import {
   changeHomeBannerIdx,
   changeHomeExhibitionCardIdx,
   changeHomeArtistCardIdx
-} from '../actions/homeActions';
+} from '../modules/homeModule';
 
-import OG_API from '../constants/onlineGalleryApiConstants';
+import OG_API from '../data/onlineGalleryApiConstants';
 
 // delete this
 import DUMMY from '../data/dummy';

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import AppMenu from '../components/ui/menu/AppMenu';
 
-import { toggleNavBar, toggleIsSearch } from '../actions/menuActions';
+import { toggleNavBar, toggleIsSearch } from '../modules/menuModule';
 
 export const Menu = connect(
   state => ({
