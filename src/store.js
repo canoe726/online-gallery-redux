@@ -1,5 +1,6 @@
 import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import stateData from './data/initialState.json';
 
 import menu from './modules/menuModule';
@@ -28,20 +29,24 @@ const saver = store => next => action => {
   return result;
 };
 
+const middlewares = [logger, saver, thunk];
+const composedEnhancer = composeWithDevTools(applyMiddleware(...middlewares));
+const rootReducer = combineReducers({
+  menu,
+  home,
+  info,
+  exhibition,
+  exhibitionDetail,
+  artist,
+  artistDetail,
+  notice,
+  loading,
+  error
+});
+
 const storeFactory = (initialState = stateData) =>
-  applyMiddleware(logger, saver, thunk)(createStore)(
-    combineReducers({
-      menu,
-      home,
-      info,
-      exhibition,
-      exhibitionDetail,
-      artist,
-      artistDetail,
-      notice,
-      loading,
-      error
-    }),
+  composedEnhancer(createStore)(
+    rootReducer,
     initialState
   );
 

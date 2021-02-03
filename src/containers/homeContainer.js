@@ -11,7 +11,7 @@ import {
   changeHomeArtistCardIdx
 } from '../modules/homeModule';
 
-import OG_API from '../data/onlineGalleryApiConstants';
+import OG_API from '../api/onlineGalleryApiConstants';
 
 // delete this
 import DUMMY from '../data/dummy';

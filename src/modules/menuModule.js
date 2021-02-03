@@ -3,14 +3,24 @@ const TOGGLE_NAVBAR = 'menu/TOGGLE_NAVBAR';
 const TOGGLE_IS_SEARCH = 'menu/TOGGLE_IS_SEARCH';
 
 // Reducer
+const navBar = (state, action) => {
+  switch (action.type) {
+    case TOGGLE_NAVBAR:
+      return {
+        ...state,
+        isClose: action.isClose
+      };
+    default:
+      return state;
+  }
+};
+
 export default function reducers (state = {}, action) {
   switch (action.type) {
     case TOGGLE_NAVBAR:
       return {
         ...state,
-        navBar: {
-          isClose: !state.navBar.isClose
-        }
+        navBar: navBar(state.navBar, action)
       };
     case TOGGLE_IS_SEARCH:
       return {
@@ -25,9 +35,10 @@ export default function reducers (state = {}, action) {
 };
 
 // Action Constructor
-export const toggleNavBar = () => {
+export const toggleNavBar = (isClose) => {
   return {
-    type: TOGGLE_NAVBAR
+    type: TOGGLE_NAVBAR,
+    isClose: isClose
   };
 };
 

@@ -1,46 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-class NavBar extends React.Component {
-  constructor (props) {
-    super(props);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
+const NavBar = ({ isClose, toggleNavBar }) => {
+  useEffect(() => {
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  });
 
-  componentDidMount () {
-    window.addEventListener('click', this.handleClickOutside);
-  }
+  return (
+    <div className="nav-bar">
+        <div className="nav-menu-btn">
+            <button
+              className={isClose ? 'menu-toggle' : 'menu-toggle is-active'}
+              onClick={() => isClose ? toggleNavBar(false) : toggleNavBar(true)}
+            >Menu</button>
+        </div>
+        <div
+          id="main-side-nav"
+          className={isClose ? 'nav-menus' : 'nav-menus open'}
+          >
+            <div>
+              <Link to="/info" onClick={() => toggleNavBar(true)}>온라인 갤러리 소개</Link>
+            </div>
+            <div>
+              <Link to="/exhibition" onClick={() => toggleNavBar(true)}>온라인 갤러리</Link>
+            </div>
+            <div>
+              <Link to="/artist" onClick={() => toggleNavBar(true)}>작가 소개</Link>
+            </div>
+            <div>
+              <Link to="/notice" onClick={() => toggleNavBar(true)}>공지사항</Link>
+            </div>
+        </div>
+    </div>
+  );
 
-  render () {
-    return (
-      <div className="nav-bar">
-          <div className="nav-menu-btn">
-              <button className={this.props.isClose ? 'menu-toggle' : 'menu-toggle is-active'} onClick={this.props.toggleNavBar}>Menu</button>
-          </div>
-          <div id="main-side-nav" className={this.props.isClose ? 'nav-menus' : 'nav-menus open'}>
-              <Link to="/info">
-                <div>온라인 갤러리 소개</div>
-              </Link>
-              <Link to="/exhibition">
-                < div>온라인 갤러리</div>
-              </Link>
-              <Link to="/artist">
-                <div>작가 소개</div>
-              </Link>
-              <Link to="/notice">
-                <div>공지사항</div>
-              </Link>
-          </div>
-      </div>
-    );
-  }
-
-  handleClickOutside (e) {
+  function handleClickOutside (e) {
     const isMenu = e.target.classList.contains('menu-toggle');
     const isSideNav = e.target.classList.contains('nav-menus');
-    if (!isMenu && !isSideNav && !this.props.isClose) {
-      this.props.toggleNavBar();
+
+    if (!isMenu && !isSideNav) {
+      if (!isClose) {
+        toggleNavBar(true);
+      }
     }
   }
 };

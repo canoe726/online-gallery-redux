@@ -1,20 +1,20 @@
 import { connect } from 'react-redux';
 
-import AppMenu from '../components/ui/menu/AppMenu';
+import Menu from '../components/ui/menu/Menu';
 
 import { toggleNavBar, toggleIsSearch } from '../modules/menuModule';
 
-export const Menu = connect(
+export const MenuContainer = connect(
   state => ({
     isClose: state.menu.navBar.isClose,
     isSearch: state.menu.search.isSearch
   }),
   dispatch => ({
-    toggleNavBar () {
-      dispatch(toggleNavBar());
+    toggleNavBar (isClose) {
+      dispatch(toggleNavBar(isClose));
     },
     toggleIsSearch (isSearch) {
       dispatch(toggleIsSearch(isSearch));
     }
   })
-)(AppMenu);
+)(Menu);

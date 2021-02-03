@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import '../stylesheets/App.scss';
 
-import { Menu } from '../containers/menuContainer';
+import { MenuContainer } from '../containers/menuContainer';
 import { Home } from '../containers/homeContainer';
 import { Info } from '../containers/infoContainer';
 import { Exhibition } from '../containers/exhibitionContainers';
@@ -16,7 +16,7 @@ import { Error } from '../containers/errorContainers';
 const App = () => {
   return (
     <div id="online-gallery">
-      <Menu></Menu>
+      <MenuContainer></MenuContainer>
       <Switch>
         <Route exact path="/" component={Home}></Route>
         <Route exact path="/info" component={Info}></Route>
