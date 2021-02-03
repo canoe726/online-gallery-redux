@@ -15,7 +15,7 @@ const navBar = (state, action) => {
   }
 };
 
-export default function reducers (state = {}, action) {
+export default function menu (state = {}, action) {
   switch (action.type) {
     case TOGGLE_NAVBAR:
       return {

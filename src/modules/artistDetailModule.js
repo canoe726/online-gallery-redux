@@ -17,7 +17,7 @@ const artistDetailPictureList = (state, action) => {
   }
 };
 
-export default function reducers (state = {}, action) {
+export default function artistDetail (state = {}, action) {
   switch (action.type) {
     case TOGGLE_IS_FETCHING:
       return {

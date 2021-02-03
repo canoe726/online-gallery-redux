@@ -1,39 +1,29 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
-class BackgroundMusic extends React.Component {
-  constructor (props) {
-    super(props);
+const BackgroundMusic = ({ data }) => {
+  const musicRef = useRef();
 
-    this.volumeBackgroundMusic = this.volumeBackgroundMusic.bind(this);
-    this.playBackgroundMusic = this.playBackgroundMusic.bind(this);
-    this.stopBackgroundMusic = this.stopBackgroundMusic.bind(this);
-  }
-
-  render () {
-    const { data } = this.props;
-    return (
-      <div className={data.bgm.length > 0 ? 'background-music' : 'background-music active'}>
-        <div className="turn-music-btn" onClick={this.volumeBackgroundMusic}>
-          <i className="fas fa-volume-up"></i>
-        </div>
-        <div className="play-music-btn" onClick={this.playBackgroundMusic}>
-          <i className="fas fa-play"></i>
-        </div>
-        <div className="stop-music-btn" onClick={this.stopBackgroundMusic}>
-          <i className="fas fa-stop"></i>
-        </div>
-        {/* autoPlay={true}  */}
-        <audio className="music">
-          <source src={data.bgm} type="audio/mpeg"/>
-        </audio>
+  return (
+    <div className={data.bgm.length > 0 ? 'background-music' : 'background-music active'}>
+      <div className="turn-music-btn" onClick={volumeBackgroundMusic}>
+        <i className="fas fa-volume-up"></i>
       </div>
-    );
-  }
+      <div className="play-music-btn" onClick={playBackgroundMusic}>
+        <i className="fas fa-play"></i>
+      </div>
+      <div className="stop-music-btn" onClick={stopBackgroundMusic}>
+        <i className="fas fa-stop"></i>
+      </div>
+      {/* autoPlay={true}  */}
+      <audio className="music" ref={musicRef}>
+        <source src={data.bgm} type="audio/mpeg"/>
+      </audio>
+    </div>
+  );
 
-  volumeBackgroundMusic (e) {
-    const target = e.target;
-    const music = target.parentNode.parentNode.querySelector('.music');
+  function volumeBackgroundMusic (e) {
+    const music = musicRef.current;
     const curVolume = music.volume;
     if (curVolume === 0.15) {
       music.volume = 0.075;
@@ -44,9 +34,8 @@ class BackgroundMusic extends React.Component {
     }
   }
 
-  playBackgroundMusic (e) {
-    const target = e.target;
-    const music = target.parentNode.parentNode.querySelector('.music');
+  function playBackgroundMusic (e) {
+    const music = musicRef.current;
     const playPromise = music.play();
     if (playPromise !== undefined) {
       playPromise.then(_ => {
@@ -61,9 +50,8 @@ class BackgroundMusic extends React.Component {
     }
   }
 
-  stopBackgroundMusic (e) {
-    const target = e.target;
-    const music = target.parentNode.parentNode.querySelector('.music');
+  function stopBackgroundMusic (e) {
+    const music = musicRef.current;
     const playPromise = music.play();
     if (playPromise !== undefined) {
       playPromise.then(_ => {
@@ -75,7 +63,7 @@ class BackgroundMusic extends React.Component {
       console.log('음악을 재생할 수 없습니다.');
     }
   }
-}
+};
 
 BackgroundMusic.propTypes = {
   data: PropTypes.object

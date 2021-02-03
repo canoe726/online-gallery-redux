@@ -4,7 +4,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import '../../../stylesheets/error/notFound.scss';
 
-const AppError = ({ history, backgroundImage }) => {
+const Error = ({ history, backgroundImage }) => {
   return (
     <div className="not-found-page" style={{ backgroundImage: `url(${backgroundImage})` }}>
         <div className="not-found-page-wrapper">
@@ -21,9 +21,9 @@ const AppError = ({ history, backgroundImage }) => {
   }
 };
 
-AppError.propTypes = {
+Error.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   backgroundImage: PropTypes.string
 };
 
-export default AppError;
+export default Error;

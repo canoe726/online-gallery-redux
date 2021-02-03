@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
-import AppError from '../components/ui/error/AppError';
+import Error from '../components/ui/error/Error';
 
-export const Error = connect(
+export const ErrorContainer = connect(
   state => ({
     backgroundImage: state.error.backgroundImage
   })
-)(AppError);
+)(Error);

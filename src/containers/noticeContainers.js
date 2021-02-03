@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
-import AppNotice from '../components/ui/notice/AppNotice';
+import Notice from '../components/ui/notice/Notice';
 
-export const Notice = connect(
+export const NoticeContainer = connect(
   state => ({
     notices: state.notice.notices
   })
-)(AppNotice);
+)(Notice);

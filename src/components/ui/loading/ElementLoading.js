@@ -3,16 +3,13 @@ import PropTypes from 'prop-types';
 
 import '../../../stylesheets/loading/elementLoading.scss';
 
-class ElementLoading extends React.Component {
-  render () {
-    const { loadingImage } = this.props;
-    return (
-      <div className="element-loading-wrapper">
-        <img className="element-loading-img" src={loadingImage} alt="element-loading-image"></img>
-      </div>
-    );
-  }
-}
+const ElementLoading = ({ loadingImage }) => {
+  return (
+    <div className="element-loading-wrapper">
+      <img className="element-loading-img" src={loadingImage} alt="element-loading-image"></img>
+    </div>
+  );
+};
 
 ElementLoading.propTypes = {
   loadingImage: PropTypes.string

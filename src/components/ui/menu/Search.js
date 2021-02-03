@@ -5,8 +5,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 const Search = ({ history, isSearch, toggleIsSearch }) => {
   let debouncer = null;
-  const formField = useRef();
-  const formLabel = useRef();
+  const formFieldRef = useRef();
+  const formLabelRef = useRef();
 
   useEffect(() => {
     changeIsSearch();
@@ -24,12 +24,12 @@ const Search = ({ history, isSearch, toggleIsSearch }) => {
           id="name"
           required
           onInput={whenTypeInput}
-          ref={formField}
+          ref={formFieldRef}
           />
         <label
           htmlFor="name"
           className="form-label active"
-          ref={formLabel}
+          ref={formLabelRef}
         >작품 및 작가 검색</label>
       </div>
       <i
@@ -44,27 +44,27 @@ const Search = ({ history, isSearch, toggleIsSearch }) => {
       clearTimeout(debouncer);
     }
     debouncer = setTimeout(() => {
-      const value = formField.current.value;
+      const value = formFieldRef.current.value;
       // 자동으로 데이터 갱신 처리
       console.log('자동 검색 : ', value);
     }, 400);
   }
 
   function toggleInput () {
-    if (formField.current.value.length > 0) {
-      const value = formField.current.value;
+    if (formFieldRef.current.value.length > 0) {
+      const value = formFieldRef.current.value;
       console.log('검색 : ', value);
     }
 
-    formField.current.classList.toggle('active');
-    formLabel.current.classList.toggle('active');
+    formFieldRef.current.classList.toggle('active');
+    formLabelRef.current.classList.toggle('active');
 
-    formField.current.value = '';
+    formFieldRef.current.value = '';
   }
 
   function changeIsSearch () {
-    formField.current.classList.remove('active');
-    formLabel.current.classList.remove('active');
+    formFieldRef.current.classList.remove('active');
+    formLabelRef.current.classList.remove('active');
 
     const searchUrl = ['/exhibition', '/artist'];
     let activeSearch = false;

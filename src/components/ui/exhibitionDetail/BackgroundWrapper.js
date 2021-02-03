@@ -1,50 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-class BackgroundWrapper extends React.Component {
-  constructor (props) {
-    super(props);
+const BackgroundWrapper = ({ slideIdx, data, changeSlideIdx }) => {
+  let throttler = null;
 
-    this.throttler = null;
+  useEffect(() => {
+    activeContentAnimation();
+  }, []);
 
-    this.wheelChangeExhibition = this.wheelChangeExhibition.bind(this);
-  }
+  return (
+    <div
+      className="background-wrapper load-next active"
+      onWheel={wheelChangeExhibition}
+      onTouchMove={wheelChangeExhibition}
+    >
+      {data.length > 0
+        ? data.map((item, idx) =>
+            <BackgroundItem
+              key={idx}
+              idx={idx}
+              length={data.length}
+              data={item}
+            ></BackgroundItem>)
+        : '불러오는중...'}
+    </div>
+  );
 
-  componentDidMount () {
-    this.activeContentAnimation();
-  }
-
-  render () {
-    const { data } = this.props;
-    return (
-      <div
-        className="background-wrapper load-next active"
-        onWheel={this.wheelChangeExhibition}
-        onTouchMove={this.wheelChangeExhibition}
-      >
-        {data.length > 0
-          ? data.map((item, idx) =>
-              <BackgroundItem
-                key={idx}
-                idx={idx}
-                length={data.length}
-                data={item}
-              ></BackgroundItem>)
-          : '불러오는중...'}
-      </div>
-    );
-  }
-
-  activeContentAnimation () {
+  function activeContentAnimation () {
     const backgroundWrapper = document.querySelector('.background-wrapper');
     setTimeout(() => {
       backgroundWrapper.classList.remove('active');
     }, 500);
   }
 
-  wheelChangeExhibition (e) {
-    if (!this.throttler) {
-      this.throttler = setTimeout(() => {
+  function wheelChangeExhibition (e) {
+    if (!throttler) {
+      throttler = setTimeout(() => {
         let isScrollUp = false;
         if (e.deltaY < 0) isScrollUp = true;
 
@@ -54,7 +45,7 @@ class BackgroundWrapper extends React.Component {
         const batchNoteContentAuthor = document.querySelector('.batch-note .content.author');
         batchNoteContentAuthor.classList.remove('active');
 
-        const length = this.props.data.length;
+        const length = data.length;
         const backgroundWrapper = document.querySelector('.background-wrapper');
         const batchPicture = document.querySelector('.batch-picture');
         const backgroundItems = document.querySelectorAll('.background-wrapper .hero-section');
@@ -62,27 +53,27 @@ class BackgroundWrapper extends React.Component {
 
         // 이전 전시
         if (isScrollUp) {
-          this.scrollUpAnimation(backgroundWrapper, backgroundItems, this.props.slideIdx, length);
-          this.scrollUpAnimation(batchPicture, batchPictureItems, this.props.slideIdx, length);
+          scrollUpAnimation(backgroundWrapper, backgroundItems, slideIdx, length);
+          scrollUpAnimation(batchPicture, batchPictureItems, slideIdx, length);
 
-          const slideIdx = this.props.slideIdx - 1;
-          if (slideIdx < 0) this.props.changeSlideIdx(length - 1);
-          else this.props.changeSlideIdx(slideIdx);
+          const slideIdxTemp = slideIdx - 1;
+          if (slideIdxTemp < 0) changeSlideIdx(length - 1);
+          else changeSlideIdx(slideIdxTemp);
         // 다음 전시
         } else {
-          this.scrollDownAnimation(backgroundWrapper, backgroundItems, this.props.slideIdx, length);
-          this.scrollDownAnimation(batchPicture, batchPictureItems, this.props.slideIdx, length);
+          scrollDownAnimation(backgroundWrapper, backgroundItems, slideIdx, length);
+          scrollDownAnimation(batchPicture, batchPictureItems, slideIdx, length);
 
-          const slideIdx = this.props.slideIdx + 1;
-          if (slideIdx >= length) this.props.changeSlideIdx(0);
-          else this.props.changeSlideIdx(slideIdx);
+          const slideIdxTemp = slideIdx + 1;
+          if (slideIdxTemp >= length) changeSlideIdx(0);
+          else changeSlideIdx(slideIdxTemp);
         }
-        this.throttler = null;
+        throttler = null;
       }, 300);
     }
   }
 
-  scrollUpAnimation (wrapper, element, idx, length) {
+  function scrollUpAnimation (wrapper, element, idx, length) {
     if (!wrapper) return;
 
     let before = idx - 1;
@@ -104,7 +95,7 @@ class BackgroundWrapper extends React.Component {
     element[next].classList.remove('active');
   }
 
-  scrollDownAnimation (wrapper, element, idx, length) {
+  function scrollDownAnimation (wrapper, element, idx, length) {
     if (!wrapper) return;
 
     let before = idx - 1;
@@ -125,7 +116,7 @@ class BackgroundWrapper extends React.Component {
     element[next].classList.add('active');
     element[next].classList.remove('prev');
   }
-}
+};
 
 const BackgroundItem = ({ idx, length, data }) => {
   return (

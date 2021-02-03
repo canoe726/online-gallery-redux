@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import AppArtist from '../components/ui/artist/AppArtist';
+import Artist from '../components/ui/artist/Artist';
 
 import {
   initArtistData,
@@ -14,7 +14,7 @@ import OG_API from '../api/onlineGalleryApiConstants';
 // delete this
 import DUMMY from '../data/dummy';
 
-export const Artist = connect(
+export const ArtistContainer = connect(
   state => ({
     artistList: state.artist.artistList,
     noMoreData: state.artist.noMoreData,
@@ -66,4 +66,4 @@ export const Artist = connect(
       }
     }
   })
-)(AppArtist);
+)(Artist);

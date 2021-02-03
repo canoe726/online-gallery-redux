@@ -1,42 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { lazyLoad } from '../../util/lazyLoading';
 
-class MasonryItem extends React.Component {
-  constructor (props) {
-    super(props);
-    this.resizeMasonryItem = this.resizeMasonryItem.bind(this);
-  }
-
-  componentDidMount () {
+const MasonryItem = ({ history, artistItem, masonry }) => {
+  useEffect(() => {
     lazyLoad();
-  }
+  }, []);
 
-  render () {
-    const { history, artistItem } = this.props;
-    return (
-      <div
-        className="masonry-item"
-        onLoad={this.resizeMasonryItem}
-        onClick={() => history.push(`/artist/${artistItem.artistId}`)}
-        >
-        <img className="item-img lazy" data-src={artistItem.profileImage}></img>
-        <div className="caption-wrapper">
-          <div className="caption nickname">{artistItem.nickname}</div>
-          <div className="caption introduction">{artistItem.introduction}</div>
-          <div className="caption artist">{artistItem.note}</div>
-        </div>
+  return (
+    <div
+      className="masonry-item"
+      onLoad={resizeMasonryItem}
+      onClick={() => history.push(`/artist/${artistItem.artistId}`)}
+      >
+      <img className="item-img lazy" data-src={artistItem.profileImage}></img>
+      <div className="caption-wrapper">
+        <div className="caption nickname">{artistItem.nickname}</div>
+        <div className="caption introduction">{artistItem.introduction}</div>
+        <div className="caption artist">{artistItem.note}</div>
       </div>
-    );
-  }
+    </div>
+  );
 
-  resizeMasonryItem (item) {
+  function resizeMasonryItem (item) {
     const target = item.target;
 
-    const grid = document.querySelector('.masonry');
+    const grid = masonry.current;
     const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
     const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
 
@@ -45,11 +37,12 @@ class MasonryItem extends React.Component {
 
     target.parentNode.style.gridRowEnd = 'span ' + rowSpan;
   }
-}
+};
 
 MasonryItem.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
-  artistItem: PropTypes.object
+  artistItem: PropTypes.object,
+  masonry: PropTypes.object
 };
 
 export default withRouter(MasonryItem);

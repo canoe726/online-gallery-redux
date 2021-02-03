@@ -24,9 +24,21 @@ export const HomeContainer = connect(
   dispatch => ({
     async initHomeBanner () {
       const response = await fetch(OG_API.SAMPLE);
+      // const response = await fetch(OG_API.ROOT + OG_API.HOME_BANNER);
+      // try {
+      //   const data = await response.json();
+      //   if (data.code === 'SUCCESS') {
+      //     dispatch(initHomeBanner(data.result));
+      //   } else {
+      //     console.log('올바른 형식의 데이터가 아닙니다.');
+      //   }
+      // } catch (e) {
+      //   return {
+      //     code: e.code,
+      //     errorCode: e.errorCode
+      //   };
+      // }
       if (response.ok) {
-        // const data = await response.json();
-        // console.log(data);
         dispatch(initHomeBanner(DUMMY.HOME_BANNER));
       }
     },

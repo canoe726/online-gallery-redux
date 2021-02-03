@@ -1,16 +1,22 @@
 const DUMMY_DATA = {
   HOME_BANNER: [
     {
-      bannerImgPath: '/samples/banner1.jpg',
-      bannerUrl: '/'
+      bannerId: '1',
+      posterImage: '/samples/banner1.jpg',
+      startAt: '2021-02-03',
+      endAt: '2021-02-05'
     },
     {
-      bannerImgPath: '/samples/banner2.jpg',
-      bannerUrl: '/'
+      bannerId: '2',
+      posterImage: '/samples/banner2.jpg',
+      startAt: '2021-02-04',
+      endAt: '2021-02-05'
     },
     {
-      bannerImgPath: '/samples/banner3.jpg',
-      bannerUrl: '/'
+      bannerId: '3',
+      posterImage: '/samples/banner3.jpg',
+      startAt: '2021-02-05',
+      endAt: '2021-02-05'
     }
   ],
   HOME_EXHIBITION: [

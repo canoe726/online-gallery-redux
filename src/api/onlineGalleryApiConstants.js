@@ -1,5 +1,6 @@
 const onlineGalleryApiConstants = {
   ROOT: 'http://www.online-gallery.co.kr:8081',
+  ROOT_IMG: 'http://www.online-gallery.co.kr:8081/image/',
   INFO: '/info',
   HOME_BANNER: '/home/banner',
   HOME_EXHIBITION: '/home/exhibition',

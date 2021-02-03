@@ -1,55 +1,49 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-class BatchPicture extends React.Component {
-  constructor (props) {
-    super(props);
+const BatchPicture = ({ slideIdx, modalActive, data, toggleModal }) => {
+  const batchPictureRef = useRef();
 
-    this.activeModal = this.activeModal.bind(this);
-  }
+  useEffect(() => {
+    activeContentAnimation();
+  }, []);
 
-  componentDidMount () {
-    this.activeContentAnimation();
-  }
+  return (
+    <div
+      className="batch-picture load-next active"
+      onClick={activeModal}
+      style={data.length > 0
+        ? {
+            width: `${data[slideIdx].exhibitionItem.originalHorizSize}%`,
+            height: `${data[slideIdx].exhibitionItem.originalVertSize}%`
+          }
+        : {}}
+      ref={batchPictureRef}
+    >
+      {data.length > 0
+        ? data.map((item, idx) =>
+          <BatchItem
+            key={idx}
+            idx={idx}
+            length={data.length}
+            data={item}
+          ></BatchItem>)
+        : '불러오는중...'}
+    </div>
+  );
 
-  render () {
-    const { data, slideIdx } = this.props;
-    return (
-      <div
-        className="batch-picture load-next active"
-        onClick={this.activeModal}
-        style={data.length > 0
-          ? {
-              width: `${data[slideIdx].exhibitionItem.originalHorizSize}%`,
-              height: `${data[slideIdx].exhibitionItem.originalVertSize}%`
-            }
-          : {}}
-        >
-        {data.length > 0
-          ? data.map((item, idx) =>
-            <BatchItem
-              key={idx}
-              idx={idx}
-              length={data.length}
-              data={item}
-            ></BatchItem>)
-          : '불러오는중...'}
-      </div>
-    );
-  }
-
-  activeModal () {
+  function activeModal () {
     // className of modalActive - 0 : '', 1 : sketch, 2 : sketch out
-    this.props.toggleModal(1);
+    toggleModal(1);
   }
 
-  activeContentAnimation () {
-    const batchPicture = document.querySelector('.batch-picture');
+  function activeContentAnimation () {
+    const batchPicture = batchPictureRef.current;
     setTimeout(() => {
       batchPicture.classList.remove('active');
     }, 500);
   }
-}
+};
 
 const BatchItem = ({ idx, length, data }) => {
   return (

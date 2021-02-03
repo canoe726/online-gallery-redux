@@ -1,7 +1,7 @@
 // Action Types
 
 // Reducer
-export default function reducers (state = {}, action) {
+export default function notice (state = {}, action) {
   switch (action.type) {
     default:
       return state;

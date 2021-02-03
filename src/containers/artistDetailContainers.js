@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import AppArtistDetail from '../components/ui/artistDetail/AppArtistDetail';
+import ArtistDetail from '../components/ui/artistDetail/ArtistDetail';
 
 import {
   toggleIsFetching,
@@ -15,7 +15,7 @@ import OG_API from '../api/onlineGalleryApiConstants';
 // delete this
 import DUMMY from '../data/dummy';
 
-export const ArtistDetail = connect(
+export const ArtistDetailContainer = connect(
   state => ({
     noMoreData: state.artistDetail.noMoreData,
     isFetching: state.artistDetail.isFetching,
@@ -66,4 +66,4 @@ export const ArtistDetail = connect(
       }
     }
   })
-)(AppArtistDetail);
+)(ArtistDetail);

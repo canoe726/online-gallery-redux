@@ -5,7 +5,7 @@ const INIT_HOME_ARTIST = 'home/INIT_HOME_ARTIST';
 const CHANGE_HOME_BANNER_IDX = 'home/CHANGE_HOME_BANNER_IDX';
 
 // Reducer
-export default function reducers (state = {}, action) {
+export default function home (state = {}, action) {
   switch (action.type) {
     case INIT_HOME_BANNER:
       return {

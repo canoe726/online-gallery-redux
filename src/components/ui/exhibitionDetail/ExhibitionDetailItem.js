@@ -8,46 +8,43 @@ import BatchNote from './BatchNote';
 import ArtworkDot from './ArtworkDot';
 import ModalWrapper from './ModalWrapper';
 
-class ExhibitionDetailItem extends React.Component {
-  render () {
-    const { slideIdx, modalActive, data, toggleModal, changeSlideIdx } = this.props;
-    return (
-      <div className="exhibition-detail-item">
-        <BackgroundMusic
-          data={data[slideIdx].exhibitionItemBackground}
-        ></BackgroundMusic>
+const ExhibitionDetailItem = ({ slideIdx, modalActive, data, toggleModal, changeSlideIdx }) => {
+  return (
+    <div className="exhibition-detail-item">
+      <BackgroundMusic
+        data={data[slideIdx].exhibitionItemBackground}
+      ></BackgroundMusic>
 
-        <BackgroundWrapper
-          slideIdx={slideIdx}
-          changeSlideIdx={changeSlideIdx}
-          data={data}
-        ></BackgroundWrapper>
+      <BackgroundWrapper
+        slideIdx={slideIdx}
+        changeSlideIdx={changeSlideIdx}
+        data={data}
+      ></BackgroundWrapper>
 
-        <BatchPicture
-          modalActive={modalActive}
-          slideIdx={slideIdx}
-          data={data}
-          toggleModal={toggleModal}
-        ></BatchPicture>
+      <BatchPicture
+        modalActive={modalActive}
+        slideIdx={slideIdx}
+        data={data}
+        toggleModal={toggleModal}
+      ></BatchPicture>
 
-        <BatchNote
-          data={data[slideIdx]}
-        ></BatchNote>
+      <BatchNote
+        data={data[slideIdx]}
+      ></BatchNote>
 
-        <ArtworkDot
-          slideIdx={slideIdx}
-          length={data.length}
-        ></ArtworkDot>
+      <ArtworkDot
+        slideIdx={slideIdx}
+        length={data.length}
+      ></ArtworkDot>
 
-        <ModalWrapper
-          modalActive={modalActive}
-          data={data[slideIdx]}
-          toggleModal={toggleModal}
-        ></ModalWrapper>
-      </div>
-    );
-  }
-}
+      <ModalWrapper
+        modalActive={modalActive}
+        data={data[slideIdx]}
+        toggleModal={toggleModal}
+      ></ModalWrapper>
+    </div>
+  );
+};
 
 ExhibitionDetailItem.propTypes = {
   slideIdx: PropTypes.number,

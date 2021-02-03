@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import AppExhibition from '../components/ui/exhibition/AppExhibition';
+import Exhibition from '../components/ui/exhibition/Exhibition';
 
 import {
   initExhibitionData,
@@ -14,7 +14,7 @@ import OG_API from '../api/onlineGalleryApiConstants';
 // delete this
 import DUMMY from '../data/dummy';
 
-export const Exhibition = connect(
+export const ExhibitionContainer = connect(
   state => ({
     exhibitionList: state.exhibition.exhibitionList,
     noMoreData: state.exhibition.noMoreData,
@@ -65,4 +65,4 @@ export const Exhibition = connect(
       }
     }
   })
-)(AppExhibition);
+)(Exhibition);

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import AppInfo from '../components/ui/info/AppInfo';
+import Info from '../components/ui/info/Info';
 
 import {
   initInfoData
@@ -11,7 +11,7 @@ import OG_API from '../api/onlineGalleryApiConstants';
 // delete this
 import DUMMY from '../data/dummy';
 
-export const Info = connect(
+export const InfoContainer = connect(
   state => ({
     notice: state.info.notice,
     backgroundImages: state.info.backgroundImages
@@ -26,4 +26,4 @@ export const Info = connect(
       }
     }
   })
-)(AppInfo);
+)(Info);

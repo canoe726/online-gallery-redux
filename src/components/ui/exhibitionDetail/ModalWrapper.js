@@ -1,96 +1,90 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-class ModalWrapper extends React.Component {
-  constructor (props) {
-    super(props);
+const ModalWrapper = ({ modalActive, data, toggleModal }) => {
+  let isDown = false;
+  let prevMouseX = -1;
+  let prevMouseY = -1;
 
-    this.isDown = false;
-    this.prevMouseX = -1;
-    this.prevMouseY = -1;
+  const modalImgRef = useRef();
+  const modalVideoRef = useRef();
 
-    this.whenMouseDown = this.whenMouseDown.bind(this);
-    this.whenMouseUp = this.whenMouseUp.bind(this);
-    this.whenMouseMove = this.whenMouseMove.bind(this);
-    this.scaleModalContent = this.scaleModalContent.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
-
-  componentDidUpdate () {
+  useEffect(() => {
     setTimeout(() => {
-      const modalImg = document.querySelector('.modal-img');
+      const modalImg = modalImgRef.current;
       modalImg.style.transform = 'scale(1) translate(0px,0px)';
-      const modalVideo = document.querySelector('.modal-video');
+      const modalVideo = modalVideoRef.current;
       modalVideo.style.transform = 'scale(1) translate(0px,0px)';
     }, 500);
-  }
+  });
 
-  render () {
-    const { modalActive, data } = this.props;
-    return (
-      <div
-        id="modal-wrapper"
-        className={
-          modalActive === 0
-            ? ''
-            : modalActive === 1
-              ? 'sketch'
-              : 'sketch out'}
-        onClick={this.closeModal}
-        onMouseDown={this.whenMouseDown}
-        onMouseUp={this.whenMouseUp}
-        onMouseMove={this.whenMouseMove}
-        onWheel={this.scaleModalContent}
-      >
-        <div className="close close-container">
-          <div className="close close-leftright"></div>
-          <div className="close close-rightleft"></div>
-        </div>
+  return (
+    <div
+      id="modal-wrapper"
+      className={
+        modalActive === 0
+          ? ''
+          : modalActive === 1
+            ? 'sketch'
+            : 'sketch out'}
+      onClick={closeModal}
+      onMouseDown={whenMouseDown}
+      onMouseUp={whenMouseUp}
+      onMouseMove={whenMouseMove}
+      onWheel={scaleModalContent}
+    >
+      <div className="close close-container">
+        <div className="close close-leftright"></div>
+        <div className="close close-rightleft"></div>
+      </div>
 
-        <div className="modal-background">
-          <div className="modal">
-            <svg className="modal-svg" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0" y="0" fill="none" rx="0" ry="0" width="100%" height="100%"></rect>
-            </svg>
+      <div className="modal-background">
+        <div className="modal">
+          <svg className="modal-svg" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" fill="none" rx="0" ry="0" width="100%" height="100%"></rect>
+          </svg>
 
-            <img
-              className={modalActive ? 'modal-img' : 'modal-img hidden'}
-              src={data.exhibitionItem.image}
-              alt="modal-img"
-            ></img>
-            <video className="modal-video hidden"></video>
+          <img
+            className={modalActive ? 'modal-img' : 'modal-img hidden'}
+            src={data.exhibitionItem.image}
+            alt="modal-img"
+            ref={modalImgRef}
+          ></img>
+          <video
+            className="modal-video hidden"
+            ref={modalVideoRef}
+          ></video>
 
-          </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 
-  whenMouseDown (e) {
+  function whenMouseDown (e) {
     if ((e.target.classList.contains('modal-img') ||
          e.target.classList.contains('modal-video'))) {
-      this.isDown = true;
-      this.prevMouseX = e.clientX;
-      this.prevMouseY = e.clientY;
+      isDown = true;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
     }
   }
 
-  whenMouseUp () {
-    this.isDown = false;
+  function whenMouseUp () {
+    isDown = false;
   }
 
-  whenMouseMove (e) {
+  function whenMouseMove (e) {
     e.preventDefault();
     // 드래그 상태에서 움직인 경우
-    if (this.isDown) {
+    if (isDown) {
       if (e.target.tagName === 'IMG') {
         const modalImg = e.target;
-        this.howToMove(modalImg, e);
+        howToMove(modalImg, e);
       }
     }
   }
 
-  howToMove (elem, e) {
+  function howToMove (elem, e) {
     const curMouseX = e.clientX;
     const curMouseY = e.clientY;
 
@@ -110,36 +104,35 @@ class ModalWrapper extends React.Component {
       translateY = translateY.slice(0, -3);
       translateY *= 1;
 
-      const gapX = curMouseX - this.prevMouseX;
-      const gapY = curMouseY - this.prevMouseY;
+      const gapX = curMouseX - prevMouseX;
+      const gapY = curMouseY - prevMouseY;
 
       translateX += gapX;
       translateY += gapY;
 
       elem.style.transform = `${scale} translate(${translateX}px, ${translateY}px)`;
 
-      this.prevMouseX = curMouseX;
-      this.prevMouseY = curMouseY;
+      prevMouseX = curMouseX;
+      prevMouseY = curMouseY;
     }
   }
 
   // 휠을 이동하면서 크기 변경
-  scaleModalContent (e) {
+  function scaleModalContent (e) {
     const target = e.target;
     if (target.classList[0].includes('close')) return;
 
     const dataType = target.tagName;
-    const modal = e.target.parentNode;
 
     let isScrollUp = false;
     if (e.deltaY < 0) isScrollUp = true;
     if (dataType === 'IMG') {
-      const modalImg = modal.querySelector('.modal-img');
-      this.howToScale(isScrollUp, modalImg);
+      const modalImg = modalImgRef.current;
+      howToScale(isScrollUp, modalImg);
     }
   }
 
-  howToScale (isScrollUp, elem) {
+  function howToScale (isScrollUp, elem) {
     const transform = elem.style.transform;
     if (!transform) {
       elem.style.transform = 'scale(1.0) translate(0px, 0px)';
@@ -160,13 +153,13 @@ class ModalWrapper extends React.Component {
     }
   }
 
-  closeModal (e) {
+  function closeModal (e) {
     const target = e.target;
     const isModalBackground = target.classList.contains('modal-background');
-    const modalVideo = document.querySelector('.modal-video');
+    const modalVideo = modalVideoRef.current;
 
     // className of modalActive - 0 : '', 1 : sketch, 2 : sketch out
-    if (this.props.modalActive === 1) {
+    if (modalActive === 1) {
       if (isModalBackground) {
         // 비디오 초기화
         if (modalVideo.src) {
@@ -174,7 +167,7 @@ class ModalWrapper extends React.Component {
         //   modalVideo.pause();
         //   modalVideo.play();
         }
-        this.props.toggleModal(2);
+        toggleModal(2);
       // X 버튼 클릭
       } else if (target.classList[0] === 'close') {
         // 비디오 초기화
@@ -183,11 +176,11 @@ class ModalWrapper extends React.Component {
         //   modalVideo.pause();
         //   modalVideo.play();
         }
-        this.props.toggleModal(2);
+        toggleModal(2);
       }
     }
   }
-}
+};
 
 ModalWrapper.propTypes = {
   modalActive: PropTypes.number,

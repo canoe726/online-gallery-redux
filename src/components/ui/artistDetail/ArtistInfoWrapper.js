@@ -1,72 +1,69 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ArtistInfoWrapper extends React.Component {
-  render () {
-    const { artistDetailData } = this.props;
-    return (
-      <div className="container">
-        <div className="item">
-          <div id="timeline">
-            <div className="section-line">
-              <section className="section-wrapper">
-                <div className="section-header">작가 소개</div>
-                <section className="secton-item-wrapper">
-                  <ul className="secton-item">
-                    <li>{artistDetailData.artist.name}</li>
-                    <li>활동 이름 : {artistDetailData.artist.nickname}</li>
-                    <li>소개 : {artistDetailData.artist.introduction}</li>
-                    <li>작가 노트 : {artistDetailData.artist.note}</li>
-                  </ul>
-                </section>
+const ArtistInfoWrapper = ({ artistDetailData }) => {
+  return (
+    <div className="container">
+      <div className="item">
+        <div id="timeline">
+          <div className="section-line">
+            <section className="section-wrapper">
+              <div className="section-header">작가 소개</div>
+              <section className="secton-item-wrapper">
+                <ul className="secton-item">
+                  <li>{artistDetailData.artist.name}</li>
+                  <li>활동 이름 : {artistDetailData.artist.nickname}</li>
+                  <li>소개 : {artistDetailData.artist.introduction}</li>
+                  <li>작가 노트 : {artistDetailData.artist.note}</li>
+                </ul>
               </section>
-              <section className="section-wrapper">
-                <div className="section-header">소속 그룹</div>
-                {artistDetailData.artistGroups.length > 0
-                  ? artistDetailData.artistGroups.map((item, idx) =>
-                      <SectionGroup
-                        key={idx}
-                        item={item}
-                      ></SectionGroup>)
-                  : ''}
-              </section>
-              <section className="section-wrapper">
-                <div className="section-header">커리어</div>
-                {artistDetailData.artistCareers.length > 0
-                  ? artistDetailData.artistCareers.map((item, idx) =>
-                      <SectionCareer
-                        key={idx}
-                        item={item}
-                      ></SectionCareer>)
-                  : ''}
-              </section>
-              <section className="section-wrapper">
-                <div className="section-header">교육</div>
-                {artistDetailData.artistEducations.length > 0
-                  ? artistDetailData.artistEducations.map((item, idx) =>
-                      <SectionEducation
-                        key={idx}
-                        item={item}
-                      ></SectionEducation>)
-                  : ''}
-              </section>
-              <section className="section-wrapper">
-                <div className="section-header">수상</div>
-                {artistDetailData.artistPrizes.length > 0
-                  ? artistDetailData.artistPrizes.map((item, idx) =>
-                      <SectionPrize
-                        key={idx}
-                        item={item}
-                      ></SectionPrize>)
-                  : ''}
-              </section>
-            </div>
+            </section>
+            <section className="section-wrapper">
+              <div className="section-header">소속 그룹</div>
+              {artistDetailData.artistGroups.length > 0
+                ? artistDetailData.artistGroups.map((item, idx) =>
+                    <SectionGroup
+                      key={idx}
+                      item={item}
+                    ></SectionGroup>)
+                : ''}
+            </section>
+            <section className="section-wrapper">
+              <div className="section-header">커리어</div>
+              {artistDetailData.artistCareers.length > 0
+                ? artistDetailData.artistCareers.map((item, idx) =>
+                    <SectionCareer
+                      key={idx}
+                      item={item}
+                    ></SectionCareer>)
+                : ''}
+            </section>
+            <section className="section-wrapper">
+              <div className="section-header">교육</div>
+              {artistDetailData.artistEducations.length > 0
+                ? artistDetailData.artistEducations.map((item, idx) =>
+                    <SectionEducation
+                      key={idx}
+                      item={item}
+                    ></SectionEducation>)
+                : ''}
+            </section>
+            <section className="section-wrapper">
+              <div className="section-header">수상</div>
+              {artistDetailData.artistPrizes.length > 0
+                ? artistDetailData.artistPrizes.map((item, idx) =>
+                    <SectionPrize
+                      key={idx}
+                      item={item}
+                    ></SectionPrize>)
+                : ''}
+            </section>
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 const SectionGroup = ({ item }) => {
   return (

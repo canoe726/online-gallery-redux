@@ -25,7 +25,7 @@ const pictureList = (state, action) => {
   }
 };
 
-export default function reducers (state = {}, action) {
+export default function exhibitionDetail (state = {}, action) {
   switch (action.type) {
     case CHANGE_SLIDE_IDX:
       return {

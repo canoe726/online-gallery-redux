@@ -2,7 +2,7 @@
 const INIT_INFO_DATA = 'info/INIT_INFO_DATA';
 
 // Reducer
-export default function reducers (state = {}, action) {
+export default function info (state = {}, action) {
   switch (action.type) {
     case INIT_INFO_DATA:
       return {

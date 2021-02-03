@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
 
-import AppPageLoading from '../components/ui/loading/AppPageLoading';
-import AppMasonryLoading from '../components/ui/loading/AppMasonryLoading';
+import PageLoading from '../components/ui/loading/PageLoading';
+import MasonryLoading from '../components/ui/loading/MasonryLoading';
 import ElementLoading from '../components/ui/loading/ElementLoading';
-import AppNoMoreLoading from '../components/ui/loading/AppNoMoreLoading';
+import NoMoreLoading from '../components/ui/loading/NoMoreLoading';
 
-export const PageLoading = connect(
+export const PageLoadingContainer = connect(
   state => ({
     loadingImage: state.loading.pageLoading.loadingImage
   })
-)(AppPageLoading);
+)(PageLoading);
 
-export const MasonryLoading = connect(
+export const MasonryLoadingContainer = connect(
   state => ({
     loadingImage: state.loading.masonryLoading.loadingImage
   })
-)(AppMasonryLoading);
+)(MasonryLoading);
 
 export const ElementLoadingContainer = connect(
   state => ({
@@ -23,10 +23,10 @@ export const ElementLoadingContainer = connect(
   })
 )(ElementLoading);
 
-export const NoMoreLoading = connect(
+export const NoMoreLoadingContainer = connect(
   state => ({
     exhibitionImage: state.loading.noMoreLoading.exhibitionImage,
     artistImage: state.loading.noMoreLoading.artistImage,
     artistDetailImage: state.loading.noMoreLoading.artistDetailImage
   })
-)(AppNoMoreLoading);
+)(NoMoreLoading);

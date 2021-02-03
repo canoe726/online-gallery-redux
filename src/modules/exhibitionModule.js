@@ -16,7 +16,7 @@ const exhibitionList = (state, action) => {
   }
 };
 
-export default function reducers (state = {}, action) {
+export default function exhibition (state = {}, action) {
   switch (action.type) {
     case INIT_EXHIBITION_DATA:
       return {

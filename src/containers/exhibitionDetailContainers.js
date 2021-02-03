@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import AppExhibitionDetail from '../components/ui/exhibitionDetail/AppExhibitionDetail';
+import ExhibitionDetail from '../components/ui/exhibitionDetail/ExhibitionDetail';
 
 import {
   changeSlideIdx,
@@ -14,7 +14,7 @@ import OG_API from '../api/onlineGalleryApiConstants';
 // delete this
 import DUMMY from '../data/dummy';
 
-export const ExhibitionDetail = connect(
+export const ExhibitionDetailContainer = connect(
   state => ({
     slideIdx: state.exhibitionDetail.slideIdx,
     modalActive: state.exhibitionDetail.modalActive,
@@ -52,4 +52,4 @@ export const ExhibitionDetail = connect(
       }
     }
   })
-)(AppExhibitionDetail);
+)(ExhibitionDetail);

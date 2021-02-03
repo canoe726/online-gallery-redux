@@ -16,7 +16,7 @@ const artistList = (state, action) => {
   }
 };
 
-export default function reducers (state = {}, action) {
+export default function artist (state = {}, action) {
   switch (action.type) {
     case INIT_ARTIST_DATA:
       return {
