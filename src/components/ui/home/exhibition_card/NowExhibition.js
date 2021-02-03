@@ -1,35 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import ExhibitionCard from './ExhibitionCard';
-import { ElementLoading } from '../../../../containers/loadingContainers';
+import { ElementLoadingContainer } from '../../../../containers/loadingContainers';
 
-class NowExhibition extends React.Component {
-  componentDidMount () {
-    this.props.initHomeExhibition();
-  }
+const NowExhibition = ({ exhibition, initHomeExhibition }) => {
+  useEffect(() => {
+    initHomeExhibition();
+  }, []);
 
-  render () {
-    const { exhibition } = this.props;
-    return (
-      <div className="now-exhibition-wrapper">
-        <div className="title">진행중 전시</div>
-        <div className="card-wrapper">
-          {exhibition.length > 0
-            ? exhibition.map((item, idx) =>
-              <ExhibitionCard
-                key={idx}
-                data={item}
-              ></ExhibitionCard>)
-            : <ElementLoading></ElementLoading>}
-        </div>
-        <div className="prev hidden" onClick={() => this.scrollHorizontal(false)}>&#10094;</div>
-        <div className="next" onClick={() => this.scrollHorizontal(true)}>&#10095;</div>
+  return (
+    <div className="now-exhibition-wrapper">
+      <div className="title">진행중 전시</div>
+      <div className="card-wrapper">
+        {exhibition.length > 0
+          ? exhibition.map((item, idx) =>
+            <ExhibitionCard
+              key={idx}
+              data={item}
+            ></ExhibitionCard>)
+          : <ElementLoadingContainer></ElementLoadingContainer>}
       </div>
-    );
-  }
+      <div className="prev hidden" onClick={() => scrollHorizontal(false)}>&#10094;</div>
+      <div className="next" onClick={() => scrollHorizontal(true)}>&#10095;</div>
+    </div>
+  );
 
-  scrollHorizontal (isRight) {
+  function scrollHorizontal (isRight) {
     const cardWrapper = document.querySelector('.now-exhibition-wrapper .card-wrapper');
     const cardItem = document.querySelector('.now-exhibition-wrapper .card-wrapper .card-item');
     const scrollWidth = cardWrapper.scrollWidth - cardWrapper.clientWidth;
@@ -49,19 +46,19 @@ class NowExhibition extends React.Component {
     }
 
     if (afterPos === 0) {
-      this.toggleSlideBtn(true, 'prev');
+      toggleSlideBtn(true, 'prev');
     } else {
-      this.toggleSlideBtn(false, 'prev');
+      toggleSlideBtn(false, 'prev');
     }
 
     if (afterPos === scrollWidth) {
-      this.toggleSlideBtn(true, 'next');
+      toggleSlideBtn(true, 'next');
     } else {
-      this.toggleSlideBtn(false, 'next');
+      toggleSlideBtn(false, 'next');
     }
   }
 
-  toggleSlideBtn (activeHide, dir) {
+  function toggleSlideBtn (activeHide, dir) {
     const prev = document.querySelector('.now-exhibition-wrapper .prev');
     const next = document.querySelector('.now-exhibition-wrapper .next');
     if (activeHide) {
@@ -78,11 +75,10 @@ class NowExhibition extends React.Component {
       }
     }
   }
-}
+};
 
 NowExhibition.propTypes = {
   exhibition: PropTypes.array,
-  exhibitionCardIdx: PropTypes.number,
   initHomeExhibition: PropTypes.func
 };
 

@@ -8,7 +8,7 @@ const NavBar = ({ isClose, toggleNavBar }) => {
     return () => {
       window.removeEventListener('click', handleClickOutside);
     };
-  });
+  }, [handleClickOutside]);
 
   return (
     <div className="nav-bar">

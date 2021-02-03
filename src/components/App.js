@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import '../stylesheets/App.scss';
 
 import { MenuContainer } from '../containers/menuContainer';
-import { Home } from '../containers/homeContainer';
+import { HomeContainer } from '../containers/homeContainer';
 import { Info } from '../containers/infoContainer';
 import { Exhibition } from '../containers/exhibitionContainers';
 import { ExhibitionDetail } from '../containers/exhibitionDetailContainers';
@@ -18,7 +18,7 @@ const App = () => {
     <div id="online-gallery">
       <MenuContainer></MenuContainer>
       <Switch>
-        <Route exact path="/" component={Home}></Route>
+        <Route exact path="/" component={HomeContainer}></Route>
         <Route exact path="/info" component={Info}></Route>
         <Route exact path="/exhibition" component={Exhibition}></Route>
         <Route exact path="/exhibition/:id" component={ExhibitionDetail}></Route>

@@ -1,14 +1,12 @@
 import { connect } from 'react-redux';
 
-import AppHome from '../components/ui/home/AppHome';
+import Home from '../components/ui/home/Home';
 
 import {
   initHomeBanner,
   initHomeExhibition,
   initHomeArtist,
-  changeHomeBannerIdx,
-  changeHomeExhibitionCardIdx,
-  changeHomeArtistCardIdx
+  changeHomeBannerIdx
 } from '../modules/homeModule';
 
 import OG_API from '../api/onlineGalleryApiConstants';
@@ -16,14 +14,12 @@ import OG_API from '../api/onlineGalleryApiConstants';
 // delete this
 import DUMMY from '../data/dummy';
 
-export const Home = connect(
+export const HomeContainer = connect(
   state => ({
     banner: state.home.banner,
     bannerIdx: state.home.bannerIdx,
     exhibition: state.home.exhibition,
-    exhibitionCardIdx: state.home.exhibitionCardIdx,
-    artist: state.home.artist,
-    artistCardIdx: state.home.artistCardIdx
+    artist: state.home.artist
   }),
   dispatch => ({
     async initHomeBanner () {
@@ -52,12 +48,6 @@ export const Home = connect(
     },
     changeHomeBannerIdx (bannerIdx) {
       dispatch(changeHomeBannerIdx(bannerIdx));
-    },
-    changeHomeExhibitionCardIdx (exhibitionCardIdx) {
-      dispatch(changeHomeExhibitionCardIdx(exhibitionCardIdx));
-    },
-    changeHomeArtistCardIdx (artistCardIdx) {
-      dispatch(changeHomeArtistCardIdx(artistCardIdx));
     }
   })
-)(AppHome);
+)(Home);

@@ -1,75 +1,70 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import BannerCard from './BannerCard';
-import { ElementLoading } from '../../../../containers/loadingContainers';
+import { ElementLoadingContainer } from '../../../../containers/loadingContainers';
 
-class HorizontalBanner extends React.Component {
-  constructor (props) {
-    super(props);
+const HorizontalBanner = ({ banner, bannerIdx, initHomeBanner, changeHomeBannerIdx }) => {
+  let homeBannerInterval = null;
 
-    this.homeBannerInterval = null;
-  }
+  useEffect(() => {
+    initHomeBanner();
+  }, []);
 
-  componentDidMount () {
-    this.props.initHomeBanner();
-
-    this.homeBannerInterval = setInterval(() => {
-      this.changeSlide(1);
+  useEffect(() => {
+    homeBannerInterval = setInterval(() => {
+      changeSlide(1);
     }, 7000);
+
+    return () => {
+      clearInterval(homeBannerInterval);
+    };
+  });
+
+  return (
+    <div className="horizontal-banner">
+      <div className="banner-card-wrapper">
+        {banner.length > 0
+          ? banner.map((item, idx) =>
+            <BannerCard
+              key={idx}
+              data={item}
+              isShow={idx === bannerIdx}
+            ></BannerCard>)
+          : <ElementLoadingContainer></ElementLoadingContainer>}
+      </div>
+      <div className="prev" onClick={() => changeSlide(-1)}>&#10094;</div>
+      <div className="next" onClick={() => changeSlide(1)}>&#10095;</div>
+      <div className="banner-dot">
+        {banner.length > 0
+          ? banner.map((item, idx) =>
+            <span
+              key={idx}
+              className={idx === bannerIdx ? 'dot active' : 'dot'}
+              onClick={() => dotChangeSlide(idx)}
+            ></span>)
+          : ''
+        }
+      </div>
+    </div>
+  );
+
+  function dotChangeSlide (idx) {
+    changeHomeBannerIdx(idx);
   }
 
-  componentWillUnmount () {
-    clearInterval(this.homeBannerInterval);
-  }
-
-  render () {
-    const { banner, bannerIdx } = this.props;
-    return (
-        <div className="horizontal-banner">
-          <div className="banner-card-wrapper">
-            {banner.length > 0
-              ? banner.map((item, idx) =>
-                <BannerCard
-                  key={idx}
-                  data={item}
-                  isShow={idx === bannerIdx}
-                ></BannerCard>)
-              : <ElementLoading></ElementLoading>}
-          </div>
-          <div className="prev" onClick={() => this.changeSlide(-1)}>&#10094;</div>
-          <div className="next" onClick={() => this.changeSlide(1)}>&#10095;</div>
-          <div className="banner-dot">
-            {banner.length > 0
-              ? banner.map((item, idx) =>
-                <span
-                  key={idx}
-                  className={idx === bannerIdx ? 'dot active' : 'dot'}
-                  onClick={() => this.dotChangeSlide(idx)}
-                ></span>)
-              : ''
-            }
-          </div>
-        </div>
-    );
-  }
-
-  dotChangeSlide (idx) {
-    this.props.changeHomeBannerIdx(idx);
-  }
-
-  changeSlide (plus) {
-    const length = this.props.banner.length;
-    let bannerIdx = this.props.bannerIdx;
-    bannerIdx += plus;
-    if (bannerIdx < 0) {
-      bannerIdx = length - 1;
-    } else if (bannerIdx >= length) {
-      bannerIdx = 0;
+  function changeSlide (plus) {
+    const length = banner.length;
+    let tempIdx = bannerIdx;
+    tempIdx += plus;
+    if (tempIdx < 0) {
+      tempIdx = length - 1;
+    } else if (tempIdx >= length) {
+      tempIdx = 0;
     }
-    this.props.changeHomeBannerIdx(bannerIdx);
+    changeHomeBannerIdx(tempIdx);
   }
-}
+};
 
 HorizontalBanner.propTypes = {
   banner: PropTypes.array,

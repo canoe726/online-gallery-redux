@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import AppPageLoading from '../components/ui/loading/AppPageLoading';
 import AppMasonryLoading from '../components/ui/loading/AppMasonryLoading';
-import AppElementLoading from '../components/ui/loading/AppElementLoading';
+import ElementLoading from '../components/ui/loading/ElementLoading';
 import AppNoMoreLoading from '../components/ui/loading/AppNoMoreLoading';
 
 export const PageLoading = connect(
@@ -17,11 +17,11 @@ export const MasonryLoading = connect(
   })
 )(AppMasonryLoading);
 
-export const ElementLoading = connect(
+export const ElementLoadingContainer = connect(
   state => ({
     loadingImage: state.loading.elementLoading.loadingImage
   })
-)(AppElementLoading);
+)(ElementLoading);
 
 export const NoMoreLoading = connect(
   state => ({

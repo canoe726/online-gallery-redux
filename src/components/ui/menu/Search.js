@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 const Search = ({ history, isSearch, toggleIsSearch }) => {
   let debouncer = null;
+  const formField = useRef();
+  const formLabel = useRef();
 
   useEffect(() => {
     changeIsSearch();
@@ -18,12 +20,17 @@ const Search = ({ history, isSearch, toggleIsSearch }) => {
           type="input"
           className="form-field active"
           placeholder="input"
-          name="name"
+          name="search"
           id="name"
           required
           onInput={whenTypeInput}
+          ref={formField}
           />
-        <label htmlFor="name" className="form-label active">작품 및 작가 검색</label>
+        <label
+          htmlFor="name"
+          className="form-label active"
+          ref={formLabel}
+        >작품 및 작가 검색</label>
       </div>
       <i
         className="fas fa-search"
@@ -32,38 +39,32 @@ const Search = ({ history, isSearch, toggleIsSearch }) => {
     </div>
   );
 
-  function whenTypeInput (e) {
+  function whenTypeInput () {
     if (debouncer) {
       clearTimeout(debouncer);
     }
     debouncer = setTimeout(() => {
-      const value = e.target.value;
+      const value = formField.current.value;
       // 자동으로 데이터 갱신 처리
       console.log('자동 검색 : ', value);
     }, 400);
   }
 
   function toggleInput () {
-    const formField = document.querySelector('.form-field');
-    if (formField.value.length > 0) {
-      const value = formField.value;
+    if (formField.current.value.length > 0) {
+      const value = formField.current.value;
       console.log('검색 : ', value);
     }
 
-    formField.classList.toggle('active');
+    formField.current.classList.toggle('active');
+    formLabel.current.classList.toggle('active');
 
-    const formLabel = document.querySelector('.form-label');
-    formLabel.classList.toggle('active');
-
-    formField.value = '';
+    formField.current.value = '';
   }
 
   function changeIsSearch () {
-    const formField = document.querySelector('.form-field');
-    formField.classList.remove('active');
-
-    const formLabel = document.querySelector('.form-label');
-    formLabel.classList.remove('active');
+    formField.current.classList.remove('active');
+    formLabel.current.classList.remove('active');
 
     const searchUrl = ['/exhibition', '/artist'];
     let activeSearch = false;

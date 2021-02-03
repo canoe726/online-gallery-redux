@@ -18,9 +18,7 @@
         "banner": [],
         "bannerIdx": 0,
         "exhibition": [],
-        "exhibitionCardIdx": 0,
-        "artist": [],
-        "artistCardIdx": 0
+        "artist": []
     },
     "info": {
         "notice": "",

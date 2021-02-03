@@ -13,9 +13,9 @@ const Menu = ({ isClose, isSearch, toggleNavBar, toggleIsSearch }) => {
         toggleNavBar={toggleNavBar}
       ></NavBar>
       <div className="gallery-logo">
-        <Link to="/">
-            <div className="gallery-name">Online Gallery</div>
-        </Link>
+        <div className="gallery-name">
+          <Link to="/">Online Gallery</Link>
+        </div>
       </div>
       <Search
         isSearch={isSearch}

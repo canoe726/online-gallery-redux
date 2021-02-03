@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import '../../../stylesheets/loading/elementLoading.scss';
 
-class AppElementLoading extends React.Component {
+class ElementLoading extends React.Component {
   render () {
     const { loadingImage } = this.props;
     return (
@@ -14,8 +14,8 @@ class AppElementLoading extends React.Component {
   }
 }
 
-AppElementLoading.propTypes = {
+ElementLoading.propTypes = {
   loadingImage: PropTypes.string
 };
 
-export default AppElementLoading;
+export default ElementLoading;
