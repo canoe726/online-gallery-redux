@@ -1,24 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import storeFactory from './store';
+import storeFactory, { customHistory, sagaMiddleware } from './store';
+import { rootSaga } from './saga/index';
 
 const store = storeFactory();
-
-window.React = React;
-window.store = store;
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
-  <BrowserRouter>
+  <Router history={customHistory}>
     <Provider store={store}>
       <React.StrictMode>
         <App />
       </React.StrictMode>
     </Provider>
-  </BrowserRouter>,
+  </Router>,
   document.getElementById('root')
 );
 

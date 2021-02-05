@@ -1,20 +1,25 @@
-import { connect } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import Menu from '../components/ui/menu/Menu';
+import Menu from '../components/menu/Menu';
 
-import { toggleNavBar, toggleIsSearch } from '../modules/menuModule';
+import { toggleNavBar, toggleIsSearch } from '../saga/menuSaga';
 
-export const MenuContainer = connect(
-  state => ({
-    isClose: state.menu.navBar.isClose,
-    isSearch: state.menu.search.isSearch
-  }),
-  dispatch => ({
-    toggleNavBar (isClose) {
-      dispatch(toggleNavBar(isClose));
-    },
-    toggleIsSearch (isSearch) {
-      dispatch(toggleIsSearch(isSearch));
-    }
-  })
-)(Menu);
+function MenuContainer () {
+  const { navBarIsClose, searchIsActive } = useSelector(
+    state => state.menu
+  ) || {
+    navBarIsClose: true,
+    searchIsActive: false
+  };
+
+  return (
+    <Menu
+      navBarIsClose={navBarIsClose}
+      searchIsActive={searchIsActive}
+      toggleNavBar={toggleNavBar}
+      toggleIsSearch={toggleIsSearch}
+    ></Menu>);
+};
+
+export default MenuContainer;

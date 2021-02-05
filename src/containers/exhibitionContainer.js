@@ -1,19 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getInfoData } from '../saga/infoSaga';
+import { getExhibitionData } from '../saga/exhibitionSaga';
 
-import Info from '../components/info/Info';
+import Exhibition from '../components/exhibition/Exhibition';
 import PageLoading from '../components/loading/PageLoading';
 
-function InfoContainer () {
-  const { backgroundImages } = useSelector(
-    state => state.info
-  ) || {
-    backgroundImages: []
-  };
-
+function ExhibitionContainer () {
   const { loading, data, error } = useSelector(
-    state => state.info.notice
+    state => state.exhibition.exhibitionList
   ) || {
     loading: false,
     data: null,
@@ -24,14 +18,13 @@ function InfoContainer () {
 
   useEffect(() => {
     if (data) return;
-    dispatch(getInfoData());
+    dispatch(getExhibitionData());
   }, [dispatch]);
 
   if (loading && !data) return <PageLoading></PageLoading>;
   if (error) return <div>에러 발생...</div>;
   if (!data) return null;
-  if (!backgroundImages) return null;
-  return <Info notice={data} backgroundImages={backgroundImages}></Info>;
+  return <Exhibition data={data} loading={loading} getExhibitionData={getExhibitionData}></Exhibition>;
 };
 
-export default InfoContainer;
+export default ExhibitionContainer;
