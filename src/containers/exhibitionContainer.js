@@ -14,17 +14,24 @@ function ExhibitionContainer () {
     error: null
   };
 
+  let isAllLoaded = false;
+  isAllLoaded = data ? data.length === 0 : false;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (data) return;
     dispatch(getExhibitionData());
   }, [dispatch]);
 
   if (loading && !data) return <PageLoading></PageLoading>;
-  if (error) return <div>에러 발생...</div>;
-  if (!data) return null;
-  return <Exhibition data={data} loading={loading} getExhibitionData={getExhibitionData}></Exhibition>;
+  return (
+    <Exhibition
+      data={data}
+      loading={loading}
+      error={error}
+      isAllLoaded={isAllLoaded}
+      getExhibitionData={getExhibitionData}
+    ></Exhibition>);
 };
 
 export default ExhibitionContainer;

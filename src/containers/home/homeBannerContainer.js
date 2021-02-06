@@ -4,6 +4,7 @@ import { getHomeBanner, changeHomeBannerIdx } from '../../saga/homeSaga';
 
 import HorizontalBanner from '../../components/home/horizontal_banner/HorizontalBanner';
 import ElementLoading from '../../components/loading/ElementLoading';
+import LoadingError from '../../components/error/LoadingError';
 
 function HomeBannerContainer () {
   const { homeBannerIdx } = useSelector(
@@ -25,15 +26,27 @@ function HomeBannerContainer () {
     dispatch(getHomeBanner());
   }, [dispatch]);
 
-  if (loading && !data) return <ElementLoading></ElementLoading>;
-  if (error) return <div>에러 발생...</div>;
+  if (loading && !data) {
+    return (
+      <div className="horizontal-banner">
+        <ElementLoading></ElementLoading>
+      </div>);
+  }
+  if (error) {
+    return (
+      <div className="horizontal-banner">
+        <LoadingError error={error}></LoadingError>
+      </div>);
+  }
   if (!data) return null;
   return (
-    <HorizontalBanner
-      homeBannerIdx={homeBannerIdx}
-      changeHomeBannerIdx={changeHomeBannerIdx}
-      data={data}
-    ></HorizontalBanner>);
+    <div className="horizontal-banner">
+      <HorizontalBanner
+        homeBannerIdx={homeBannerIdx}
+        changeHomeBannerIdx={changeHomeBannerIdx}
+        data={data}
+      ></HorizontalBanner>
+    </div>);
 }
 
 export default HomeBannerContainer;

@@ -11,8 +11,7 @@ const HomeArtist = ({ data }) => {
   const nextRef = useRef();
 
   return (
-    <div className="artist-introduction-wrapper">
-      <div className="title">작가 소개</div>
+    <>
       <div className="card-wrapper" ref={cardWrapperRef}>
         {data.map((item, idx) =>
           <ArtistCard
@@ -30,7 +29,7 @@ const HomeArtist = ({ data }) => {
         onClick={() => scrollHorizontal(true)}
         ref={nextRef}
       >&#10095;</div>
-    </div>
+    </>
   );
 
   function scrollHorizontal (isRight) {

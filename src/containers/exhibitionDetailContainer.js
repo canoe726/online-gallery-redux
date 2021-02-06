@@ -4,8 +4,12 @@ import { getExhibitionDetailData, changeSlideIdx, toggleModal } from '../saga/ex
 
 import ExhibitionDetail from '../components/exhibitionDetail/ExhibitionDetail';
 import PageLoading from '../components/loading/PageLoading';
+import NoMoreLoading from '../components/loading/NoMoreLoading';
+import LoadingError from '../components/error/LoadingError';
 
 function ExhibitionDetailContainer () {
+  const noMoreLoadingCaption = '상세 작품 정보가 없습니다.';
+
   const { slideIdx } = useSelector(
     state => state.exhibitionDetail
   ) || {
@@ -34,8 +38,9 @@ function ExhibitionDetailContainer () {
   }, [dispatch]);
 
   if (loading && !data) return <PageLoading></PageLoading>;
-  if (error) return <div>에러 발생...</div>;
+  if (error) return <LoadingError error={error}></LoadingError>;
   if (!data) return null;
+  if (data && data.length === 0) return <NoMoreLoading pageIdx={0} caption={noMoreLoadingCaption}></NoMoreLoading>;
   return (
     <ExhibitionDetail
       data={data}

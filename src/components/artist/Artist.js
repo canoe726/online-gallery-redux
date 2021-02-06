@@ -7,10 +7,13 @@ import '../../stylesheets/artist/artist.scss';
 import MasonryItem from './MasonryItem';
 import { resizeAllMasonryItems } from '../../lib/masonry';
 import MasonryLoading from '../loading/MasonryLoading';
+import NoMoreLoading from '../loading/NoMoreLoading';
+import LoadingError from '../error/LoadingError';
 
-const Artist = ({ data, loading, getArtistData }) => {
+const Artist = ({ data, loading, error, isAllLoaded, getArtistData }) => {
   const dispatch = useDispatch();
   const masonryRef = useRef();
+  const noMoreLoadingCaption = '모든 작가를 불러왔습니다.';
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -36,15 +39,19 @@ const Artist = ({ data, loading, getArtistData }) => {
     <div className="artist-wrapper">
       <div className="masonry-wrapper">
         <div className="masonry" ref={masonryRef}>
-          {data.map((item, idx) =>
-            <MasonryItem
-              key={idx}
-              artistItem={item}
-              masonry={masonryRef}
-            ></MasonryItem>)}
+          {data && data.length > 0
+            ? data.map((item, idx) =>
+              <MasonryItem
+                key={idx}
+                artistItem={item}
+                masonry={masonryRef}
+              ></MasonryItem>)
+            : ''}
         </div>
       </div>
+      {isAllLoaded ? <NoMoreLoading pageIdx={1} caption={noMoreLoadingCaption}></NoMoreLoading> : ''}
       {loading ? <MasonryLoading></MasonryLoading> : ''}
+      {error ? <LoadingError error={error}></LoadingError> : ''}
     </div>
   );
 
@@ -65,6 +72,8 @@ const Artist = ({ data, loading, getArtistData }) => {
 Artist.propTypes = {
   data: PropTypes.array,
   loading: PropTypes.bool,
+  error: PropTypes.object,
+  isAllLoaded: PropTypes.bool,
   getArtistData: PropTypes.func
 };
 

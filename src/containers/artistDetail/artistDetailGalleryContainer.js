@@ -13,22 +13,23 @@ function ArtistDetailGalleryContainer () {
     data: null,
     error: null
   };
-  console.log(loading, data, error);
+
+  let isAllLoaded = false;
+  isAllLoaded = data ? data.length === 0 : false;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (data) return;
     dispatch(getArtistDetailPictureData());
   }, [dispatch]);
 
   if (loading && !data) return <ElementLoading></ElementLoading>;
-  if (error) return <div>에러 발생...</div>;
-  if (!data) return null;
   return (
     <GridGallery
       data={data}
       loading={loading}
+      error={error}
+      isAllLoaded={isAllLoaded}
       getArtistDetailPictureData={getArtistDetailPictureData}
     ></GridGallery>);
 };

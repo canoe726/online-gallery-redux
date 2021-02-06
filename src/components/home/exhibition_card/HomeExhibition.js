@@ -11,8 +11,7 @@ const HomeExhibition = ({ data }) => {
   const nextRef = useRef();
 
   return (
-    <div className="now-exhibition-wrapper">
-      <div className="title">진행중 전시</div>
+    <>
       <div className="card-wrapper" ref={cardWrapperRef}>
         {data.map((item, idx) =>
           <ExhibitionCard
@@ -30,7 +29,7 @@ const HomeExhibition = ({ data }) => {
         onClick={() => scrollHorizontal(true)}
         ref={nextRef}
       >&#10095;</div>
-    </div>
+    </>
   );
 
   function scrollHorizontal (isRight) {

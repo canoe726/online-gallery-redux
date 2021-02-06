@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 import '../../stylesheets/loading/noMoreData.scss';
 
-const NoMoreLoading = ({ pageIdx, caption, exhibitionImage, artistImage, artistDetailImage }) => {
+const NoMoreLoading = ({ pageIdx, caption }) => {
+  const exhibitionImage = '/samples/no_more_data_exhibition.jpg';
+  const artistImage = '/samples/no_more_data_artist.jpg';
+  const artistDetailImage = '/samples/no_more_data_artist_detail.jpg';
   return (
     <div
       className="no-more-data-wrapper">
@@ -29,10 +32,7 @@ const NoMoreLoading = ({ pageIdx, caption, exhibitionImage, artistImage, artistD
 // exhibitionImage : 0, artistImage : 1, artistDetailImage : 2
 NoMoreLoading.propTypes = {
   pageIdx: PropTypes.number,
-  caption: PropTypes.string,
-  exhibitionImage: PropTypes.string,
-  artistImage: PropTypes.string,
-  artistDetailImage: PropTypes.string
+  caption: PropTypes.string
 };
 
 export default NoMoreLoading;

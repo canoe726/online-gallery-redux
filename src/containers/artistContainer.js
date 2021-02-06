@@ -14,6 +14,9 @@ function ArtistContainer () {
     error: null
   };
 
+  let isAllLoaded = false;
+  isAllLoaded = data ? data.length === 0 : false;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,9 +25,14 @@ function ArtistContainer () {
   }, [dispatch]);
 
   if (loading && !data) return <PageLoading></PageLoading>;
-  if (error) return <div>에러 발생...</div>;
-  if (!data) return null;
-  return <Artist data={data} loading={loading} getArtistData={getArtistData}></Artist>;
+  return (
+    <Artist
+      data={data}
+      loading={loading}
+      error={error}
+      isAllLoaded={isAllLoaded}
+      getArtistData={getArtistData}
+    ></Artist>);
 };
 
 export default ArtistContainer;

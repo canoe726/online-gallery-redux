@@ -6,12 +6,14 @@ import '../../stylesheets/exhibition/exhibition.scss';
 
 import MasonryItem from './MasonryItem';
 import { resizeAllMasonryItems } from '../../lib/masonry';
-// import { PageLoadingContainer, NoMoreLoadingContainer, MasonryLoadingContainer } from '../../../containers/loadingContainers';
 import MasonryLoading from '../loading/MasonryLoading';
+import NoMoreLoading from '../loading/NoMoreLoading';
+import LoadingError from '../error/LoadingError';
 
-const Exhibition = ({ data, loading, getExhibitionData }) => {
+const Exhibition = ({ data, loading, error, isAllLoaded, getExhibitionData }) => {
   const dispatch = useDispatch();
   const masonryRef = useRef();
+  const noMoreLoadingCaption = '모든 작품을 불러왔습니다.';
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,15 +39,19 @@ const Exhibition = ({ data, loading, getExhibitionData }) => {
     <div className="exhibition-wrapper">
       <div className="masonry-wrapper">
         <div className="masonry" ref={masonryRef}>
-          {data.map((item, idx) =>
-            <MasonryItem
-              key={idx}
-              exhibitionItem={item}
-              masonry={masonryRef}
-            ></MasonryItem>)}
+          {data && data.length > 0
+            ? data.map((item, idx) =>
+              <MasonryItem
+                key={idx}
+                exhibitionItem={item}
+                masonry={masonryRef}
+              ></MasonryItem>)
+            : ''}
         </div>
       </div>
+      {isAllLoaded ? <NoMoreLoading pageIdx={0} caption={noMoreLoadingCaption}></NoMoreLoading> : ''}
       {loading ? <MasonryLoading></MasonryLoading> : ''}
+      {error ? <LoadingError error={error}></LoadingError> : ''}
     </div>
   );
 
@@ -66,6 +72,8 @@ const Exhibition = ({ data, loading, getExhibitionData }) => {
 Exhibition.propTypes = {
   data: PropTypes.array,
   loading: PropTypes.bool,
+  error: PropTypes.object,
+  isAllLoaded: PropTypes.bool,
   getExhibitionData: PropTypes.func
 };
 

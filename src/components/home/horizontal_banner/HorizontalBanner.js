@@ -20,7 +20,7 @@ const HorizontalBanner = ({ homeBannerIdx, changeHomeBannerIdx, data }) => {
   });
 
   return (
-    <div className="horizontal-banner">
+    <>
       <div className="banner-card-wrapper">
         {data.map((data, idx) =>
           <BannerCard
@@ -39,7 +39,7 @@ const HorizontalBanner = ({ homeBannerIdx, changeHomeBannerIdx, data }) => {
             onClick={() => dotChangeSlide(idx)}
           ></span>)}
       </div>
-    </div>
+    </>
   );
 
   function dotChangeSlide (idx) {
