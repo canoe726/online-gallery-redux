@@ -1,19 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const BatchNote = ({ data }) => {
-  const batchNoteRef = useRef();
-
-  const { note, textSize, textColor, bgColor, borderColor, round, padding, positionHorizSize, positionVertSize } = data.exhibitionItemNote;
-  const { participants } = data.exhibitionItem;
-
-  useEffect(() => {
-    activeContentAnimation();
-  }, []);
+  const { note, textSize, textColor, bgColor, borderColor, round, padding, positionHorizSize, positionVertSize } = data;
+  // const { participants } = data.exhibitionItem;
 
   return (
     <div
-      className="batch-note active"
+      className="batch-note"
       style={{
         fontSize: `${textSize}px`,
         color: `${textColor}`,
@@ -22,7 +16,6 @@ const BatchNote = ({ data }) => {
         width: `${positionHorizSize}%`,
         height: `${positionVertSize}%`
       }}
-      ref={batchNoteRef}
     >
       <div
         className="content"
@@ -42,17 +35,10 @@ const BatchNote = ({ data }) => {
           padding: `${padding}px`
         }}
       >
-        {participants}
+        {/* {participants} */}
       </div>
     </div>
   );
-
-  function activeContentAnimation () {
-    const batchNote = batchNoteRef.current;
-    setTimeout(() => {
-      batchNote.classList.remove('active');
-    }, 1000);
-  }
 };
 
 BatchNote.propTypes = {

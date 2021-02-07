@@ -4,6 +4,27 @@
   overflow: hidden;
   position: relative;
 
+  @import '../util/prevNext.scss';
+
+  .prev, .next {
+    z-index: 99;
+  }
+
+  .retry {
+    z-index: 98;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+  }
+
   .exhibition-poster {
     position: fixed;
     top: 0;
@@ -22,7 +43,7 @@
   }
 
   .exhibition-poster.active {
-    transform: translate(0, -100%);
+    transform: translate(-100%, 0);
   }
 
   .background-music {
@@ -47,52 +68,6 @@
 
   .background-music.active {
     opacity: 0;
-  }
-
-  .hero-section {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: 1.5s ease;
-    transform: translate(0px, 100%);
-  }
-
-  .load-prev .hero-section {
-    z-index: 1;
-    transform: translate(0px, -100%);
-    opacity: 0;
-  }
-
-  .load-prev .hero-section.prev {
-    z-index: 5;
-    transform: translate(0px, 100%);
-    opacity: 0;
-  }
-
-  .load-prev .hero-section.active {
-    z-index: 10;
-    transform: translate(0px, 0%);
-    opacity: 1;
-  }
-
-  .load-next .hero-section {
-    z-index: 1;
-    transform: translate(0px, 100%);
-    opacity: 0;
-  }
-
-  .load-next .hero-section.prev {
-    z-index: 5;
-    transform: translate(0px, -100%);
-    opacity: 0;
-  }
-
-  .load-next .hero-section.active {
-    z-index: 10;
-    transform: translate(0px, 0%);
-    opacity: 1;
   }
 
   @import "backgroundWrapper.scss";
@@ -138,4 +113,55 @@
 
   @import "modalWrapper.scss";
   @import "closeIcon.scss";
+}
+
+.hero-section {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.7s ease-out;
+  // transform: translate(0px, 100%);
+  transform: translate(100%, 0px);
+}
+
+.load-prev .hero-section {
+  z-index: 1;
+  // transform: translate(0px, -100%);
+  transform: translate(-100%, 0px);
+  opacity: 0;
+}
+
+.load-prev .hero-section.prev-slide {
+  z-index: 5;
+  // transform: translate(0px, 100%);
+  transform: translate(100%, 0px);
+  opacity: 0;
+}
+
+.load-prev .hero-section.active-slide {
+  z-index: 10;
+  transform: translate(0px, 0%);
+  opacity: 1;
+}
+
+.load-next .hero-section {
+  z-index: 1;
+  // transform: translate(0px, 100%);
+  transform: translate(100%, 0px);
+  opacity: 0;
+}
+
+.load-next .hero-section.prev-slide {
+  z-index: 5;
+  // transform: translate(0px, -100%);
+  transform: translate(-100%, 0px);
+  opacity: 0;
+}
+
+.load-next .hero-section.active-slide {
+  z-index: 10;
+  transform: translate(0px, 0%);
+  opacity: 1;
 }

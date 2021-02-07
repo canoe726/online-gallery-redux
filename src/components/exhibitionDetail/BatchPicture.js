@@ -1,33 +1,24 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const BatchPicture = ({ slideIdx, data, toggleModal }) => {
+const BatchPicture = ({ data, toggleModal }) => {
   const dispatch = useDispatch();
-
-  const batchPictureRef = useRef();
-
-  useEffect(() => {
-    activeContentAnimation();
-  }, []);
 
   return (
     <div
-      className="batch-picture load-next active"
+      className="batch-picture"
       onClick={activeModal}
       style={{
-        width: `${data[slideIdx].exhibitionItem.originalHorizSize}%`,
-        height: `${data[slideIdx].exhibitionItem.originalVertSize}%`
+        width: `${data.originalHorizSize}%`,
+        height: `${data.originalVertSize}%`
       }}
-      ref={batchPictureRef}
     >
-      {data.map((item, idx) =>
-        <BatchItem
-          key={idx}
-          idx={idx}
-          length={data.length}
-          data={item}
-        ></BatchItem>)}
+      <img
+        className="img lazy"
+        data-src={data.image}
+        alt={'batch-img-item'}
+      ></img>
     </div>
   );
 
@@ -35,44 +26,11 @@ const BatchPicture = ({ slideIdx, data, toggleModal }) => {
     // className of modalActive - 0 : '', 1 : sketch, 2 : sketch out
     dispatch(toggleModal(1));
   }
-
-  function activeContentAnimation () {
-    const batchPicture = batchPictureRef.current;
-    setTimeout(() => {
-      batchPicture.classList.remove('active');
-    }, 500);
-  }
-};
-
-const BatchItem = ({ idx, length, data }) => {
-  return (
-    <div
-      className={
-        idx === 0
-          ? 'hero-section active'
-          : idx === length - 1
-            ? 'hero-section prev'
-            : 'hero-section'}
-      >
-      <img
-        className="img lazy"
-        data-src={data.exhibitionItem.image}
-        alt={`batch-img-item-${idx + 1}`}
-      ></img>
-    </div>
-  );
 };
 
 BatchPicture.propTypes = {
-  slideIdx: PropTypes.number,
-  data: PropTypes.array,
+  data: PropTypes.object,
   toggleModal: PropTypes.func
-};
-
-BatchItem.propTypes = {
-  idx: PropTypes.number,
-  length: PropTypes.number,
-  data: PropTypes.object
 };
 
 export default BatchPicture;

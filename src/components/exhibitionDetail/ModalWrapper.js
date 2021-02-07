@@ -8,18 +8,16 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
   let isDown = false;
   let prevMouseX = -1;
   let prevMouseY = -1;
+  let modalTimeOut = null;
 
   const modalImgRef = useRef();
   const modalVideoRef = useRef();
 
   useEffect(() => {
-    setTimeout(() => {
-      const modalImg = modalImgRef.current;
-      modalImg.style.transform = 'scale(1) translate(0px,0px)';
-      const modalVideo = modalVideoRef.current;
-      modalVideo.style.transform = 'scale(1) translate(0px,0px)';
-    }, 500);
-  });
+    return (
+      clearTimeout(modalTimeOut)
+    );
+  }, [modalTimeOut]);
 
   return (
     <div
@@ -170,6 +168,7 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
         //   modalVideo.pause();
         //   modalVideo.play();
         }
+        initModal();
         dispatch(toggleModal(2));
       // X 버튼 클릭
       } else if (target.classList[0] === 'close') {
@@ -179,9 +178,20 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
         //   modalVideo.pause();
         //   modalVideo.play();
         }
+        initModal();
         dispatch(toggleModal(2));
       }
     }
+  }
+
+  function initModal () {
+    modalTimeOut = setTimeout(() => {
+      const modalImg = modalImgRef.current;
+      console.log('modalImg : ', modalImg);
+      modalImg.style.transform = 'scale(1) translate(0px,0px)';
+      const modalVideo = modalVideoRef.current;
+      modalVideo.style.transform = 'scale(1) translate(0px,0px)';
+    }, 500);
   }
 };
 

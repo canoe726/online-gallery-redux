@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const ArtworkDot = ({ slideIdx, length }) => {
+const ArtworkDot = ({ slideIdx, length, changeSlideIdx, scrollUpAnimation, scrollDownAnimation }) => {
   const artworkDotRef = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     activeContentAnimation();
@@ -15,9 +17,9 @@ const ArtworkDot = ({ slideIdx, length }) => {
           const ret = [];
           for (let idx = 0; idx < length; idx++) {
             if (idx === slideIdx) {
-              ret.push(<span key={idx} className="dot active" onClick={(e) => slideItem(e, idx, length)}></span>);
+              ret.push(<span key={idx} className="dot active" onClick={() => slideItem(idx, length)}></span>);
             } else {
-              ret.push(<span key={idx} className="dot" onClick={(e) => slideItem(e, idx, length)}></span>);
+              ret.push(<span key={idx} className="dot" onClick={() => slideItem(idx, length)}></span>);
             }
           }
           return ret;
@@ -33,14 +35,32 @@ const ArtworkDot = ({ slideIdx, length }) => {
     }, 500);
   }
 
-  function slideItem (e, idx, length) {
-    console.log(e, idx, length);
+  function slideItem (idx, length) {
+    if (idx === slideIdx) {
+      return -1;
+    } else {
+      // next animation
+      if (slideIdx < idx) {
+        let tempIdx = idx - 1;
+        if (tempIdx < 0) tempIdx = length;
+        scrollDownAnimation(tempIdx, length);
+      // prev animation
+      } else {
+        let tempIdx = idx + 1;
+        if (tempIdx >= length) tempIdx = 0;
+        scrollUpAnimation(tempIdx, length);
+      }
+      dispatch(changeSlideIdx(idx));
+    }
   }
 };
 
 ArtworkDot.propTypes = {
   slideIdx: PropTypes.number,
-  length: PropTypes.number
+  length: PropTypes.number,
+  changeSlideIdx: PropTypes.func,
+  scrollUpAnimation: PropTypes.func,
+  scrollDownAnimation: PropTypes.func
 };
 
 export default ArtworkDot;
