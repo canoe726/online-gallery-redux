@@ -18,7 +18,7 @@
   .nav-menus {
     margin-top: 60px;
     height: 100%;
-    width: 0;
+    width: 350px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -28,16 +28,17 @@
     transition: 0.5s;
     padding-top: 60px;
     z-index: 100;
-    opacity: 0.9;
+    opacity: 0.8;
+    transform: translate(-100%, 0%);
   }
 
   .nav-menus.open {
-    width: 350px;
+    transform: translate(0%, 0%);
   }
 
   .nav-menus div a {
     cursor: pointer;
-    padding: 8px 8px 8px 32px;
+    padding: 1em 8px 1em 32px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;

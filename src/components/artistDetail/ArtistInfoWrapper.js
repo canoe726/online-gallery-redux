@@ -8,17 +8,6 @@ const ArtistInfoWrapper = ({ data }) => {
         <div id="timeline">
           <div className="section-line">
             <section className="section-wrapper">
-              <div className="section-header">작가 소개</div>
-              <section className="secton-item-wrapper">
-                <ul className="secton-item">
-                  <li>{data.artist.name}</li>
-                  <li>활동 이름 : {data.artist.nickname}</li>
-                  <li>소개 : {data.artist.introduction}</li>
-                  <li>작가 노트 : {data.artist.note}</li>
-                </ul>
-              </section>
-            </section>
-            <section className="section-wrapper">
               <div className="section-header">소속 그룹</div>
               {data.artistGroups.map((item, idx) =>
                 <SectionGroup

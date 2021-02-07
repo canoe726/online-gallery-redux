@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Accordion, Icon } from 'semantic-ui-react';
 
 import '../../stylesheets/notice/notice.scss';
 
-import NoticeItem from './NoticeItem';
 import Footer from '../footer/Footer';
 
 const Notice = () => {
@@ -24,18 +24,38 @@ const Notice = () => {
       contents: '공지사항 4 입니다.'
     }
   ];
+
+  const [activeIndex, setActiveIndex] = useState(-1);
+
   return (
     <div className="notice-wrapper">
+      <p className="title">온라인 갤러리 공지사항</p>
       <div className="collapsible-list">
         {notices.map((notice, idx) =>
-          <NoticeItem
-            key={idx}
-            notice={notice}
-          ></NoticeItem>)}
+          <Accordion key={idx} styled>
+            <Accordion.Title
+              active={activeIndex === idx}
+              index={idx}
+              onClick={handleClick}
+            >
+              <Icon name='dropdown' />
+              {notice.title}
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === idx}>
+              <p>{notice.contents}</p>
+            </Accordion.Content>
+          </Accordion>)}
       </div>
       <Footer></Footer>
     </div>
   );
+
+  function handleClick (e, titleProps) {
+    const { index } = titleProps;
+    const newIndex = activeIndex === index ? -1 : index;
+
+    setActiveIndex(newIndex);
+  };
 };
 
 export default Notice;

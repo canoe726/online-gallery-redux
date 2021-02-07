@@ -187,7 +187,6 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
   function initModal () {
     modalTimeOut = setTimeout(() => {
       const modalImg = modalImgRef.current;
-      console.log('modalImg : ', modalImg);
       modalImg.style.transform = 'scale(1) translate(0px,0px)';
       const modalVideo = modalVideoRef.current;
       modalVideo.style.transform = 'scale(1) translate(0px,0px)';

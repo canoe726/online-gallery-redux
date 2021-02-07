@@ -32,21 +32,25 @@ function HomeArtistContainer () {
   }
   if (error) {
     return (
-      <div className="artist-introduction-wrapper">
-        <div className="title">작가 소개</div>
-        <LoadingError error={error}></LoadingError>
+      <>
+        <div className="artist-introduction-wrapper">
+          <div className="title">작가 소개</div>
+          <LoadingError error={error}></LoadingError>
+        </div>
         <Footer></Footer>
-      </div>);
+      </>);
   }
   if (!data) return null;
   return (
+    <>
     <div className="artist-introduction-wrapper">
       <div className="title">작가 소개</div>
       <HomeArtist
         data={data}
       ></HomeArtist>
-      <Footer></Footer>
-    </div>);
+    </div>
+    <Footer></Footer>
+    </>);
 }
 
 export default HomeArtistContainer;

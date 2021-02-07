@@ -5,7 +5,7 @@
   width: 100%;
   height: 100%;
   transform: scale(0);
-  z-index: 999;
+  z-index: 910;
   background: rgba(0, 0, 0, 0.7);
 
   &.sketch {
@@ -111,6 +111,10 @@
           stroke-dashoffset: 10000;
         }
       }
+    }
+
+    .modal-navigation.hide {
+      opacity: 0;
     }
   }
 
