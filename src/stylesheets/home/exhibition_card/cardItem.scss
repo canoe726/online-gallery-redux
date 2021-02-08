@@ -7,6 +7,7 @@
   overflow-x: hidden;
   white-space: nowrap;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 
   .card-item {
     cursor: pointer;

@@ -20,7 +20,6 @@ function ArtistContainer () {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (data) return;
     dispatch(getArtistData());
   }, [dispatch]);
 

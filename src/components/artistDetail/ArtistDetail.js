@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import '../../stylesheets/artistDetail/artistDetail.scss';
 
 import ArtistInfoWrapper from './ArtistInfoWrapper';
-import ArtistDetailGalleryContainer from '../../containers/artistDetail/artistDetailGalleryContainer';
+// import ArtistDetailGalleryContainer from '../../containers/artistDetail/artistDetailGalleryContainer';
 
 import { resizeAllMasonryItems } from '../../lib/masonry';
+
+import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
 
 const ArtistDetail = ({ data }) => {
   const zoomImgRef = useRef();
@@ -31,7 +33,7 @@ const ArtistDetail = ({ data }) => {
         <div className="thumbnail-wrapper zoom">
           <img
             className="main-img"
-            src={data.artist.profileImage}
+            src={API.ROOT_IMG + data.artist.profileImage}
             alt="author-main-img-"
             ref={zoomImgRef}
           ></img>
@@ -47,7 +49,7 @@ const ArtistDetail = ({ data }) => {
 
         <div className="grid-gallery-wrapper">
           <div className="title">작품 둘러보기</div>
-          <ArtistDetailGalleryContainer></ArtistDetailGalleryContainer>
+          {/* <ArtistDetailGalleryContainer></ArtistDetailGalleryContainer> */}
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getHomeArtist } from '../../saga/homeSaga';
+import { getHomeArtist, goNextPage } from '../../saga/homeSaga';
 
 import HomeArtist from '../../components/home/artist_card/HomeArtist';
 import Footer from '../../components/footer/Footer';
@@ -35,7 +35,7 @@ function HomeArtistContainer () {
       <>
         <div className="artist-introduction-wrapper">
           <div className="title">작가 소개</div>
-          <LoadingError error={error}></LoadingError>
+          <LoadingError error={error} getData={getHomeArtist} getDataParams={[]}></LoadingError>
         </div>
         <Footer></Footer>
       </>);
@@ -47,6 +47,7 @@ function HomeArtistContainer () {
       <div className="title">작가 소개</div>
       <HomeArtist
         data={data}
+        goNextPage={goNextPage}
       ></HomeArtist>
     </div>
     <Footer></Footer>

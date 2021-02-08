@@ -5,6 +5,9 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { lazyLoad } from '../../lib/lazyLoading';
 
+// import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// API.ROOT_IMG +
+
 const MasonryItem = ({ history, exhibitionItem, masonry }) => {
   useEffect(() => {
     lazyLoad();

@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+
 const ModalWrapper = ({ modalActive, data, toggleModal }) => {
   const dispatch = useDispatch();
 
@@ -47,7 +49,7 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
 
           <img
             className={modalActive ? 'modal-img' : 'modal-img hidden'}
-            src={data.exhibitionItem.image}
+            src={API.ROOT_IMG + data.exhibitionItem.image}
             alt="modal-img"
             ref={modalImgRef}
           ></img>

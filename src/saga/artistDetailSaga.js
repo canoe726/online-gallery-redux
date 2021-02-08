@@ -12,22 +12,24 @@ const GET_ARTIST_DETAIL_DATA = 'artist-detail/GET_ARTIST_DETAIL_DATA';
 const GET_ARTIST_DETAIL_DATA_SUCCESS = 'artist-detail/GET_ARTIST_DETAIL_DATA_SUCCESS';
 const GET_ARTIST_DETAIL_DATA_ERROR = 'artist-detail/GET_ARTIST_DETAIL_DATA_ERROR';
 
-const GET_ARTIST_DETAIL_PICTURE_DATA = 'artist-detail/GET_ARTIST_DETAIL_PICTURE_DATA';
-const GET_ARTIST_DETAIL_PICTURE_DATA_SUCCESS = 'artist-detail/GET_ARTIST_DETAIL_PICTURE_DATA_SUCCESS';
-const GET_ARTIST_DETAIL_PICTURE_DATA_ERROR = 'artist-detail/GET_ARTIST_DETAIL_PICTURE_DATA_ERROR';
+// const GET_ARTIST_DETAIL_PICTURE_DATA = 'artist-detail/GET_ARTIST_DETAIL_PICTURE_DATA';
+// const GET_ARTIST_DETAIL_PICTURE_DATA_SUCCESS = 'artist-detail/GET_ARTIST_DETAIL_PICTURE_DATA_SUCCESS';
+// const GET_ARTIST_DETAIL_PICTURE_DATA_ERROR = 'artist-detail/GET_ARTIST_DETAIL_PICTURE_DATA_ERROR';
 
 const CHANGE_SLIDE_IDX = 'CHANGE_SLIDE_IDX';
 
 const TOGGLE_MODAL = 'TOGGLE_MODAL';
 
 // Action Constructor
-export const getArtistDetailData = () => ({
-  type: GET_ARTIST_DETAIL_DATA
+export const getArtistDetailData = (id) => ({
+  type: GET_ARTIST_DETAIL_DATA,
+  payload: id,
+  meta: id
 });
 
-export const getArtistDetailPictureData = () => ({
-  type: GET_ARTIST_DETAIL_PICTURE_DATA
-});
+// export const getArtistDetailPictureData = () => ({
+//   type: GET_ARTIST_DETAIL_PICTURE_DATA
+// });
 
 export const changeSlideIdx = createAction(CHANGE_SLIDE_IDX);
 
@@ -35,12 +37,12 @@ export const toggleModal = createAction(TOGGLE_MODAL);
 
 // Create Sagas
 const getArtistDetailDataSaga = createPromiseSaga(GET_ARTIST_DETAIL_DATA, artistDetailAPI.getArtistDetailData);
-const getArtistDetailPictureDataSaga = createPromiseSaga(GET_ARTIST_DETAIL_PICTURE_DATA, artistDetailAPI.getArtistDetailPictureData);
+// const getArtistDetailPictureDataSaga = createPromiseSaga(GET_ARTIST_DETAIL_PICTURE_DATA, artistDetailAPI.getArtistDetailPictureData);
 
 // Combine Sagas
 export function * artistDetailSaga () {
   yield takeEvery(GET_ARTIST_DETAIL_DATA, getArtistDetailDataSaga);
-  yield takeEvery(GET_ARTIST_DETAIL_PICTURE_DATA, getArtistDetailPictureDataSaga);
+  // yield takeEvery(GET_ARTIST_DETAIL_PICTURE_DATA, getArtistDetailPictureDataSaga);
 }
 
 // Initial State
@@ -56,10 +58,10 @@ export default function artistDetail (state = initialState, action) {
     case GET_ARTIST_DETAIL_DATA_SUCCESS:
     case GET_ARTIST_DETAIL_DATA_ERROR:
       return handleAsyncActions(GET_ARTIST_DETAIL_DATA, 'artistDetailList', true)(state, action);
-    case GET_ARTIST_DETAIL_PICTURE_DATA:
-    case GET_ARTIST_DETAIL_PICTURE_DATA_SUCCESS:
-    case GET_ARTIST_DETAIL_PICTURE_DATA_ERROR:
-      return handleAsyncActions(GET_ARTIST_DETAIL_PICTURE_DATA, 'artistDetailPictureList', true, true)(state, action);
+    // case GET_ARTIST_DETAIL_PICTURE_DATA:
+    // case GET_ARTIST_DETAIL_PICTURE_DATA_SUCCESS:
+    // case GET_ARTIST_DETAIL_PICTURE_DATA_ERROR:
+    //   return handleAsyncActions(GET_ARTIST_DETAIL_PICTURE_DATA, 'artistDetailPictureList', true, true)(state, action);
     case CHANGE_SLIDE_IDX:
       return {
         ...state,

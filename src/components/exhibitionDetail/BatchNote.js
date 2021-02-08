@@ -13,8 +13,8 @@ const BatchNote = ({ data }) => {
         color: `${textColor}`,
         border: `1px solid ${borderColor}`,
         borderRadius: `${round}px`,
-        width: `${positionHorizSize}%`,
-        height: `${positionVertSize}%`
+        width: `${positionHorizSize}px`,
+        height: `${positionVertSize}px`
       }}
     >
       <div

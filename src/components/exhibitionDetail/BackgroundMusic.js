@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
+import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+
 const BackgroundMusic = ({ data }) => {
   const musicRef = useRef();
 
@@ -17,7 +19,7 @@ const BackgroundMusic = ({ data }) => {
       </div>
       {/* autoPlay={true}  */}
       <audio className="music" ref={musicRef}>
-        <source src={data.bgm} type="audio/mpeg"/>
+        <source src={API.ROOT_IMG + data.bgm} type="audio/mpeg"/>
       </audio>
     </div>
   );

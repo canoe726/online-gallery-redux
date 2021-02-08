@@ -8,6 +8,8 @@ import NoMoreLoading from '../components/loading/NoMoreLoading';
 import LoadingError from '../components/error/LoadingError';
 
 function ExhibitionDetailContainer () {
+  const paths = window.location.pathname.split('/');
+  const id = paths[2];
   const noMoreLoadingCaption = '상세 작품 정보가 없습니다.';
 
   const { slideIdx } = useSelector(
@@ -33,8 +35,7 @@ function ExhibitionDetailContainer () {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (data) return;
-    dispatch(getExhibitionDetailData());
+    dispatch(getExhibitionDetailData(id));
   }, [dispatch]);
 
   if (loading && !data) return <PageLoading></PageLoading>;

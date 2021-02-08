@@ -35,7 +35,7 @@ function HomeBannerContainer () {
   if (error) {
     return (
       <div className="horizontal-banner">
-        <LoadingError error={error}></LoadingError>
+        <LoadingError error={error} getData={getHomeBanner} getDataParams={[]}></LoadingError>
       </div>);
   }
   if (!data) return null;

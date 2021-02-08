@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getHomeExhibition } from '../../saga/homeSaga';
+import { getHomeExhibition, goNextPage } from '../../saga/homeSaga';
 
 import HomeExhibition from '../../components/home/exhibition_card/HomeExhibition';
 import ElementLoading from '../../components/loading/ElementLoading';
@@ -33,7 +33,7 @@ function HomeExhibitionContainer () {
     return (
       <div className="now-exhibition-wrapper">
         <div className="title">진행중 전시</div>
-        <LoadingError error={error}></LoadingError>
+        <LoadingError error={error} getData={getHomeExhibition} getDataParams={[]}></LoadingError>
       </div>);
   }
   if (!data) return null;
@@ -42,6 +42,7 @@ function HomeExhibitionContainer () {
       <div className="title">진행중 전시</div>
       <HomeExhibition
         data={data}
+        goNextPage={goNextPage}
       ></HomeExhibition>
     </div>);
 }

@@ -7,7 +7,6 @@ import SliderItem from './SliderItem';
 import { setFullPage } from '../../lib/fullPage';
 
 const Info = ({ notice, backgroundImages }) => {
-  console.log(backgroundImages);
   useEffect(() => {
     window.addEventListener('wheel', setFullPage);
     // mobile wheel

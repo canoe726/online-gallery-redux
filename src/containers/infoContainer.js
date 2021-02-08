@@ -29,7 +29,7 @@ function InfoContainer () {
   }, [dispatch]);
 
   if (loading && !data) return <PageLoading></PageLoading>;
-  if (error) return <LoadingError error={error}></LoadingError>;
+  if (error) return <LoadingError error={error} getData={getInfoData} getDataParams={[]}></LoadingError>;
   if (!data) return null;
   if (!backgroundImages) return null;
   return <Info notice={data} backgroundImages={backgroundImages}></Info>;

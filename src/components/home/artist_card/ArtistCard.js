@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { lazyLoad } from '../../../lib/lazyLoading';
 
-const ArtistCard = ({ history, data }) => {
+// import { onlineGalleryApiConstants as API } from '../../../api/onlineGalleryApiConstants';
+// API.ROOT_IMG +
+
+const ArtistCard = ({ data, goNextPage }) => {
+  const url = `/artist/${data.artistId}`;
+  const dispatch = useDispatch();
+
   useEffect(() => {
     lazyLoad();
   }, []);
@@ -13,7 +18,7 @@ const ArtistCard = ({ history, data }) => {
   return (
     <div
       className="card-item"
-      onClick={() => history.push(`/artist/${data.artistId}`)}
+      onClick={() => dispatch(goNextPage(url))}
       >
       <img className="cover-img lazy" data-src={data.profileImage}></img>
       <div className="caption-wrapper">
@@ -26,8 +31,8 @@ const ArtistCard = ({ history, data }) => {
 };
 
 ArtistCard.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
-  data: PropTypes.object
+  data: PropTypes.object,
+  goNextPage: PropTypes.func
 };
 
-export default withRouter(ArtistCard);
+export default ArtistCard;

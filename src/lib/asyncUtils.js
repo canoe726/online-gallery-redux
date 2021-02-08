@@ -1,5 +1,5 @@
 
-import { call, put } from 'redux-saga/effects';
+import { delay, call, put } from 'redux-saga/effects';
 
 // Common Initial State
 export const reducerUtils = {
@@ -30,6 +30,7 @@ export const createPromiseSaga = (type, promiseCreator) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
   return function * saga (action) {
     try {
+      yield delay(1000);
       const payload = yield call(promiseCreator, action.payload);
       yield put({ type: SUCCESS, payload });
     } catch (e) {
@@ -44,6 +45,7 @@ export const createPromiseSagaById = (type, promiseCreator) => {
   return function * saga (action) {
     const id = action.meta;
     try {
+      yield delay(1000);
       const payload = yield call(promiseCreator, action.payload);
       yield put({ type: SUCCESS, payload, meta: id });
     } catch (e) {

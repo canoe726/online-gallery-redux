@@ -29,6 +29,8 @@ function ExhibitionContainer () {
       data={data}
       loading={loading}
       error={error}
+      getData={getExhibitionData}
+      getDataParams={[]}
       isAllLoaded={isAllLoaded}
       getExhibitionData={getExhibitionData}
     ></Exhibition>);

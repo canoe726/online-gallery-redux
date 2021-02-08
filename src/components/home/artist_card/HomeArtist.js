@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ArtistCard from './ArtistCard';
 
 // 수정 필요
-const HomeArtist = ({ data }) => {
+const HomeArtist = ({ data, goNextPage }) => {
   const cardWrapperRef = useRef();
   // const cardItemRef = useRef();
   const prevRef = useRef();
@@ -17,6 +17,7 @@ const HomeArtist = ({ data }) => {
           <ArtistCard
             key={idx}
             data={item}
+            goNextPage={goNextPage}
           ></ArtistCard>)}
       </div>
       <div
@@ -84,7 +85,8 @@ const HomeArtist = ({ data }) => {
 };
 
 HomeArtist.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  goNextPage: PropTypes.func
 };
 
 export default HomeArtist;

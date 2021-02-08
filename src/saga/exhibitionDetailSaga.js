@@ -17,8 +17,10 @@ const CHANGE_SLIDE_IDX = 'CHANGE_SLIDE_IDX';
 const TOGGLE_MODAL = 'TOGGLE_MODAL';
 
 // Action Constructor
-export const getExhibitionDetailData = () => ({
-  type: GET_EXHIBITION_DETAIL_DATA
+export const getExhibitionDetailData = (id) => ({
+  type: GET_EXHIBITION_DETAIL_DATA,
+  payload: id,
+  meta: id
 });
 
 export const changeSlideIdx = createAction(CHANGE_SLIDE_IDX);

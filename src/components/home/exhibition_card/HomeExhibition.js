@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ExhibitionCard from './ExhibitionCard';
 
 // 수정 필요
-const HomeExhibition = ({ data }) => {
+const HomeExhibition = ({ data, goNextPage }) => {
   const cardWrapperRef = useRef();
   // const cardItemRef = useRef();
   const prevRef = useRef();
@@ -17,6 +17,7 @@ const HomeExhibition = ({ data }) => {
           <ExhibitionCard
             key={idx}
             data={item}
+            goNextPage={goNextPage}
           ></ExhibitionCard>)}
       </div>
       <div
@@ -84,7 +85,8 @@ const HomeExhibition = ({ data }) => {
 };
 
 HomeExhibition.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  goNextPage: PropTypes.func
 };
 
 export default HomeExhibition;

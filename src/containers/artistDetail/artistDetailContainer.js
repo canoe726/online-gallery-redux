@@ -7,6 +7,9 @@ import PageLoading from '../../components/loading/PageLoading';
 import LoadingError from '../../components/error/LoadingError';
 
 function ArtistDetailContainer () {
+  const paths = window.location.pathname.split('/');
+  const id = paths[2];
+
   const { loading, data, error } = useSelector(
     state => state.artistDetail.artistDetailList
   ) || {
@@ -18,7 +21,7 @@ function ArtistDetailContainer () {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getArtistDetailData());
+    dispatch(getArtistDetailData(id));
   }, [dispatch]);
 
   if (loading && !data) return <PageLoading></PageLoading>;

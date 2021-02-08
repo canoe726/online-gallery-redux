@@ -1,4 +1,4 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery, getContext } from 'redux-saga/effects';
 import { createAction } from 'redux-actions';
 import * as homeAPI from '../api/home';
 import {
@@ -24,6 +24,8 @@ const GET_HOME_ARTIST_ERROR = 'home/GET_HOME_ARTIST_ERROR';
 
 const CHANGE_HOME_BANNER_IDX = 'home/CHANGE_HOME_BANNER_IDX';
 
+const GO_NEXT_PAGE = 'GO_NEXT_PAGE';
+
 // Action Constructor
 export const getHomeBanner = (id = 'homeBanner') => ({
   type: GET_HOME_BANNER,
@@ -41,16 +43,26 @@ export const getHomeArtist = () => ({
 
 export const changeHomeBannerIdx = createAction(CHANGE_HOME_BANNER_IDX);
 
+export const goNextPage = (url) => ({
+  type: GO_NEXT_PAGE,
+  payload: url
+});
+
 // Create Sagas
 const getHomeBannerSaga = createPromiseSagaById(GET_HOME_BANNER, homeAPI.getHomeBanner);
 const getHomeExhibitionSaga = createPromiseSaga(GET_HOME_EXHIBITION, homeAPI.getHomeExhibition);
 const getHomeArtistSaga = createPromiseSaga(GET_HOME_ARTIST, homeAPI.getHomeArtist);
+function * goNextPageSaga (url) {
+  const history = yield getContext('history');
+  history.push(url.payload);
+};
 
 // Combine Sagas
 export function * homeSaga () {
   yield takeEvery(GET_HOME_BANNER, getHomeBannerSaga);
   yield takeEvery(GET_HOME_EXHIBITION, getHomeExhibitionSaga);
   yield takeEvery(GET_HOME_ARTIST, getHomeArtistSaga);
+  yield takeEvery(GO_NEXT_PAGE, goNextPageSaga);
 };
 
 // Initial State
