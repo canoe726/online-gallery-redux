@@ -2,8 +2,11 @@ import axios from 'axios';
 
 import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
 
-let page = 0;
-let size = 20;
+let exhibitionPage = 0;
+let exhibitionSize = 20;
+
+let searchPage = 0;
+let searchSize = 20;
 
 export const getExhibitionData = async () => {
   const cancelTokenSource = axios.CancelToken.source();
@@ -11,13 +14,36 @@ export const getExhibitionData = async () => {
     cancelTokenSource.cancel();
   }, API.WAIT_TIME);
 
-  console.log('page, size : ', page, size);
+  console.log('page, size : ', exhibitionPage, exhibitionSize);
 
   const response = await axios.get(API.ROOT + API.EXHIBITION, { cancelToken: cancelTokenSource.token });
   try {
     clearTimeout(timer);
-    size = 10;
-    page += 1;
+    exhibitionSize = 10;
+    exhibitionPage += 1;
+    return response.data.result;
+  } catch (e) {
+    return {
+      code: e.code,
+      errorCode: e.errorCode,
+      message: e.message
+    };
+  }
+};
+
+export const getExhibitionSearchData = async (input) => {
+  const cancelTokenSource = axios.CancelToken.source();
+  const timer = setTimeout(() => {
+    cancelTokenSource.cancel();
+  }, API.WAIT_TIME);
+
+  console.log('searchPage, searchSize : ', searchPage, searchSize);
+  const response = await axios.get(`${API.ROOT + API.EXHIBITION_SEARCH}`, { cancelToken: cancelTokenSource.token });
+  // const response = await axios.get(`${API.ROOT + API.EXHIBITION_SEARCH}/${input}?page=${searchPage}&size=${searchSize}`, { cancelToken: cancelTokenSource.token });
+  try {
+    clearTimeout(timer);
+    searchSize = 10;
+    searchPage += 1;
     return response.data.result;
   } catch (e) {
     return {

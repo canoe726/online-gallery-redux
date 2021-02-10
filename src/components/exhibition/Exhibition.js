@@ -19,7 +19,6 @@ const Exhibition = ({
   isAllLoaded,
   getExhibitionData
 }) => {
-  console.log(data);
   const dispatch = useDispatch();
   const masonryRef = useRef();
   const noMoreLoadingCaption = '모든 작품을 불러왔습니다.';
@@ -53,15 +52,17 @@ const Exhibition = ({
       {isAllLoaded ? <NoMoreLoading pageIdx={0} caption={noMoreLoadingCaption}></NoMoreLoading> : ''}
       {loading
         ? <MasonryLoading></MasonryLoading>
-        : <div className="more">
-            <div onClick={loadMoreData}>더보기</div>
-          </div>}
+        : !error
+            ? <div className="more">
+                <div onClick={loadMoreData}>더보기</div>
+              </div>
+            : ''}
       {error ? <LoadingError error={error} getData={getData} getDataParams={getDataParams}></LoadingError> : ''}
     </div>
   );
 
   function loadMoreData () {
-    dispatch(getExhibitionData());
+    dispatch(getExhibitionData(...getDataParams));
   }
 
   // function infinityScroll () {
@@ -72,7 +73,6 @@ const Exhibition = ({
   //   // 스크롤이 최하단이면서 fetch 중이 아니면서 데이터가 더 있을 때 호출
   //   if (scrollTop + clientHeight >= scrollHeight) {
   //     if (!loading) {
-  //       console.log('load more data');
   //       dispatch(getExhibitionData());
   //     }
   //   }

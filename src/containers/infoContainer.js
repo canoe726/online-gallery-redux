@@ -32,7 +32,7 @@ function InfoContainer () {
   if (error) return <LoadingError error={error} getData={getInfoData} getDataParams={[]}></LoadingError>;
   if (!data) return null;
   if (!backgroundImages) return null;
-  return <Info notice={data} backgroundImages={backgroundImages}></Info>;
+  return <Info data={data} backgroundImages={backgroundImages}></Info>;
 };
 
 export default InfoContainer;

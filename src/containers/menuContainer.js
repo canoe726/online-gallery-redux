@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import Menu from '../components/menu/Menu';
 
-import { toggleNavBar, toggleIsSearch } from '../saga/menuSaga';
+import { toggleNavBar, toggleIsSearch, getSearchData, initSearchData } from '../saga/menuSaga';
+import { initArtistSearchList } from '../saga/artistSaga';
 
-function MenuContainer ({ currentUrl }) {
+function MenuContainer () {
   const { navBarIsClose, searchIsActive } = useSelector(
     state => state.menu
   ) || {
@@ -20,11 +20,10 @@ function MenuContainer ({ currentUrl }) {
       searchIsActive={searchIsActive}
       toggleNavBar={toggleNavBar}
       toggleIsSearch={toggleIsSearch}
+      getSearchData={getSearchData}
+      initSearchData={initSearchData}
+      initArtistSearchList={initArtistSearchList}
     ></Menu>);
-};
-
-MenuContainer.propTypes = {
-  currentUrl: PropTypes.string
 };
 
 export default MenuContainer;

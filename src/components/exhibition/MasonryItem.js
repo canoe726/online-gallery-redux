@@ -9,7 +9,6 @@ import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiCons
 
 const MasonryItem = ({ history, exhibitionItem, masonry }) => {
   const url = `/exhibition/${exhibitionItem.exhibitionId}`;
-  console.log('exhibitionItem : ', url);
 
   useEffect(() => {
     lazyLoad();

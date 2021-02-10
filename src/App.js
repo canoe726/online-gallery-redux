@@ -11,6 +11,7 @@ import ExhibitionPage from './pages/ExhibitionPage';
 import ExhibitionDetailPage from './pages/ExhibitionDetailPage';
 import ArtistPage from './pages/ArtistPage';
 import ArtistDetailPage from './pages/ArtistDetailPage';
+import SearchPage from './pages/SearchPage';
 import NoticePage from './pages/NoticePage';
 import Error404 from './components/error/Error404';
 
@@ -22,8 +23,10 @@ const App = () => {
         <Route exact path="/" component={HomePage}></Route>
         <Route exact path="/info" component={InfoPage}></Route>
         <Route exact path="/exhibition" component={ExhibitionPage}></Route>
+        <Route exact path="/exhibition/search/:search" component={SearchPage}></Route>
         <Route exact path="/exhibition/:id" component={ExhibitionDetailPage}></Route>
         <Route exact path="/artist" component={ArtistPage}></Route>
+        <Route exact path="/artist/search/:search" component={SearchPage}></Route>
         <Route exact path="/artist/:id" component={ArtistDetailPage}></Route>
         <Route exact path="/notice" component={NoticePage}></Route>
         <Route component={Error404}></Route>

@@ -52,15 +52,17 @@ const Artist = ({
       {isAllLoaded ? <NoMoreLoading pageIdx={1} caption={noMoreLoadingCaption}></NoMoreLoading> : ''}
       {loading
         ? <MasonryLoading></MasonryLoading>
-        : <div className="more">
-            <div onClick={loadMoreData}>더보기</div>
-          </div>}
+        : !error
+            ? <div className="more">
+                <div onClick={loadMoreData}>더보기</div>
+              </div>
+            : ''}
       {error ? <LoadingError error={error} getData={getData} getDataParams={getDataParams}></LoadingError> : ''}
     </div>
   );
 
   function loadMoreData () {
-    dispatch(getArtistData());
+    dispatch(getArtistData(...getDataParams));
   }
 
   // function infinityScroll () {

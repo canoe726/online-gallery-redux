@@ -1,17 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import MenuContainer from '../containers/menuContainer';
 
-const MenuPage = ({ match }) => {
-  const { url } = match;
+const MenuPage = () => {
   return (
-    <MenuContainer currentUrl={url}></MenuContainer>
+    <MenuContainer></MenuContainer>
   );
-};
-
-MenuPage.propTypes = {
-  match: PropTypes.object
 };
 
 export default MenuPage;

@@ -1,10 +1,14 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
 
 const BackgroundMusic = ({ data }) => {
   const musicRef = useRef();
+
+  useEffect(() => {
+    stopBackgroundMusic();
+  });
 
   return (
     <div className={data.bgm.length > 0 ? 'background-music' : 'background-music active'}>

@@ -5,7 +5,15 @@ import PropTypes from 'prop-types';
 import NavBar from './NavBar';
 import Search from './Search';
 
-const Menu = ({ navBarIsClose, searchIsActive, toggleNavBar, toggleIsSearch }) => {
+const Menu = ({
+  navBarIsClose,
+  searchIsActive,
+  toggleNavBar,
+  toggleIsSearch,
+  getSearchData,
+  initSearchData,
+  initArtistSearchList
+}) => {
   return (
     <div className="header-menu">
       <NavBar
@@ -20,6 +28,9 @@ const Menu = ({ navBarIsClose, searchIsActive, toggleNavBar, toggleIsSearch }) =
       <Search
         searchIsActive={searchIsActive}
         toggleIsSearch={toggleIsSearch}
+        getSearchData={getSearchData}
+        initSearchData={initSearchData}
+        initArtistSearchList={initArtistSearchList}
       ></Search>
     </div>
   );
@@ -29,7 +40,10 @@ Menu.propTypes = {
   navBarIsClose: PropTypes.bool,
   searchIsActive: PropTypes.bool,
   toggleNavBar: PropTypes.func,
-  toggleIsSearch: PropTypes.func
+  toggleIsSearch: PropTypes.func,
+  getSearchData: PropTypes.func,
+  initSearchData: PropTypes.func,
+  initArtistSearchList: PropTypes.func
 };
 
 export default Menu;

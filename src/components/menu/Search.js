@@ -4,9 +4,8 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-const Search = ({ history, searchIsActive, toggleIsSearch }) => {
+const Search = ({ history, searchIsActive, toggleIsSearch, getSearchData, initSearchData, initArtistSearchList }) => {
   const dispatch = useDispatch();
-  let debouncer = null;
 
   const formFieldRef = useRef();
   const formLabelRef = useRef();
@@ -26,7 +25,6 @@ const Search = ({ history, searchIsActive, toggleIsSearch }) => {
           name="search"
           id="name"
           required
-          onInput={whenTypeInput}
           ref={formFieldRef}
           />
         <label
@@ -42,27 +40,27 @@ const Search = ({ history, searchIsActive, toggleIsSearch }) => {
     </div>
   );
 
-  function whenTypeInput () {
-    if (debouncer) {
-      clearTimeout(debouncer);
-    }
-    debouncer = setTimeout(() => {
-      const value = formFieldRef.current.value;
-      // 자동으로 데이터 갱신 처리
-      console.log('자동 검색 : ', value);
-    }, 400);
-  }
-
   function toggleInput () {
-    if (formFieldRef.current.value.length > 0) {
-      const value = formFieldRef.current.value;
-      console.log('검색 : ', value);
+    if (!formFieldRef.current.classList.contains('active')) {
+      formFieldRef.current.classList.add('active');
+      formLabelRef.current.classList.add('active');
+      return;
     }
 
-    formFieldRef.current.classList.toggle('active');
-    formLabelRef.current.classList.toggle('active');
+    if (formFieldRef.current.value.length > 0) {
+      const url = history.location.pathname;
+      const page = url.split('/')[1];
+      const value = formFieldRef.current.value;
+      history.push(`/${page}/search/${value}`);
+      dispatch(getSearchData({ value: value, url: url }));
+    } else {
+      dispatch(initSearchData());
 
-    formFieldRef.current.value = '';
+      formFieldRef.current.classList.toggle('active');
+      formLabelRef.current.classList.toggle('active');
+
+      formFieldRef.current.value = '';
+    }
   }
 
   function changeIsSearch () {
@@ -72,7 +70,7 @@ const Search = ({ history, searchIsActive, toggleIsSearch }) => {
     const searchUrl = ['/exhibition', '/artist'];
     let activeSearch = false;
     searchUrl.forEach(url => {
-      if (url === location.pathname) {
+      if (history.location.pathname.includes(url)) {
         activeSearch = true;
       }
     });
@@ -83,7 +81,10 @@ const Search = ({ history, searchIsActive, toggleIsSearch }) => {
 Search.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   searchIsActive: PropTypes.bool,
-  toggleIsSearch: PropTypes.func
+  toggleIsSearch: PropTypes.func,
+  getSearchData: PropTypes.func,
+  initSearchData: PropTypes.func,
+  initArtistSearchList: PropTypes.func
 };
 
 export default withRouter(Search);
