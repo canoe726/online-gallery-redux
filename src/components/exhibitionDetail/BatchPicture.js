@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
-// import { onlineGalleryApiConstantsSample as API } from '../../api/onlineGalleryApiConstants';
 
 const BatchPicture = ({ data, toggleModal }) => {
   const dispatch = useDispatch();

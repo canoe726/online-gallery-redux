@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-// import { onlineGalleryApiConstantsSample as API } from './onlineGalleryApiConstants';
 import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
+
+let page = 0;
+let size = 20;
 
 export const getExhibitionData = async () => {
   const cancelTokenSource = axios.CancelToken.source();
@@ -9,9 +11,13 @@ export const getExhibitionData = async () => {
     cancelTokenSource.cancel();
   }, API.WAIT_TIME);
 
+  console.log('page, size : ', page, size);
+
   const response = await axios.get(API.ROOT + API.EXHIBITION, { cancelToken: cancelTokenSource.token });
   try {
     clearTimeout(timer);
+    size = 10;
+    page += 1;
     return response.data.result;
   } catch (e) {
     return {

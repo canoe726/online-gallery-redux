@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// import { onlineGalleryApiConstantsSample as API } from './onlineGalleryApiConstants';
 import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
 
 export const getArtistDetailData = async (id) => {
@@ -9,8 +8,8 @@ export const getArtistDetailData = async (id) => {
     cancelTokenSource.cancel();
   }, API.WAIT_TIME);
 
-  const response = await axios.get(`${API.ROOT + API.ARTIST_DETAIL}`, { cancelToken: cancelTokenSource.token });
-  // const response = await axios.get(`${API.ROOT + API.ARTIST}/${id}`, { cancelToken: cancelTokenSource.token });
+  // const response = await axios.get(`${API.ROOT + API.ARTIST_DETAIL}`, { cancelToken: cancelTokenSource.token });
+  const response = await axios.get(`${API.ROOT + API.ARTIST}/${id}`, { cancelToken: cancelTokenSource.token });
   try {
     clearTimeout(timer);
     return response.data.result;

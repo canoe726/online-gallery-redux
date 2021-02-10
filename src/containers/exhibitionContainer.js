@@ -20,8 +20,9 @@ function ExhibitionContainer () {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (data) return;
     dispatch(getExhibitionData());
-  }, [dispatch]);
+  }, [data, dispatch]);
 
   if (loading && !data) return <PageLoading></PageLoading>;
   return (

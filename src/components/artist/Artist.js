@@ -24,22 +24,16 @@ const Artist = ({
   const noMoreLoadingCaption = '모든 작가를 불러왔습니다.';
 
   useEffect(() => {
+    // window.addEventListener('scroll', infinityScroll);
     window.addEventListener('load', resizeAllMasonryItems);
     window.addEventListener('resize', resizeAllMasonryItems);
 
     return () => {
+      // window.removeEventListener('scroll', infinityScroll);
       window.removeEventListener('load', resizeAllMasonryItems);
       window.removeEventListener('resize', resizeAllMasonryItems);
     };
   }, []);
-
-  useEffect(() => {
-    window.addEventListener('scroll', infinityScroll);
-
-    return () => {
-      window.removeEventListener('scroll', infinityScroll);
-    };
-  }, [infinityScroll]);
 
   return (
     <div className="artist-wrapper">
@@ -56,23 +50,31 @@ const Artist = ({
         </div>
       </div>
       {isAllLoaded ? <NoMoreLoading pageIdx={1} caption={noMoreLoadingCaption}></NoMoreLoading> : ''}
-      {loading ? <MasonryLoading></MasonryLoading> : ''}
+      {loading
+        ? <MasonryLoading></MasonryLoading>
+        : <div className="more">
+            <div onClick={loadMoreData}>더보기</div>
+          </div>}
       {error ? <LoadingError error={error} getData={getData} getDataParams={getDataParams}></LoadingError> : ''}
     </div>
   );
 
-  function infinityScroll () {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
-
-    // 스크롤이 최하단이면서 fetch 중이 아니면서 데이터가 더 있을 때 호출
-    if (scrollTop + clientHeight >= scrollHeight) {
-      if (!loading) {
-        dispatch(getArtistData());
-      }
-    }
+  function loadMoreData () {
+    dispatch(getArtistData());
   }
+
+  // function infinityScroll () {
+  //   const scrollHeight = document.documentElement.scrollHeight;
+  //   const scrollTop = document.documentElement.scrollTop;
+  //   const clientHeight = document.documentElement.clientHeight;
+
+  //   // 스크롤이 최하단이면서 fetch 중이 아니면서 데이터가 더 있을 때 호출
+  //   if (scrollTop + clientHeight >= scrollHeight) {
+  //     if (!loading) {
+  //       dispatch(getArtistData());
+  //     }
+  //   }
+  // }
 };
 
 Artist.propTypes = {

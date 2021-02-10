@@ -4,18 +4,19 @@ import PropTypes from 'prop-types';
 import '../../stylesheets/artistDetail/artistDetail.scss';
 
 import ArtistInfoWrapper from './ArtistInfoWrapper';
-// import ArtistDetailGalleryContainer from '../../containers/artistDetail/artistDetailGalleryContainer';
 
 import { resizeAllMasonryItems } from '../../lib/masonry';
+import { lazyLoad } from '../../lib/lazyLoading';
 
-// import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
-// API.ROOT_IMG +
+import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
 
 const ArtistDetail = ({ data }) => {
   const zoomImgRef = useRef();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    lazyLoad();
 
     window.addEventListener('load', resizeAllMasonryItems);
     window.addEventListener('resize', resizeAllMasonryItems);
@@ -33,9 +34,9 @@ const ArtistDetail = ({ data }) => {
       <div className="artist-detail-item">
         <div className="thumbnail-wrapper zoom">
           <img
-            className="main-img"
-            src={data.artist.profileImage}
-            alt="author-main-img-"
+            className="main-img lazy"
+            data-src={API.ROOT_IMG + data.artist.profileImage}
+            alt="author-main-img"
             ref={zoomImgRef}
           ></img>
           <div className="caption">

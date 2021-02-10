@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
-// import { onlineGalleryApiConstantsSample as API } from '../../api/onlineGalleryApiConstants';
 
 const BackgroundWrapper = ({ data, whenWheel }) => {
   return (

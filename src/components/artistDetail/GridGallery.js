@@ -26,13 +26,13 @@ const GridGallery = ({ data, loading, error, isAllLoaded, getArtistDetailPicture
       {loading
         ? <MasonryLoading></MasonryLoading>
         : <div className="more">
-            <div onClick={loadMoreArtwork}>더보기</div>
+            <div onClick={loadMoreData}>더보기</div>
           </div>}
       {error ? <LoadingError error={error}></LoadingError> : ''}
     </>
   );
 
-  function loadMoreArtwork () {
+  function loadMoreData () {
     dispatch(getArtistDetailPictureData());
   }
 };

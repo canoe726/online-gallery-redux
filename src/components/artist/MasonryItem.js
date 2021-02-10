@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { lazyLoad } from '../../lib/lazyLoading';
 
 import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
-// import { onlineGalleryApiConstantsSample as API } from '../../api/onlineGalleryApiConstants';
 
-const MasonryItem = ({ artistItem, masonry }) => {
+const MasonryItem = ({ history, artistItem, masonry }) => {
   const url = `/artist/${artistItem.artistId}`;
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const MasonryItem = ({ artistItem, masonry }) => {
     <div
       className="masonry-item"
       onLoad={resizeMasonryItem}
-      onClick={() => { window.location = url; }}
+      onClick={() => history.push(url)}
       >
       <img className="item-img lazy" data-src={API.ROOT_IMG + artistItem.profileImage}></img>
       <div className="caption-wrapper">
@@ -43,8 +44,9 @@ const MasonryItem = ({ artistItem, masonry }) => {
 };
 
 MasonryItem.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
   artistItem: PropTypes.object,
   masonry: PropTypes.object
 };
 
-export default MasonryItem;
+export default withRouter(MasonryItem);

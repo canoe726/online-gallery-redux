@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
-// import { onlineGalleryApiConstantsSample as API } from '../../api/onlineGalleryApiConstants';
 
 const ModalWrapper = ({ modalActive, data, toggleModal }) => {
   const dispatch = useDispatch();
@@ -179,7 +178,6 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
           if (modalVideo.src) {
             modalVideo.currentTime = 0;
             modalVideo.pause();
-            modalVideo.play();
           }
         }
         initModal();
@@ -192,7 +190,6 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
           if (modalVideo.src) {
             modalVideo.currentTime = 0;
             modalVideo.pause();
-            modalVideo.play();
           }
         }
         initModal();

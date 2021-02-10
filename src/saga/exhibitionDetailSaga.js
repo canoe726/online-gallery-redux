@@ -48,7 +48,7 @@ export default function exhibitionDetail (state = initialState, action) {
     case GET_EXHIBITION_DETAIL_DATA:
     case GET_EXHIBITION_DETAIL_DATA_SUCCESS:
     case GET_EXHIBITION_DETAIL_DATA_ERROR:
-      return handleAsyncActions(GET_EXHIBITION_DETAIL_DATA, 'exhibitionDetailList', true, true)(state, action);
+      return handleAsyncActions(GET_EXHIBITION_DETAIL_DATA, 'exhibitionDetailList', true)(state, action);
     case CHANGE_SLIDE_IDX:
       return {
         ...state,

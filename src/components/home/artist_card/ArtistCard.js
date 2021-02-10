@@ -6,10 +6,10 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { lazyLoad } from '../../../lib/lazyLoading';
 
 import { onlineGalleryApiConstants as API } from '../../../api/onlineGalleryApiConstants';
-// import { onlineGalleryApiConstantsSample as API } from '../../../api/onlineGalleryApiConstants';
 
 const ArtistCard = ({ history, data }) => {
   const url = `/artist/${data.artistId}`;
+  console.log(data);
 
   useEffect(() => {
     lazyLoad();

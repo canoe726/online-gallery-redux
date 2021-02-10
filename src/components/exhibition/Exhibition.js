@@ -19,22 +19,22 @@ const Exhibition = ({
   isAllLoaded,
   getExhibitionData
 }) => {
+  console.log(data);
   const dispatch = useDispatch();
   const masonryRef = useRef();
   const noMoreLoadingCaption = '모든 작품을 불러왔습니다.';
 
   useEffect(() => {
-    console.log('create exhibition app');
-    window.addEventListener('scroll', infinityScroll);
+    // window.addEventListener('scroll', infinityScroll);
     window.addEventListener('load', resizeAllMasonryItems);
     window.addEventListener('resize', resizeAllMasonryItems);
 
     return () => {
+      // window.removeEventListener('scroll', infinityScroll);
       window.removeEventListener('load', resizeAllMasonryItems);
       window.removeEventListener('resize', resizeAllMasonryItems);
-      window.removeEventListener('scroll', infinityScroll);
     };
-  }, [infinityScroll, resizeAllMasonryItems]);
+  }, []);
 
   return (
     <div className="exhibition-wrapper">
@@ -51,24 +51,32 @@ const Exhibition = ({
         </div>
       </div>
       {isAllLoaded ? <NoMoreLoading pageIdx={0} caption={noMoreLoadingCaption}></NoMoreLoading> : ''}
-      {loading ? <MasonryLoading></MasonryLoading> : ''}
+      {loading
+        ? <MasonryLoading></MasonryLoading>
+        : <div className="more">
+            <div onClick={loadMoreData}>더보기</div>
+          </div>}
       {error ? <LoadingError error={error} getData={getData} getDataParams={getDataParams}></LoadingError> : ''}
     </div>
   );
 
-  function infinityScroll () {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
-
-    // 스크롤이 최하단이면서 fetch 중이 아니면서 데이터가 더 있을 때 호출
-    if (scrollTop + clientHeight >= scrollHeight - 100) {
-      if (!loading) {
-        console.log('load more data');
-        dispatch(getExhibitionData());
-      }
-    }
+  function loadMoreData () {
+    dispatch(getExhibitionData());
   }
+
+  // function infinityScroll () {
+  //   const scrollHeight = document.documentElement.scrollHeight;
+  //   const scrollTop = document.documentElement.scrollTop;
+  //   const clientHeight = document.documentElement.clientHeight;
+
+  //   // 스크롤이 최하단이면서 fetch 중이 아니면서 데이터가 더 있을 때 호출
+  //   if (scrollTop + clientHeight >= scrollHeight) {
+  //     if (!loading) {
+  //       console.log('load more data');
+  //       dispatch(getExhibitionData());
+  //     }
+  //   }
+  // }
 };
 
 Exhibition.propTypes = {

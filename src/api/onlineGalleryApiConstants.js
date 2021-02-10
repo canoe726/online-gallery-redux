@@ -12,21 +12,21 @@ export const onlineGalleryApiConstants = {
   WAIT_TIME: 5000
 };
 
-export const onlineGalleryApiConstantsSample = {
-  ROOT: 'http://localhost:4000/',
-  ROOT_IMG: '',
-  ROOT_VIDEO: '',
-  INFO: 'INFO',
-  HOME_BANNER: 'HOME_BANNER',
-  HOME_EXHIBITION: 'HOME_EXHIBITION',
-  HOME_ARTIST: 'HOME_ARTIST',
-  EXHIBITION: 'EXHIBITION',
-  EXHIBITION_DETAIL: 'EXHIBITION_DETAIL',
-  PICTURE: 'PICTURE',
-  ARTIST: 'ARTIST',
-  ARTIST_DETAIL: 'ARTIST_DETAIL',
-  ARTIST_PICTURE: 'ARTIST_PICTURE',
-  WAIT_TIME: 5000
-};
+// export const onlineGalleryApiConstants = {
+//   ROOT: 'http://localhost:4000/',
+//   ROOT_IMG: '',
+//   ROOT_VIDEO: '',
+//   INFO: 'INFO',
+//   HOME_BANNER: 'HOME_BANNER',
+//   HOME_EXHIBITION: 'HOME_EXHIBITION',
+//   HOME_ARTIST: 'HOME_ARTIST',
+//   EXHIBITION: 'EXHIBITION',
+//   EXHIBITION_DETAIL: 'EXHIBITION_DETAIL',
+//   PICTURE: 'PICTURE',
+//   ARTIST: 'ARTIST',
+//   ARTIST_DETAIL: 'ARTIST_DETAIL',
+//   ARTIST_PICTURE: 'ARTIST_PICTURE',
+//   WAIT_TIME: 5000
+// };
 
 export default onlineGalleryApiConstants;

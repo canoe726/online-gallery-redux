@@ -22,7 +22,7 @@ function ArtistDetailContainer ({ id }) {
     dispatch(getArtistDetailData(id));
   }, [dispatch]);
 
-  if (loading && !data) return <PageLoading></PageLoading>;
+  if (loading) return <PageLoading></PageLoading>;
   if (error) return <LoadingError error={error} getData={getArtistDetailData} getDataParams={[id]}></LoadingError>;
   if (!data) return null;
   return (

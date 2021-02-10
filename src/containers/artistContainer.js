@@ -22,7 +22,7 @@ function ArtistContainer () {
   useEffect(() => {
     if (data) return;
     dispatch(getArtistData());
-  }, [dispatch]);
+  }, [data, dispatch]);
 
   if (loading && !data) return <PageLoading></PageLoading>;
   return (

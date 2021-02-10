@@ -34,11 +34,10 @@ function ExhibitionDetailContainer ({ id }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (data) return;
     dispatch(getExhibitionDetailData(id));
-  }, [data, dispatch]);
+  }, [dispatch]);
 
-  if (loading && !data) return <PageLoading></PageLoading>;
+  if (loading) return <PageLoading></PageLoading>;
   if (error) return <LoadingError error={error} getData={getExhibitionDetailData} getDataParams={[id]}></LoadingError>;
   if (!data) return null;
   if (data && data.length === 0) return <NoMoreLoading pageIdx={0} caption={noMoreLoadingCaption}></NoMoreLoading>;

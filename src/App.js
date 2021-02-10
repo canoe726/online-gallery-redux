@@ -8,9 +8,7 @@ import MenuPage from './pages/MenuPage';
 import HomePage from './pages/HomePage';
 import InfoPage from './pages/InfoPage';
 import ExhibitionPage from './pages/ExhibitionPage';
-
-import ExhibitionDetailContainer from './containers/exhibitionDetailContainer';
-
+import ExhibitionDetailPage from './pages/ExhibitionDetailPage';
 import ArtistPage from './pages/ArtistPage';
 import ArtistDetailPage from './pages/ArtistDetailPage';
 import NoticePage from './pages/NoticePage';
@@ -24,7 +22,7 @@ const App = () => {
         <Route exact path="/" component={HomePage}></Route>
         <Route exact path="/info" component={InfoPage}></Route>
         <Route exact path="/exhibition" component={ExhibitionPage}></Route>
-        <Route exact path="/exhibition/:id" component={ExhibitionDetailContainer}></Route>
+        <Route exact path="/exhibition/:id" component={ExhibitionDetailPage}></Route>
         <Route exact path="/artist" component={ArtistPage}></Route>
         <Route exact path="/artist/:id" component={ArtistDetailPage}></Route>
         <Route exact path="/notice" component={NoticePage}></Route>

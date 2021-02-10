@@ -6,7 +6,6 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { lazyLoad } from '../../../lib/lazyLoading';
 
 import { onlineGalleryApiConstants as API } from '../../../api/onlineGalleryApiConstants';
-// import { onlineGalleryApiConstantsSample as API } from '../../../api/onlineGalleryApiConstants';
 
 const ExhibitionCard = ({ history, data }) => {
   const url = `/exhibition/${data.exhibitionId}`;

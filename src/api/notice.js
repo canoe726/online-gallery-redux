@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// import { onlineGalleryApiConstantsSample as API } from './onlineGalleryApiConstants';
 import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
 
 export const getNoticeData = async () => {
