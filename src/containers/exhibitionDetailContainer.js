@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { getExhibitionDetailData, changeSlideIdx, toggleModal } from '../saga/exhibitionDetailSaga';
 
@@ -7,9 +8,7 @@ import PageLoading from '../components/loading/PageLoading';
 import NoMoreLoading from '../components/loading/NoMoreLoading';
 import LoadingError from '../components/error/LoadingError';
 
-function ExhibitionDetailContainer () {
-  const paths = window.location.pathname.split('/');
-  const id = paths[2];
+function ExhibitionDetailContainer ({ id }) {
   const noMoreLoadingCaption = '상세 작품 정보가 없습니다.';
 
   const { slideIdx } = useSelector(
@@ -35,11 +34,12 @@ function ExhibitionDetailContainer () {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (data) return;
     dispatch(getExhibitionDetailData(id));
   }, [dispatch]);
 
   if (loading && !data) return <PageLoading></PageLoading>;
-  if (error) return <LoadingError error={error}></LoadingError>;
+  if (error) return <LoadingError error={error} getData={getExhibitionDetailData} getDataParams={[id]}></LoadingError>;
   if (!data) return null;
   if (data && data.length === 0) return <NoMoreLoading pageIdx={0} caption={noMoreLoadingCaption}></NoMoreLoading>;
   return (
@@ -50,6 +50,10 @@ function ExhibitionDetailContainer () {
       changeSlideIdx={changeSlideIdx}
       toggleModal={toggleModal}
     ></ExhibitionDetail>);
+};
+
+ExhibitionDetailContainer.propTypes = {
+  id: PropTypes.string
 };
 
 export default ExhibitionDetailContainer;

@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// API.ROOT_IMG +
 
 const ModalWrapper = ({ modalActive, data, toggleModal }) => {
   const dispatch = useDispatch();
@@ -47,21 +48,38 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
             <rect x="0" y="0" fill="none" rx="0" ry="0" width="100%" height="100%"></rect>
           </svg>
 
-          <img
-            className={modalActive ? 'modal-img' : 'modal-img hidden'}
-            src={API.ROOT_IMG + data.exhibitionItem.image}
-            alt="modal-img"
-            ref={modalImgRef}
-          ></img>
-          <video
-            className="modal-video hidden"
-            ref={modalVideoRef}
-          ></video>
-
+          {data.exhibitionItem.type === 'IMAGE'
+            ? <img
+                className={modalActive ? 'modal-img' : 'modal-img hidden'}
+                src={data.exhibitionItem.image}
+                alt="modal-img"
+                ref={modalImgRef}
+              ></img>
+            : <video
+                className={modalActive ? 'modal-video' : 'modal-video hidden'}
+                src={data.exhibitionItem.image}
+                alt="modal-video"
+                ref={modalVideoRef}
+                onLoad={initVideoTime}
+                onClick={toggleVideo}
+              ></video>}
         </div>
       </div>
     </div>
   );
+
+  function initVideoTime () {
+    modalVideoRef.current.currentTime = 0;
+    modalVideoRef.current.volume = 1.0;
+  }
+
+  function toggleVideo () {
+    if (modalVideoRef.current.paused) {
+      modalVideoRef.current.play();
+    } else {
+      modalVideoRef.current.pause();
+    }
+  }
 
   function whenMouseDown (e) {
     if ((e.target.classList.contains('modal-img') ||
@@ -159,26 +177,31 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
   function closeModal (e) {
     const target = e.target;
     const isModalBackground = target.classList.contains('modal-background');
-    const modalVideo = modalVideoRef.current;
 
     // className of modalActive - 0 : '', 1 : sketch, 2 : sketch out
     if (modalActive === 1) {
       if (isModalBackground) {
-        // 비디오 초기화
-        if (modalVideo.src) {
-        //   modalVideo.currentTime = 0;
-        //   modalVideo.pause();
-        //   modalVideo.play();
+        if (data.exhibitionItem.type === 'video') {
+          const modalVideo = modalVideoRef.current;
+          // 비디오 초기화
+          if (modalVideo.src) {
+            modalVideo.currentTime = 0;
+            modalVideo.pause();
+            modalVideo.play();
+          }
         }
         initModal();
         dispatch(toggleModal(2));
       // X 버튼 클릭
       } else if (target.classList[0] === 'close') {
-        // 비디오 초기화
-        if (modalVideo.src) {
-        //   modalVideo.currentTime = 0;
-        //   modalVideo.pause();
-        //   modalVideo.play();
+        if (data.exhibitionItem.type === 'video') {
+          const modalVideo = modalVideoRef.current;
+          // 비디오 초기화
+          if (modalVideo.src) {
+            modalVideo.currentTime = 0;
+            modalVideo.pause();
+            modalVideo.play();
+          }
         }
         initModal();
         dispatch(toggleModal(2));
@@ -188,10 +211,13 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
 
   function initModal () {
     modalTimeOut = setTimeout(() => {
-      const modalImg = modalImgRef.current;
-      modalImg.style.transform = 'scale(1) translate(0px,0px)';
-      const modalVideo = modalVideoRef.current;
-      modalVideo.style.transform = 'scale(1) translate(0px,0px)';
+      if (data.exhibitionItem.type === 'IMAGE') {
+        const modalImg = modalImgRef.current;
+        modalImg.style.transform = 'scale(1) translate(0px,0px)';
+      } else {
+        const modalVideo = modalVideoRef.current;
+        modalVideo.style.transform = 'scale(1) translate(0px,0px)';
+      }
     }, 500);
   }
 };

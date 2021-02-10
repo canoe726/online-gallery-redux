@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
@@ -9,6 +9,8 @@ import { lazyLoad } from '../../lib/lazyLoading';
 // API.ROOT_IMG +
 
 const MasonryItem = ({ history, exhibitionItem, masonry }) => {
+  const url = `/exhibition/${exhibitionItem.exhibitionId}`;
+
   useEffect(() => {
     lazyLoad();
   }, []);
@@ -17,7 +19,7 @@ const MasonryItem = ({ history, exhibitionItem, masonry }) => {
     <div
       className="masonry-item"
       onLoad={resizeMasonryItem}
-      onClick={() => history.push(`/exhibition/${exhibitionItem.exhibitionId}`)}
+      onClick={() => history.push(url)}
     >
       <img className="item-img lazy" data-src={exhibitionItem.posterImage}></img>
       <div className="caption-wrapper">

@@ -10,7 +10,15 @@ import MasonryLoading from '../loading/MasonryLoading';
 import NoMoreLoading from '../loading/NoMoreLoading';
 import LoadingError from '../error/LoadingError';
 
-const Artist = ({ data, loading, error, isAllLoaded, getArtistData }) => {
+const Artist = ({
+  data,
+  loading,
+  error,
+  getData,
+  getDataParams,
+  isAllLoaded,
+  getArtistData
+}) => {
   const dispatch = useDispatch();
   const masonryRef = useRef();
   const noMoreLoadingCaption = '모든 작가를 불러왔습니다.';
@@ -51,7 +59,7 @@ const Artist = ({ data, loading, error, isAllLoaded, getArtistData }) => {
       </div>
       {isAllLoaded ? <NoMoreLoading pageIdx={1} caption={noMoreLoadingCaption}></NoMoreLoading> : ''}
       {loading ? <MasonryLoading></MasonryLoading> : ''}
-      {error ? <LoadingError error={error}></LoadingError> : ''}
+      {error ? <LoadingError error={error} getData={getData} getDataParams={getDataParams}></LoadingError> : ''}
     </div>
   );
 
@@ -73,6 +81,8 @@ Artist.propTypes = {
   data: PropTypes.array,
   loading: PropTypes.bool,
   error: PropTypes.object,
+  getData: PropTypes.func,
+  getDataParams: PropTypes.array,
   isAllLoaded: PropTypes.bool,
   getArtistData: PropTypes.func
 };

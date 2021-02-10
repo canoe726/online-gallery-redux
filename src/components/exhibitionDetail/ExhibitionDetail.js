@@ -17,7 +17,7 @@ const ExhibitionDetail = ({
   changeSlideIdx,
   toggleModal
 }) => {
-  const exhibitionDetailWrapper = useRef();
+  const exhibitionDetailWrapperRef = useRef();
   const prevRef = useRef();
   const nextRef = useRef();
   const retryRef = useRef();
@@ -43,15 +43,17 @@ const ExhibitionDetail = ({
   return (
     <div
       className="exhibition-detail-wrapper load-next"
-      ref={exhibitionDetailWrapper}
+      ref={exhibitionDetailWrapperRef}
     >
       {data.map((item, idx) =>
         <div className={
-            idx === 0
-              ? 'hero-section active-slide'
-              : idx === data.length - 1
-                ? 'hero-section prev-slide'
-                : 'hero-section'}
+          idx === 0
+            ? 'hero-section active-slide'
+            : idx === data.length - 1
+              ? data.length > 2
+                  ? 'hero-section prev-slide'
+                  : 'hero-section'
+              : 'hero-section'}
           key={idx}
         >
           <ExhibitionDetailItem
@@ -66,8 +68,7 @@ const ExhibitionDetail = ({
         slideIdx={slideIdx}
         length={data.length}
         changeSlideIdx={changeSlideIdx}
-        scrollUpAnimation={scrollUpAnimation}
-        scrollDownAnimation={scrollDownAnimation}
+        exhibitionDetailWrapperRef={exhibitionDetailWrapperRef}
       ></ArtworkDot>
 
       <ModalWrapper
@@ -77,7 +78,7 @@ const ExhibitionDetail = ({
       ></ModalWrapper>
 
       <div className="prev hidden" onClick={() => changeSlide(-1)} ref={prevRef}>&#10094;</div>
-      <div className="next" onClick={() => changeSlide(1)} ref={nextRef}>&#10095;</div>
+      <div className={data.length !== 1 ? 'next' : 'next hidden'} onClick={() => changeSlide(1)} ref={nextRef}>&#10095;</div>
       <div className="retry hidden" ref={retryRef}>다시보기</div>
     </div>
   );
@@ -102,10 +103,13 @@ const ExhibitionDetail = ({
       scrollUpAnimation(slideIdx, data.length);
     }
 
+    console.log('slideIdxTemp : ', slideIdxTemp);
     if (slideIdxTemp === 0) {
       prevRef.current.classList.add('hidden');
+      nextRef.current.classList.remove('hidden');
     } else if (slideIdxTemp === data.length - 1) {
       // retryRef.current.classList.remove('hidden');
+      prevRef.current.classList.remove('hidden');
       nextRef.current.classList.add('hidden');
     } else {
       // if (!retryRef.current.classList.contains('hidden')) {
@@ -130,7 +134,7 @@ const ExhibitionDetail = ({
   }
 
   function scrollUpAnimation (idx, length) {
-    const wrapper = exhibitionDetailWrapper.current;
+    const wrapper = exhibitionDetailWrapperRef.current;
     const element = wrapper.querySelectorAll('.hero-section');
 
     let before = idx - 1;
@@ -142,18 +146,18 @@ const ExhibitionDetail = ({
     if (before < 0) before = length - 1;
     if (next > length - 1) next = 0;
 
-    element[before].classList.add('active-slide');
-    element[before].classList.remove('prev-slide');
+    element[next].classList.remove('prev-slide');
+    element[next].classList.remove('active-slide');
 
     element[idx].classList.add('prev-slide');
     element[idx].classList.remove('active-slide');
 
-    element[next].classList.remove('prev-slide');
-    element[next].classList.remove('active-slide');
+    element[before].classList.add('active-slide');
+    element[before].classList.remove('prev-slide');
   }
 
   function scrollDownAnimation (idx, length) {
-    const wrapper = exhibitionDetailWrapper.current;
+    const wrapper = exhibitionDetailWrapperRef.current;
     const element = wrapper.querySelectorAll('.hero-section');
 
     let before = idx - 1;

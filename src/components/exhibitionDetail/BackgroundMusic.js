@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// API.ROOT_IMG +
 
 const BackgroundMusic = ({ data }) => {
   const musicRef = useRef();
@@ -19,7 +20,7 @@ const BackgroundMusic = ({ data }) => {
       </div>
       {/* autoPlay={true}  */}
       <audio className="music" ref={musicRef}>
-        <source src={API.ROOT_IMG + data.bgm} type="audio/mpeg"/>
+        <source src={data.bgm} type="audio/mpeg"/>
       </audio>
     </div>
   );
@@ -27,12 +28,12 @@ const BackgroundMusic = ({ data }) => {
   function volumeBackgroundMusic (e) {
     const music = musicRef.current;
     const curVolume = music.volume;
-    if (curVolume === 0.15) {
-      music.volume = 0.075;
-    } else if (curVolume === 0.075) {
-      music.volume = 0.03;
-    } else if (curVolume === 0.03) {
-      music.volume = 0.15;
+    if (curVolume === 1.0) {
+      music.volume = 0.5;
+    } else if (curVolume === 0.5) {
+      music.volume = 0.25;
+    } else if (curVolume === 0.25) {
+      music.volume = 1.0;
     }
   }
 
@@ -42,7 +43,7 @@ const BackgroundMusic = ({ data }) => {
     if (playPromise !== undefined) {
       playPromise.then(_ => {
         music.load();
-        music.volume = 0.15;
+        music.volume = 1.0;
         music.play();
       }).catch(error => {
         console.log(error);

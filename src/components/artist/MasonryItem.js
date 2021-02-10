@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { lazyLoad } from '../../lib/lazyLoading';
 
-import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// API.ROOT_IMG +
 
 const MasonryItem = ({ history, artistItem, masonry }) => {
+  const url = `/artist/${artistItem.artistId}`;
+
   useEffect(() => {
     lazyLoad();
   }, []);
@@ -16,9 +19,9 @@ const MasonryItem = ({ history, artistItem, masonry }) => {
     <div
       className="masonry-item"
       onLoad={resizeMasonryItem}
-      onClick={() => history.push(`/artist/${artistItem.artistId}`)}
+      onClick={() => history.push(url)}
       >
-      <img className="item-img lazy" data-src={API.ROOT_IMG + artistItem.profileImage}></img>
+      <img className="item-img lazy" data-src={artistItem.profileImage}></img>
       <div className="caption-wrapper">
         <div className="caption nickname">{artistItem.nickname}</div>
         <div className="caption introduction">{artistItem.introduction}</div>

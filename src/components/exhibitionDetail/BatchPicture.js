@@ -2,7 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// API.ROOT_IMG +
 
 const BatchPicture = ({ data, toggleModal }) => {
   const dispatch = useDispatch();
@@ -16,11 +17,19 @@ const BatchPicture = ({ data, toggleModal }) => {
         height: `${data.originalVertSize / 5}px`
       }}
     >
-      <img
-        className="img lazy"
-        data-src={API.ROOT_IMG + data.image}
-        alt={'batch-img-item'}
-      ></img>
+      {data.type === 'IMAGE'
+        ? <img
+            className="img lazy"
+            data-src={data.image}
+            alt={'batch-img-item'}
+          ></img>
+        : <video
+            className="video play lazy"
+            data-src={data.image}
+            alt={'batch-img-item'}
+            autoPlay={true}
+            muted={true}
+          ></video>}
     </div>
   );
 

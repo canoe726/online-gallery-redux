@@ -10,7 +10,15 @@ import MasonryLoading from '../loading/MasonryLoading';
 import NoMoreLoading from '../loading/NoMoreLoading';
 import LoadingError from '../error/LoadingError';
 
-const Exhibition = ({ data, loading, error, getData, getDataParams, isAllLoaded, getExhibitionData }) => {
+const Exhibition = ({
+  data,
+  loading,
+  error,
+  getData,
+  getDataParams,
+  isAllLoaded,
+  getExhibitionData
+}) => {
   const dispatch = useDispatch();
   const masonryRef = useRef();
   const noMoreLoadingCaption = '모든 작품을 불러왔습니다.';

@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// API.ROOT_IMG +
+// API.ROOT_VIDEO +
 
 const BackgroundWrapper = ({ data, whenWheel }) => {
-  console.log(data);
   return (
     <div className="background-wrapper"
       onWheel={whenWheel}
     >
       {data.type === 'IMAGE'
-        ? <img className="img lazy" data-src={API.ROOT_IMG + data.value} alt={'background-img-item'}></img>
+        ? <img className="img lazy" data-src={data.value} alt={'background-img-item'}></img>
         : data.type === 'COLOR'
           ? <div className="color"
               style={{ backgroundColor: data.value }}
@@ -18,7 +19,7 @@ const BackgroundWrapper = ({ data, whenWheel }) => {
           : data.type === 'VIDEO'
             ? <video
                 className="video play lazy"
-                data-src={API.ROOT_IMG + data.value}
+                data-src={data.value}
                 alt={'background-img-item'}
                 autoPlay={true}
                 muted={true}

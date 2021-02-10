@@ -1,24 +1,43 @@
 import axios from 'axios';
 
-// import { onlineGalleryApiConstantsSample as API } from './onlineGalleryApiConstants';
-import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
+import { onlineGalleryApiConstantsSample as API } from './onlineGalleryApiConstants';
+// import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
 
 export const getArtistDetailData = async (id) => {
-  // const response = await axios(API.ROOT + API.INIT_ARTIST_DETAIL_DATA);
-  const response = await axios.get(`${API.ROOT + API.ARTIST}/${id}`);
-  if (response.data.code === 'SUCCESS') {
+  const cancelTokenSource = axios.CancelToken.source();
+  const timer = setTimeout(() => {
+    cancelTokenSource.cancel();
+  }, API.WAIT_TIME);
+
+  const response = await axios.get(`${API.ROOT + API.ARTIST_DETAIL}`, { cancelToken: cancelTokenSource.token });
+  // const response = await axios.get(`${API.ROOT + API.ARTIST}/${id}`, { cancelToken: cancelTokenSource.token });
+  try {
+    clearTimeout(timer);
     return response.data.result;
-  } else {
-    console.log('재 호출 코드 작성');
+  } catch (e) {
+    return {
+      code: e.code,
+      errorCode: e.errorCode,
+      message: e.message
+    };
   }
 };
 
 // export const getArtistDetailPictureData = async () => {
-//   // const response = await axios(API.ROOT + API.ADD_ARTIST_DETAIL_PICTURE);
-//   const response = await axios.get(`${API.ROOT + API.ARTIST}/${id}`);
-//   if (response.data.code === 'SUCCESS') {
+//   const cancelTokenSource = axios.CancelToken.source();
+//   const timer = setTimeout(() => {
+//     cancelTokenSource.cancel();
+//   }, API.WAIT_TIME);
+
+//   const response = await axios.get(`${API.ROOT + API.ARTIST}/${id}`, { cancelToken: cancelTokenSource.token });
+//   try {
+//     clearTimeout(timer);
 //     return response.data.result;
-//   } else {
-//     console.log('재 호출 코드 작성');
+//   } catch (e) {
+//     return {
+//       code: e.code,
+//       errorCode: e.errorCode,
+//       message: e.message
+//     };
 //   }
 // };

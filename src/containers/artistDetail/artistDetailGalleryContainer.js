@@ -20,6 +20,7 @@ function ArtistDetailGalleryContainer () {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (data) return;
     dispatch(getArtistDetailPictureData());
   }, [dispatch]);
 

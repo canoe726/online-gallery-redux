@@ -8,7 +8,8 @@ import ArtistInfoWrapper from './ArtistInfoWrapper';
 
 import { resizeAllMasonryItems } from '../../lib/masonry';
 
-import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// API.ROOT_IMG +
 
 const ArtistDetail = ({ data }) => {
   const zoomImgRef = useRef();
@@ -33,7 +34,7 @@ const ArtistDetail = ({ data }) => {
         <div className="thumbnail-wrapper zoom">
           <img
             className="main-img"
-            src={API.ROOT_IMG + data.artist.profileImage}
+            src={data.artist.profileImage}
             alt="author-main-img-"
             ref={zoomImgRef}
           ></img>
@@ -47,10 +48,10 @@ const ArtistDetail = ({ data }) => {
           data={data}
         ></ArtistInfoWrapper>
 
-        <div className="grid-gallery-wrapper">
+        {/* <div className="grid-gallery-wrapper">
           <div className="title">작품 둘러보기</div>
-          {/* <ArtistDetailGalleryContainer></ArtistDetailGalleryContainer> */}
-        </div>
+            <ArtistDetailGalleryContainer></ArtistDetailGalleryContainer>
+        </div> */}
       </div>
     </div>
   );

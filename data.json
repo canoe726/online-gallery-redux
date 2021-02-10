@@ -154,18 +154,18 @@
     "message": "server pass",
     "result": [
         {
-        "exhibitionId": 2,
-        "title": "전시회 2",
-        "posterImage": "/samples/galleryPoster2.jpg",
-        "startAt": "2021.01.22",
-        "endAt": "2021.01.31",
-        "participants": "김영배, 이원기"
-      },
-      {
         "exhibitionId": 1,
         "title": "전시회 1",
         "posterImage": "/samples/galleryPoster1.jpg",
         "startAt": "2021.01.21",
+        "endAt": "2021.01.31",
+        "participants": "김영배, 이원기"
+      },
+      {
+        "exhibitionId": 2,
+        "title": "전시회 2",
+        "posterImage": "/samples/galleryPoster2.jpg",
+        "startAt": "2021.01.22",
         "endAt": "2021.01.31",
         "participants": "김영배, 이원기"
       },
@@ -186,10 +186,10 @@
         "participants": "김영배, 이원기"
       },
       {
-        "exhibitionId": 8,
-        "title": "전시회 8",
-        "posterImage": "/samples/galleryPoster8.jpg",
-        "startAt": "2021.01.28",
+        "exhibitionId": 5,
+        "title": "전시회 5",
+        "posterImage": "/samples/galleryPoster5.jpg",
+        "startAt": "2021.01.25",
         "endAt": "2021.01.31",
         "participants": "김영배, 이원기"
       },
@@ -210,12 +210,264 @@
         "participants": "김영배, 이원기"
       },
       {
-        "exhibitionId": 5,
-        "title": "전시회 5",
-        "posterImage": "/samples/galleryPoster5.jpg",
-        "startAt": "2021.01.25",
+        "exhibitionId": 8,
+        "title": "전시회 8",
+        "posterImage": "/samples/galleryPoster8.jpg",
+        "startAt": "2021.01.28",
         "endAt": "2021.01.31",
         "participants": "김영배, 이원기"
+      }
+    ]
+  },
+  "EXHIBITION_DETAIL": {
+    "code": "SUCCESS",
+    "errorCode": "CM_0000",
+    "message": "server pass",
+    "result": [
+      {
+        "exhibitionId": 1,
+        "exhibitionItem": {
+          "exhibitionItemId": "1",
+          "type": "IMAGE",
+          "title": "작품 1 제목 1",
+          "vrImageYN": "N",
+          "productionYear": "2021",
+          "holding": "art gallery 1",
+          "material": "oil paint",
+          "participants": "kim & lee",
+          "image": "/samples/artwork1.jpg",
+          "originalHorizSize": 2000,
+          "originalVertSize": 3000,
+          "position": "left",
+          "ordering": 0
+        },
+        "exhibitionItemBackground": {
+          "type": "IMAGE",
+          "value": "/samples/artwork_d_1.jpg",
+          "bgm": "/samples/background_music1.mp3"
+        },
+        "exhibitionItemNote": {
+          "note": "this artwork is made by kim & lee",
+          "textSize": 12,
+          "textColor": "white",
+          "bgColor": "black",
+          "borderColor": "blue",
+          "round": 50,
+          "padding": 16,
+          "position": "right",
+          "positionHorizSize": 300,
+          "positionVertSize": 250
+        }
+      },
+      {
+        "exhibitionId": 2,
+        "exhibitionItem": {
+          "exhibitionItemId": "2",
+          "type": "VIDEO",
+          "title": "작품 2 제목 2",
+          "vrImageYN": "N",
+          "productionYear": "2022",
+          "holding": "art gallery 2",
+          "material": "water paint",
+          "participants": "kim & lee & park",
+          "image": "/samples/art_gallery.mp4",
+          "originalHorizSize": 3000,
+          "originalVertSize": 2500,
+          "position": "right",
+          "ordering": 0
+        },
+        "exhibitionItemBackground": {
+          "type": "COLOR",
+          "value": "rgba(255, 127, 0, 0.8)",
+          "bgm": "/samples/background_music2.mp3"
+        },
+        "exhibitionItemNote": {
+          "note": "awesome!",
+          "textSize": 16,
+          "textColor": "black",
+          "bgColor": "white",
+          "borderColor": "red",
+          "round": 16,
+          "padding": 20,
+          "position": "left",
+          "positionHorizSize": 350,
+          "positionVertSize": 350
+        }
+      },
+      {
+        "exhibitionId": 3,
+        "exhibitionItem": {
+          "exhibitionItemId": "3",
+          "type": "IMAGE",
+          "title": "작품 3 제목 3",
+          "vrImageYN": "N",
+          "productionYear": "2023",
+          "holding": "art gallery 3",
+          "material": "...object",
+          "participants": "kim",
+          "image": "/samples/artwork3.jpg",
+          "originalHorizSize": 4000,
+          "originalVertSize": 5000,
+          "position": "left",
+          "ordering": 0
+        },
+        "exhibitionItemBackground": {
+          "type": "VIDEO",
+          "value": "/samples/art_background.mp4",
+          "bgm": ""
+        },
+        "exhibitionItemNote": {
+          "note": "벌써 시간이 새벽 3시...",
+          "textSize": 13,
+          "textColor": "black",
+          "bgColor": "lightblue",
+          "borderColor": "yellow",
+          "round": 0,
+          "padding": 14,
+          "position": "right",
+          "positionHorizSize": 300,
+          "positionVertSize": 400
+        }
+      },
+      {
+        "exhibitionId": 3,
+        "exhibitionItem": {
+          "exhibitionItemId": "3",
+          "type": "IMAGE",
+          "title": "작품 3 제목 3",
+          "vrImageYN": "N",
+          "productionYear": "2023",
+          "holding": "art gallery 3",
+          "material": "...object",
+          "participants": "kim",
+          "image": "/samples/artwork3.jpg",
+          "originalHorizSize": 4000,
+          "originalVertSize": 5000,
+          "position": "left",
+          "ordering": 0
+        },
+        "exhibitionItemBackground": {
+          "type": "VIDEO",
+          "value": "/samples/art_background.mp4",
+          "bgm": ""
+        },
+        "exhibitionItemNote": {
+          "note": "벌써 시간이 새벽 3시...",
+          "textSize": 13,
+          "textColor": "black",
+          "bgColor": "lightblue",
+          "borderColor": "yellow",
+          "round": 0,
+          "padding": 14,
+          "position": "right",
+          "positionHorizSize": 300,
+          "positionVertSize": 400
+        }
+      },
+      {
+        "exhibitionId": 3,
+        "exhibitionItem": {
+          "exhibitionItemId": "3",
+          "type": "IMAGE",
+          "title": "작품 3 제목 3",
+          "vrImageYN": "N",
+          "productionYear": "2023",
+          "holding": "art gallery 3",
+          "material": "...object",
+          "participants": "kim",
+          "image": "/samples/artwork3.jpg",
+          "originalHorizSize": 4000,
+          "originalVertSize": 5000,
+          "position": "left",
+          "ordering": 0
+        },
+        "exhibitionItemBackground": {
+          "type": "VIDEO",
+          "value": "/samples/art_background.mp4",
+          "bgm": ""
+        },
+        "exhibitionItemNote": {
+          "note": "벌써 시간이 새벽 3시...",
+          "textSize": 13,
+          "textColor": "black",
+          "bgColor": "lightblue",
+          "borderColor": "yellow",
+          "round": 0,
+          "padding": 14,
+          "position": "right",
+          "positionHorizSize": 300,
+          "positionVertSize": 400
+        }
+      },
+      {
+        "exhibitionId": 3,
+        "exhibitionItem": {
+          "exhibitionItemId": "3",
+          "type": "IMAGE",
+          "title": "작품 3 제목 3",
+          "vrImageYN": "N",
+          "productionYear": "2023",
+          "holding": "art gallery 3",
+          "material": "...object",
+          "participants": "kim",
+          "image": "/samples/artwork3.jpg",
+          "originalHorizSize": 4000,
+          "originalVertSize": 5000,
+          "position": "left",
+          "ordering": 0
+        },
+        "exhibitionItemBackground": {
+          "type": "VIDEO",
+          "value": "/samples/art_background.mp4",
+          "bgm": ""
+        },
+        "exhibitionItemNote": {
+          "note": "벌써 시간이 새벽 3시...",
+          "textSize": 13,
+          "textColor": "black",
+          "bgColor": "lightblue",
+          "borderColor": "yellow",
+          "round": 0,
+          "padding": 14,
+          "position": "right",
+          "positionHorizSize": 300,
+          "positionVertSize": 400
+        }
+      },
+      {
+        "exhibitionId": 3,
+        "exhibitionItem": {
+          "exhibitionItemId": "3",
+          "type": "IMAGE",
+          "title": "작품 3 제목 3",
+          "vrImageYN": "N",
+          "productionYear": "2023",
+          "holding": "art gallery 3",
+          "material": "...object",
+          "participants": "kim",
+          "image": "/samples/artwork3.jpg",
+          "originalHorizSize": 4000,
+          "originalVertSize": 5000,
+          "position": "left",
+          "ordering": 0
+        },
+        "exhibitionItemBackground": {
+          "type": "VIDEO",
+          "value": "/samples/art_background.mp4",
+          "bgm": ""
+        },
+        "exhibitionItemNote": {
+          "note": "벌써 시간이 새벽 3시...",
+          "textSize": 13,
+          "textColor": "black",
+          "bgColor": "lightblue",
+          "borderColor": "yellow",
+          "round": 0,
+          "padding": 14,
+          "position": "right",
+          "positionHorizSize": 300,
+          "positionVertSize": 400
+        }
       }
     ]
   },
@@ -334,26 +586,26 @@
     "message": "server pass",
     "result": [
       {
-        "artistId": 2,
+        "artistId": 1,
         "name": "Lee",
         "nickname": "Lee Nickname",
-        "profileImage": "/samples/artist2.jpg",
+        "profileImage": "/samples/artist1.jpg",
         "introduction": "Introduction of Lee",
         "note": "My name is Lee"
       },
       {
-        "artistId": 7,
+        "artistId": 2,
         "name": "Mike",
         "nickname": "Mike Nickname",
-        "profileImage": "/samples/artist7.jpg",
+        "profileImage": "/samples/artist2.jpg",
         "introduction": "Introduction of Mike",
         "note": "My name is Mike"
       },
       {
-        "artistId": 1,
+        "artistId": 3,
         "name": "Kim",
         "nickname": "Kim Nickname",
-        "profileImage": "/samples/artist1.jpg",
+        "profileImage": "/samples/artist3.jpg",
         "introduction": "Introduction of Kim",
         "note": "My name is Kim"
       },
@@ -382,10 +634,10 @@
         "note": "My name is Joe"
       },
       {
-        "artistId": 3,
+        "artistId": 7,
         "name": "Park",
         "nickname": "Park Nickname",
-        "profileImage": "/samples/artist3.jpg",
+        "profileImage": "/samples/artist7.jpg",
         "introduction": "Introduction of Park",
         "note": "My name is Park"
       },
@@ -399,7 +651,7 @@
       }
     ]
   },
-  "ARTIST_PICTURE": {
+  "ARTIST_DETAIL": {
     "code": "SUCCESS",
     "errorCode": "CM_0000",
     "message": "server pass",
@@ -489,5 +741,55 @@
         }
       ]
     }
+  },
+  "ARTIST_PICTURE": {
+    "code": "SUCCESS",
+    "errorCode": "CM_0000",
+    "message": "server pass",
+    "result": [
+      {
+        "exhibitionId": 1,
+        "exhibitionItem": {
+          "value": "/samples/artist_d_1.jpg",
+          "title": "전시 1"
+        }
+      },
+      {
+        "exhibitionId": 2,
+        "exhibitionItem": {
+          "value": "/samples/artist_d_2.jpg",
+          "title": "전시 2"
+        }
+      },
+      {
+        "exhibitionId": 3,
+        "exhibitionItem": {
+          "value": "/samples/artist_d_3.jpg",
+          "title": "전시 3"
+        }
+      },
+      {
+        "exhibitionId": 4,
+        "exhibitionItem": {
+          "value": "/samples/artist_d_4.jpg",
+          "title": "전시 4"
+        }
+      },
+      {
+        "exhibitionId": 5,
+        "exhibitionItem": {
+          "value": "/samples/artist_d_5.jpg",
+          "title": "전시 5"
+        }
+      },
+      {
+        "exhibitionId": 6,
+        "exhibitionItem": {
+          "value": "/samples/artist_d_6.jpg",
+          "title": "전시 6"
+        }
+      }
+    ]
   }
 }
+

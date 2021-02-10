@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { lazyLoad } from '../../../lib/lazyLoading';
 
 // import { onlineGalleryApiConstants as API } from '../../../api/onlineGalleryApiConstants';
 // API.ROOT_IMG +
 
-const ExhibitionCard = ({ data, goNextPage }) => {
+const ExhibitionCard = ({ history, data }) => {
   const url = `/exhibition/${data.exhibitionId}`;
-  const dispatch = useDispatch();
 
   useEffect(() => {
     lazyLoad();
@@ -18,8 +18,8 @@ const ExhibitionCard = ({ data, goNextPage }) => {
   return (
     <div
       className="card-item"
-      onClick={() => dispatch(goNextPage(url))}
-      >
+      onClick={() => history.push(url)}
+    >
       <img className="cover-img lazy" data-src={data.posterImage}></img>
       <div className="caption-wrapper">
           <div className="caption-text">{data.title}</div>
@@ -29,8 +29,8 @@ const ExhibitionCard = ({ data, goNextPage }) => {
 };
 
 ExhibitionCard.propTypes = {
-  data: PropTypes.object,
-  goNextPage: PropTypes.func
+  history: ReactRouterPropTypes.history.isRequired,
+  data: PropTypes.object
 };
 
-export default ExhibitionCard;
+export default withRouter(ExhibitionCard);
