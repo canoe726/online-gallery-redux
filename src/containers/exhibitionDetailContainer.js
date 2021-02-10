@@ -36,7 +36,7 @@ function ExhibitionDetailContainer ({ id }) {
   useEffect(() => {
     if (data) return;
     dispatch(getExhibitionDetailData(id));
-  }, [dispatch]);
+  }, [data, dispatch]);
 
   if (loading && !data) return <PageLoading></PageLoading>;
   if (error) return <LoadingError error={error} getData={getExhibitionDetailData} getDataParams={[id]}></LoadingError>;

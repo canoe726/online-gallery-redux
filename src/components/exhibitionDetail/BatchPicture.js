@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
-// API.ROOT_IMG +
+import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// import { onlineGalleryApiConstantsSample as API } from '../../api/onlineGalleryApiConstants';
 
 const BatchPicture = ({ data, toggleModal }) => {
   const dispatch = useDispatch();
@@ -20,12 +20,12 @@ const BatchPicture = ({ data, toggleModal }) => {
       {data.type === 'IMAGE'
         ? <img
             className="img lazy"
-            data-src={data.image}
+            data-src={API.ROOT_IMG + data.image}
             alt={'batch-img-item'}
           ></img>
         : <video
             className="video play lazy"
-            data-src={data.image}
+            data-src={API.ROOT_VIDEO + data.image}
             alt={'batch-img-item'}
             autoPlay={true}
             muted={true}

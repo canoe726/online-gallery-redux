@@ -34,11 +34,7 @@ const ExhibitionDetail = ({
       dispatch(toggleModal(0));
       dispatch(changeSlideIdx(0));
     };
-  }, []);
-
-  useEffect(() => {
-    lazyLoad();
-  });
+  }, [lazyLoad]);
 
   return (
     <div
@@ -49,11 +45,7 @@ const ExhibitionDetail = ({
         <div className={
           idx === 0
             ? 'hero-section active-slide'
-            : idx === data.length - 1
-              ? data.length > 2
-                  ? 'hero-section prev-slide'
-                  : 'hero-section'
-              : 'hero-section'}
+            : 'hero-section'}
           key={idx}
         >
           <ExhibitionDetailItem
@@ -68,6 +60,7 @@ const ExhibitionDetail = ({
         slideIdx={slideIdx}
         length={data.length}
         changeSlideIdx={changeSlideIdx}
+        buttonToggle={buttonToggle}
         exhibitionDetailWrapperRef={exhibitionDetailWrapperRef}
       ></ArtworkDot>
 
@@ -79,9 +72,24 @@ const ExhibitionDetail = ({
 
       <div className="prev hidden" onClick={() => changeSlide(-1)} ref={prevRef}>&#10094;</div>
       <div className={data.length !== 1 ? 'next' : 'next hidden'} onClick={() => changeSlide(1)} ref={nextRef}>&#10095;</div>
-      <div className="retry hidden" ref={retryRef}>다시보기</div>
+      <div className="retry hidden" ref={retryRef} onClick={rollbackSlide}>다시보기</div>
     </div>
   );
+
+  function rollbackSlide () {
+    retryRef.current.classList.add('hidden');
+
+    const wrapper = exhibitionDetailWrapperRef.current;
+    const element = wrapper.querySelectorAll('.hero-section');
+
+    for (let i = 0; i < data.length; i++) {
+      element[i].classList.remove('hide-slide');
+      element[i].classList.remove('active-slide');
+    }
+    element[0].classList.add('active-slide');
+    buttonToggle(0);
+    dispatch(changeSlideIdx(0));
+  }
 
   function whenWheel (e) {
     const wheelDir = e.deltaY;
@@ -95,30 +103,45 @@ const ExhibitionDetail = ({
 
   function changeSlide (direction) {
     const slideIdxTemp = slideIdx + direction;
-    if (slideIdxTemp < 0 || slideIdxTemp >= data.length) return -1;
+    const wrapper = exhibitionDetailWrapperRef.current;
+    const element = wrapper.querySelectorAll('.hero-section');
 
-    if (direction > 0) {
-      scrollDownAnimation(slideIdx, data.length);
-    } else {
-      scrollUpAnimation(slideIdx, data.length);
+    buttonToggle(slideIdxTemp);
+    if (slideIdx === data.length - 1) {
+      if (!retryRef.current.classList.contains('hidden')) {
+        retryRef.current.classList.add('hidden');
+        return -1;
+      }
     }
 
-    console.log('slideIdxTemp : ', slideIdxTemp);
+    if (slideIdxTemp >= data.length) {
+      retryRef.current.classList.remove('hidden');
+      nextRef.current.classList.add('hidden');
+      return -1;
+    }
+
+    if (direction < 0) {
+      element[slideIdxTemp].classList.remove('hide-slide');
+      element[slideIdx].classList.remove('active-slide');
+    } else {
+      element[slideIdx].classList.add('hide-slide');
+      element[slideIdxTemp].classList.add('active-slide');
+    }
+
+    dispatch(changeSlideIdx(slideIdxTemp));
+  }
+
+  function buttonToggle (slideIdxTemp) {
     if (slideIdxTemp === 0) {
       prevRef.current.classList.add('hidden');
       nextRef.current.classList.remove('hidden');
     } else if (slideIdxTemp === data.length - 1) {
-      // retryRef.current.classList.remove('hidden');
       prevRef.current.classList.remove('hidden');
-      nextRef.current.classList.add('hidden');
+      nextRef.current.classList.remove('hidden');
     } else {
-      // if (!retryRef.current.classList.contains('hidden')) {
-      //   retryRef.current.classList.add('hidden');
-      // }
       prevRef.current.classList.remove('hidden');
       nextRef.current.classList.remove('hidden');
     }
-    dispatch(changeSlideIdx(slideIdxTemp));
   }
 
   function wheelChangeExhibition () {
@@ -131,52 +154,6 @@ const ExhibitionDetail = ({
     } else {
       changeSlide(1);
     }
-  }
-
-  function scrollUpAnimation (idx, length) {
-    const wrapper = exhibitionDetailWrapperRef.current;
-    const element = wrapper.querySelectorAll('.hero-section');
-
-    let before = idx - 1;
-    let next = idx + 1;
-
-    wrapper.classList.add('load-prev');
-    wrapper.classList.remove('load-next');
-
-    if (before < 0) before = length - 1;
-    if (next > length - 1) next = 0;
-
-    element[next].classList.remove('prev-slide');
-    element[next].classList.remove('active-slide');
-
-    element[idx].classList.add('prev-slide');
-    element[idx].classList.remove('active-slide');
-
-    element[before].classList.add('active-slide');
-    element[before].classList.remove('prev-slide');
-  }
-
-  function scrollDownAnimation (idx, length) {
-    const wrapper = exhibitionDetailWrapperRef.current;
-    const element = wrapper.querySelectorAll('.hero-section');
-
-    let before = idx - 1;
-    let next = idx + 1;
-
-    wrapper.classList.add('load-next');
-    wrapper.classList.remove('load-prev');
-
-    if (before < 0) before = length - 1;
-    if (next > length - 1) next = 0;
-
-    element[before].classList.remove('prev-slide');
-    element[before].classList.remove('active-slide');
-
-    element[idx].classList.add('prev-slide');
-    element[idx].classList.remove('active-slide');
-
-    element[next].classList.add('active-slide');
-    element[next].classList.remove('prev-slide');
   }
 };
 

@@ -20,7 +20,6 @@ function ExhibitionContainer () {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (data) return;
     dispatch(getExhibitionData());
   }, [dispatch]);
 

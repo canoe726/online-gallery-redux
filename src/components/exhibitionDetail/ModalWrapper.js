@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
-// API.ROOT_IMG +
+import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// import { onlineGalleryApiConstantsSample as API } from '../../api/onlineGalleryApiConstants';
 
 const ModalWrapper = ({ modalActive, data, toggleModal }) => {
   const dispatch = useDispatch();
@@ -51,17 +51,17 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
           {data.exhibitionItem.type === 'IMAGE'
             ? <img
                 className={modalActive ? 'modal-img' : 'modal-img hidden'}
-                src={data.exhibitionItem.image}
+                src={API.ROOT_IMG + data.exhibitionItem.image}
                 alt="modal-img"
                 ref={modalImgRef}
               ></img>
             : <video
                 className={modalActive ? 'modal-video' : 'modal-video hidden'}
-                src={data.exhibitionItem.image}
+                src={API.ROOT_VIDEO + data.exhibitionItem.image}
                 alt="modal-video"
                 ref={modalVideoRef}
+                controls={true}
                 onLoad={initVideoTime}
-                onClick={toggleVideo}
               ></video>}
         </div>
       </div>
@@ -71,14 +71,6 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
   function initVideoTime () {
     modalVideoRef.current.currentTime = 0;
     modalVideoRef.current.volume = 1.0;
-  }
-
-  function toggleVideo () {
-    if (modalVideoRef.current.paused) {
-      modalVideoRef.current.play();
-    } else {
-      modalVideoRef.current.pause();
-    }
   }
 
   function whenMouseDown (e) {
@@ -181,7 +173,7 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
     // className of modalActive - 0 : '', 1 : sketch, 2 : sketch out
     if (modalActive === 1) {
       if (isModalBackground) {
-        if (data.exhibitionItem.type === 'video') {
+        if (data.exhibitionItem.type === 'VIDEO') {
           const modalVideo = modalVideoRef.current;
           // 비디오 초기화
           if (modalVideo.src) {
@@ -194,7 +186,7 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
         dispatch(toggleModal(2));
       // X 버튼 클릭
       } else if (target.classList[0] === 'close') {
-        if (data.exhibitionItem.type === 'video') {
+        if (data.exhibitionItem.type === 'VIDEO') {
           const modalVideo = modalVideoRef.current;
           // 비디오 초기화
           if (modalVideo.src) {

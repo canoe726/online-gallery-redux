@@ -14,6 +14,8 @@ export const onlineGalleryApiConstants = {
 
 export const onlineGalleryApiConstantsSample = {
   ROOT: 'http://localhost:4000/',
+  ROOT_IMG: '',
+  ROOT_VIDEO: '',
   INFO: 'INFO',
   HOME_BANNER: 'HOME_BANNER',
   HOME_EXHIBITION: 'HOME_EXHIBITION',

@@ -24,8 +24,6 @@ const Artist = ({
   const noMoreLoadingCaption = '모든 작가를 불러왔습니다.';
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     window.addEventListener('load', resizeAllMasonryItems);
     window.addEventListener('resize', resizeAllMasonryItems);
 

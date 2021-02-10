@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
-import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { lazyLoad } from '../../lib/lazyLoading';
 
-// import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
-// API.ROOT_IMG +
+import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+// import { onlineGalleryApiConstantsSample as API } from '../../api/onlineGalleryApiConstants';
 
-const MasonryItem = ({ history, exhibitionItem, masonry }) => {
+const MasonryItem = ({ exhibitionItem, masonry }) => {
   const url = `/exhibition/${exhibitionItem.exhibitionId}`;
 
   useEffect(() => {
@@ -19,9 +17,9 @@ const MasonryItem = ({ history, exhibitionItem, masonry }) => {
     <div
       className="masonry-item"
       onLoad={resizeMasonryItem}
-      onClick={() => history.push(url)}
+      onClick={() => { window.location = url; }}
     >
-      <img className="item-img lazy" data-src={exhibitionItem.posterImage}></img>
+      <img className="item-img" src={API.ROOT_IMG + exhibitionItem.posterImage}></img>
       <div className="caption-wrapper">
         <div className="caption title">{exhibitionItem.title}</div>
         <div className="caption participants">{exhibitionItem.participants}</div>
@@ -45,9 +43,8 @@ const MasonryItem = ({ history, exhibitionItem, masonry }) => {
 };
 
 MasonryItem.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
   exhibitionItem: PropTypes.object,
   masonry: PropTypes.object
 };
 
-export default withRouter(MasonryItem);
+export default MasonryItem;

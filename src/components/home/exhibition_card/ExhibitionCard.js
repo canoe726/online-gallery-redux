@@ -5,8 +5,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { lazyLoad } from '../../../lib/lazyLoading';
 
-// import { onlineGalleryApiConstants as API } from '../../../api/onlineGalleryApiConstants';
-// API.ROOT_IMG +
+import { onlineGalleryApiConstants as API } from '../../../api/onlineGalleryApiConstants';
+// import { onlineGalleryApiConstantsSample as API } from '../../../api/onlineGalleryApiConstants';
 
 const ExhibitionCard = ({ history, data }) => {
   const url = `/exhibition/${data.exhibitionId}`;
@@ -20,7 +20,7 @@ const ExhibitionCard = ({ history, data }) => {
       className="card-item"
       onClick={() => history.push(url)}
     >
-      <img className="cover-img lazy" data-src={data.posterImage}></img>
+      <img className="cover-img lazy" data-src={API.ROOT_IMG + data.posterImage}></img>
       <div className="caption-wrapper">
           <div className="caption-text">{data.title}</div>
       </div>

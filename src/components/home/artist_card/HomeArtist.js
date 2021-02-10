@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 
 import ArtistCard from './ArtistCard';
 
-// 수정 필요
 const HomeArtist = ({ data }) => {
   const cardWrapperRef = useRef();
-  // const cardItemRef = useRef();
   const prevRef = useRef();
   const nextRef = useRef();
 
@@ -34,7 +32,7 @@ const HomeArtist = ({ data }) => {
 
   function scrollHorizontal (isRight) {
     const cardWrapper = cardWrapperRef.current;
-    const cardItem = document.querySelector('.artist-introduction-wrapper .card-wrapper .card-item');
+    const cardItem = cardWrapper.querySelector('.card-item');
     const scrollWidth = cardWrapper.scrollWidth - cardWrapper.clientWidth;
     const cardItemWidth = cardItem.clientWidth * 2;
 

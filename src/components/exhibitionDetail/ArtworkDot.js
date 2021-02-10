@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const ArtworkDot = ({ slideIdx, length, changeSlideIdx, exhibitionDetailWrapperRef }) => {
+const ArtworkDot = ({ slideIdx, length, changeSlideIdx, buttonToggle, exhibitionDetailWrapperRef }) => {
   const artworkDotRef = useRef();
   const dispatch = useDispatch();
 
@@ -39,73 +39,24 @@ const ArtworkDot = ({ slideIdx, length, changeSlideIdx, exhibitionDetailWrapperR
     if (idx === slideIdx) {
       return -1;
     } else {
+      const wrapper = exhibitionDetailWrapperRef.current;
+      const element = wrapper.querySelectorAll('.hero-section');
       // next animation
       if (slideIdx < idx) {
-        let tempIdx = idx - 1;
-        if (tempIdx < 0) tempIdx = length;
-        scrollDownAnimation(tempIdx, length);
+        for (let i = 0; i < idx - slideIdx; i++) {
+          element[slideIdx + i].classList.add('hide-slide');
+          element[slideIdx + i + 1].classList.add('active-slide');
+        }
       // prev animation
       } else {
-        let tempIdx = idx + 1;
-        if (tempIdx >= length) tempIdx = 0;
-        scrollUpAnimation(tempIdx, length);
+        for (let i = 0; i < slideIdx - idx; i++) {
+          element[slideIdx - i - 1].classList.remove('hide-slide');
+          element[slideIdx - i].classList.remove('active-slide');
+        }
       }
+      buttonToggle(idx);
       dispatch(changeSlideIdx(idx));
     }
-  }
-
-  function scrollUpAnimation (idx, length) {
-    const wrapper = exhibitionDetailWrapperRef.current;
-    const element = wrapper.querySelectorAll('.hero-section');
-    element.forEach(item => {
-      item.classList.remove('prev-slide');
-      item.classList.remove('active-slide');
-    });
-
-    let before = idx - 1;
-    let next = idx + 1;
-
-    wrapper.classList.add('load-prev');
-    wrapper.classList.remove('load-next');
-
-    if (before < 0) before = length - 1;
-    if (next > length - 1) next = 0;
-
-    element[next].classList.remove('prev-slide');
-    element[next].classList.remove('active-slide');
-
-    element[idx].classList.add('prev-slide');
-    element[idx].classList.remove('active-slide');
-
-    element[before].classList.add('active-slide');
-    element[before].classList.remove('prev-slide');
-  }
-
-  function scrollDownAnimation (idx) {
-    const wrapper = exhibitionDetailWrapperRef.current;
-    const element = wrapper.querySelectorAll('.hero-section');
-    element.forEach(item => {
-      item.classList.remove('prev-slide');
-      item.classList.remove('active-slide');
-    });
-
-    let before = idx - 1;
-    let next = idx + 1;
-
-    wrapper.classList.add('load-next');
-    wrapper.classList.remove('load-prev');
-
-    if (before < 0) before = length - 1;
-    if (next > length - 1) next = 0;
-
-    element[before].classList.remove('prev-slide');
-    element[before].classList.remove('active-slide');
-
-    element[idx].classList.add('prev-slide');
-    element[idx].classList.remove('active-slide');
-
-    element[next].classList.add('active-slide');
-    element[next].classList.remove('prev-slide');
   }
 };
 
@@ -113,6 +64,7 @@ ArtworkDot.propTypes = {
   slideIdx: PropTypes.number,
   length: PropTypes.number,
   changeSlideIdx: PropTypes.func,
+  buttonToggle: PropTypes.func,
   exhibitionDetailWrapperRef: PropTypes.object
 };
 

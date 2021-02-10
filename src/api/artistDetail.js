@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { onlineGalleryApiConstantsSample as API } from './onlineGalleryApiConstants';
-// import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
+// import { onlineGalleryApiConstantsSample as API } from './onlineGalleryApiConstants';
+import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
 
 export const getArtistDetailData = async (id) => {
   const cancelTokenSource = axios.CancelToken.source();

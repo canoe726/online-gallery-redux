@@ -24,24 +24,17 @@ const Exhibition = ({
   const noMoreLoadingCaption = '모든 작품을 불러왔습니다.';
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
+    console.log('create exhibition app');
+    window.addEventListener('scroll', infinityScroll);
     window.addEventListener('load', resizeAllMasonryItems);
     window.addEventListener('resize', resizeAllMasonryItems);
 
     return () => {
       window.removeEventListener('load', resizeAllMasonryItems);
       window.removeEventListener('resize', resizeAllMasonryItems);
-    };
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('scroll', infinityScroll);
-
-    return () => {
       window.removeEventListener('scroll', infinityScroll);
     };
-  }, [infinityScroll]);
+  }, [infinityScroll, resizeAllMasonryItems]);
 
   return (
     <div className="exhibition-wrapper">
@@ -69,8 +62,9 @@ const Exhibition = ({
     const clientHeight = document.documentElement.clientHeight;
 
     // 스크롤이 최하단이면서 fetch 중이 아니면서 데이터가 더 있을 때 호출
-    if (scrollTop + clientHeight >= scrollHeight) {
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
       if (!loading) {
+        console.log('load more data');
         dispatch(getExhibitionData());
       }
     }

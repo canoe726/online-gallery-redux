@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const BatchNote = ({ data }) => {
   const { note, textSize, textColor, bgColor, borderColor, round, padding, positionHorizSize, positionVertSize } = data;
-  // const { participants } = data.exhibitionItem;
 
   return (
     <div
