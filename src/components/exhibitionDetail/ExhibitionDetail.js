@@ -103,16 +103,18 @@ const ExhibitionDetail = ({
 
   function changeSlide (direction) {
     const slideIdxTemp = slideIdx + direction;
-    const wrapper = exhibitionDetailWrapperRef.current;
-    const element = wrapper.querySelectorAll('.hero-section');
-
-    buttonToggle(slideIdxTemp);
     if (slideIdx === data.length - 1) {
       if (!retryRef.current.classList.contains('hidden')) {
         retryRef.current.classList.add('hidden');
         return -1;
       }
     }
+    if (slideIdxTemp < 0) return -1;
+
+    const wrapper = exhibitionDetailWrapperRef.current;
+    const element = wrapper.querySelectorAll('.hero-section');
+
+    buttonToggle(slideIdxTemp);
 
     if (slideIdxTemp >= data.length) {
       retryRef.current.classList.remove('hidden');

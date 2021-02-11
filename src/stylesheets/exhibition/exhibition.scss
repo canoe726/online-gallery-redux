@@ -21,5 +21,83 @@
     }
   }
 
-  @import "masonryItem.scss";
+  .my-masonry-grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    margin-left: -30px; /* gutter size offset */
+    width: auto;
+
+    .my-masonry-grid_column {
+      padding-left: 30px; /* gutter size */
+      background-clip: padding-box;
+    }
+     
+    /* Style your items */
+    .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+      margin-bottom: 30px;
+    }
+
+    .masonry-item {
+      cursor: pointer;
+      position: relative;
+      transition: 2s all;
+      display: flex;
+      align-items: center;
+  
+      .item-img {
+        width: 100%;
+        min-height: 250px;
+        max-height: 350px;
+        border-radius: 10px;
+        transition: 2s ease;
+        object-fit: cover;
+      }
+  
+      .lazy {
+        height: 500px;
+        opacity: 0;
+      }
+  
+      .caption-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: 0.5s ease;
+        opacity: 0;
+  
+        .caption {
+          color: black;
+          text-align: center;
+          margin-bottom: 15px;
+          word-break: break-all;
+          white-space: break-spaces;
+          max-width: 300px;
+          line-height: 2em;
+        }
+  
+        .title {
+          font-size: large;
+          font-weight: bold;
+        }
+  
+        .date {
+          font-size: x-small;
+          padding-top: 10%;
+        }
+      }
+  
+      .item-img:hover {
+        opacity: 0.1;
+      }
+  
+      .item-img:hover + .caption-wrapper {
+        opacity: 1;
+        pointer-events: none;
+      }
+    }
+  }
+
+  // @import "masonryItem.scss";
 }

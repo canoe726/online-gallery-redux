@@ -17,7 +17,6 @@ const MasonryItem = ({ history, artistItem, masonry }) => {
   return (
     <div
       className="masonry-item"
-      onLoad={resizeMasonryItem}
       onClick={() => history.push(url)}
       >
       <img className="item-img lazy" data-src={API.ROOT_IMG + artistItem.profileImage}></img>
@@ -28,19 +27,6 @@ const MasonryItem = ({ history, artistItem, masonry }) => {
       </div>
     </div>
   );
-
-  function resizeMasonryItem (item) {
-    const target = item.target;
-
-    const grid = masonry.current;
-    const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-    const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-
-    const itemImg = target;
-    const rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-
-    target.parentNode.style.gridRowEnd = 'span ' + rowSpan;
-  }
 };
 
 MasonryItem.propTypes = {

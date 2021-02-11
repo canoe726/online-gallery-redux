@@ -12,7 +12,7 @@ const Menu = ({
   toggleIsSearch,
   getSearchData,
   initSearchData,
-  initArtistSearchList
+  initSearchListData
 }) => {
   return (
     <div className="header-menu">
@@ -30,7 +30,7 @@ const Menu = ({
         toggleIsSearch={toggleIsSearch}
         getSearchData={getSearchData}
         initSearchData={initSearchData}
-        initArtistSearchList={initArtistSearchList}
+        initSearchListData={initSearchListData}
       ></Search>
     </div>
   );
@@ -43,7 +43,7 @@ Menu.propTypes = {
   toggleIsSearch: PropTypes.func,
   getSearchData: PropTypes.func,
   initSearchData: PropTypes.func,
-  initArtistSearchList: PropTypes.func
+  initSearchListData: PropTypes.func
 };
 
 export default Menu;

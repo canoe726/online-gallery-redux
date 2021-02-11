@@ -28,7 +28,7 @@ export const getExhibitionSearchData = (input) => ({
   payload: input
 });
 
-export const initArtistSearchList = createAction(INIT_EXHIBITION_SEARCH_LIST);
+export const initExhibitionList = createAction(INIT_EXHIBITION_SEARCH_LIST);
 
 // Create Sagas
 const getExhibitionDataSaga = createPromiseSaga(GET_EXHIBITION_DATA, exhibitionAPI.getExhibitionData);

@@ -1,14 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import Masonry from 'react-masonry-css';
 
 import '../../stylesheets/artist/artist.scss';
+// import { resizeAllMasonryItems } from '../../lib/masonry';
 
 import MasonryItem from './MasonryItem';
-import { resizeAllMasonryItems } from '../../lib/masonry';
 import MasonryLoading from '../loading/MasonryLoading';
 import NoMoreLoading from '../loading/NoMoreLoading';
 import LoadingError from '../error/LoadingError';
+// import Masonry from './Masonry';
 
 const Artist = ({
   data,
@@ -19,26 +21,37 @@ const Artist = ({
   isAllLoaded,
   getArtistData
 }) => {
+  const breakpointColumnsObj = {
+    default: 4,
+    1100: 3,
+    700: 2,
+    500: 1
+  };
   const dispatch = useDispatch();
   const masonryRef = useRef();
   const noMoreLoadingCaption = '모든 작가를 불러왔습니다.';
 
   useEffect(() => {
     // window.addEventListener('scroll', infinityScroll);
-    window.addEventListener('load', resizeAllMasonryItems);
-    window.addEventListener('resize', resizeAllMasonryItems);
+    // window.addEventListener('load', resizeAllMasonryItems);
+    // window.addEventListener('resize', resizeAllMasonryItems);
 
     return () => {
       // window.removeEventListener('scroll', infinityScroll);
-      window.removeEventListener('load', resizeAllMasonryItems);
-      window.removeEventListener('resize', resizeAllMasonryItems);
+      // window.removeEventListener('load', resizeAllMasonryItems);
+      // window.removeEventListener('resize', resizeAllMasonryItems);
     };
   }, []);
 
   return (
     <div className="artist-wrapper">
       <div className="masonry-wrapper">
-        <div className="masonry" ref={masonryRef}>
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+          ref={masonryRef}
+        >
           {data && data.length > 0
             ? data.map((item, idx) =>
               <MasonryItem
@@ -47,7 +60,7 @@ const Artist = ({
                 masonry={masonryRef}
               ></MasonryItem>)
             : ''}
-        </div>
+        </Masonry>
       </div>
       {isAllLoaded ? <NoMoreLoading pageIdx={1} caption={noMoreLoadingCaption}></NoMoreLoading> : ''}
       {loading

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-const Search = ({ history, searchIsActive, toggleIsSearch, getSearchData, initSearchData, initArtistSearchList }) => {
+const Search = ({ history, searchIsActive, toggleIsSearch, getSearchData, initSearchData, initSearchListData }) => {
   const dispatch = useDispatch();
 
   const formFieldRef = useRef();
@@ -48,6 +48,7 @@ const Search = ({ history, searchIsActive, toggleIsSearch, getSearchData, initSe
     }
 
     if (formFieldRef.current.value.length > 0) {
+      console.log('formFieldRef.current.value : ', formFieldRef.current.value);
       const url = history.location.pathname;
       const page = url.split('/')[1];
       const value = formFieldRef.current.value;
@@ -55,11 +56,14 @@ const Search = ({ history, searchIsActive, toggleIsSearch, getSearchData, initSe
       dispatch(getSearchData({ value: value, url: url }));
     } else {
       dispatch(initSearchData());
+      dispatch(initSearchListData());
 
       formFieldRef.current.classList.toggle('active');
       formLabelRef.current.classList.toggle('active');
 
       formFieldRef.current.value = '';
+
+      history.push('/exhibition');
     }
   }
 
@@ -84,7 +88,7 @@ Search.propTypes = {
   toggleIsSearch: PropTypes.func,
   getSearchData: PropTypes.func,
   initSearchData: PropTypes.func,
-  initArtistSearchList: PropTypes.func
+  initSearchListData: PropTypes.func
 };
 
 export default withRouter(Search);

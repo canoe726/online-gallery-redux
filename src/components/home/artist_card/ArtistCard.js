@@ -9,7 +9,6 @@ import { onlineGalleryApiConstants as API } from '../../../api/onlineGalleryApiC
 
 const ArtistCard = ({ history, data }) => {
   const url = `/artist/${data.artistId}`;
-  console.log(data);
 
   useEffect(() => {
     lazyLoad();
