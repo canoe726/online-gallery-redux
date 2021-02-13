@@ -6,9 +6,7 @@ import '../../stylesheets/artistDetail/artistDetail.scss';
 import ArtistInfoWrapper from './ArtistInfoWrapper';
 
 import { resizeAllMasonryItems } from '../../lib/masonry';
-import { lazyLoad } from '../../lib/lazyLoading';
-
-import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+import lazyLoad from '../../lib/lazyLoading';
 
 const ArtistDetail = ({ data }) => {
   const zoomImgRef = useRef();
@@ -35,7 +33,7 @@ const ArtistDetail = ({ data }) => {
         <div className="thumbnail-wrapper zoom">
           <img
             className="main-img lazy"
-            data-src={API.ROOT_IMG + data.artist.profileImage}
+            data-src={data.artist.profileImage}
             alt="author-main-img"
             ref={zoomImgRef}
           ></img>

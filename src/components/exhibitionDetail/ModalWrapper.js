@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
-
 const ModalWrapper = ({ modalActive, data, toggleModal }) => {
   const dispatch = useDispatch();
 
@@ -47,21 +45,22 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
             <rect x="0" y="0" fill="none" rx="0" ry="0" width="100%" height="100%"></rect>
           </svg>
 
-          {data.exhibitionItem.type === 'IMAGE'
-            ? <img
-                className={modalActive ? 'modal-img' : 'modal-img hidden'}
-                src={API.ROOT_IMG + data.exhibitionItem.image}
-                alt="modal-img"
-                ref={modalImgRef}
-              ></img>
-            : <video
-                className={modalActive ? 'modal-video' : 'modal-video hidden'}
-                src={API.ROOT_VIDEO + data.exhibitionItem.image}
-                alt="modal-video"
-                ref={modalVideoRef}
-                controls={true}
-                onLoad={initVideoTime}
-              ></video>}
+          {data.exhibitionItem.type === 'IMAGE' &&
+            <img
+              className={modalActive ? 'modal-img' : 'modal-img hidden'}
+              src={data.exhibitionItem.image}
+              alt="modal-img"
+              ref={modalImgRef}
+            ></img>}
+          {data.exhibitionItem.type === 'VIDEO' &&
+            <video
+              className={modalActive ? 'modal-video' : 'modal-video hidden'}
+              src={data.exhibitionItem.image}
+              alt="modal-video"
+              ref={modalVideoRef}
+              controls={true}
+              onLoad={initVideoTime}
+            ></video>}
         </div>
       </div>
     </div>

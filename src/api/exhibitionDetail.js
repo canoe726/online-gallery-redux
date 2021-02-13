@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
+import addDomain from '../lib/addDomain';
 
 export const getExhibitionDetailData = async (id) => {
   const cancelTokenSource = axios.CancelToken.source();
@@ -11,6 +12,7 @@ export const getExhibitionDetailData = async (id) => {
   const response = await axios.get(`${API.ROOT + API.EXHIBITION_DETAIL}`, { cancelToken: cancelTokenSource.token });
   // const response = await axios.get(`${API.ROOT + API.EXHIBITION}/${id}`, { cancelToken: cancelTokenSource.token });
   try {
+    response.data.result = addDomain('exhibition/:id', response.data.result);
     clearTimeout(timer);
     return response.data.result;
   } catch (e) {

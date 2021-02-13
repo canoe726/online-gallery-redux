@@ -43,7 +43,8 @@ export function * artistSaga () {
 // Initial State
 const initialState = {
   artistList: reducerUtils.initial(),
-  searchList: reducerUtils.initial()
+  searchList: reducerUtils.initial(),
+  isAllLoaded: false
 };
 
 // Reducer

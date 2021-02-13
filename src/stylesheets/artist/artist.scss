@@ -42,6 +42,8 @@
       transition: 2s all;
       display: flex;
       align-items: center;
+
+      @import '../util/skeleton.scss';
   
       .item-img {
         width: 100%;

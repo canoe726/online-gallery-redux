@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
+import addDomain from '../lib/addDomain';
 
 export const getHomeBanner = async () => {
   const cancelTokenSource = axios.CancelToken.source();
@@ -11,6 +12,7 @@ export const getHomeBanner = async () => {
   const response = await axios.get(API.ROOT + API.HOME_BANNER, { cancelToken: cancelTokenSource.token });
   try {
     clearTimeout(timer);
+    response.data.result = addDomain('home/banner', response.data.result);
     return response.data.result;
   } catch (e) {
     return {
@@ -30,6 +32,7 @@ export const getHomeExhibition = async () => {
   const response = await axios.get(API.ROOT + API.HOME_EXHIBITION, { cancelToken: cancelTokenSource.token });
   try {
     clearTimeout(timer);
+    response.data.result = addDomain('home/exhibition', response.data.result);
     return response.data.result;
   } catch (e) {
     return {
@@ -49,6 +52,7 @@ export const getHomeArtist = async () => {
   const response = await axios.get(API.ROOT + API.HOME_ARTIST, { cancelToken: cancelTokenSource.token });
   try {
     clearTimeout(timer);
+    response.data.result = addDomain('home/artist', response.data.result);
     return response.data.result;
   } catch (e) {
     return {

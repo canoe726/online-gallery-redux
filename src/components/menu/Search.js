@@ -48,7 +48,6 @@ const Search = ({ history, searchIsActive, toggleIsSearch, getSearchData, initSe
     }
 
     if (formFieldRef.current.value.length > 0) {
-      console.log('formFieldRef.current.value : ', formFieldRef.current.value);
       const url = history.location.pathname;
       const page = url.split('/')[1];
       const value = formFieldRef.current.value;
@@ -62,8 +61,6 @@ const Search = ({ history, searchIsActive, toggleIsSearch, getSearchData, initSe
       formLabelRef.current.classList.toggle('active');
 
       formFieldRef.current.value = '';
-
-      history.push('/exhibition');
     }
   }
 
@@ -74,7 +71,7 @@ const Search = ({ history, searchIsActive, toggleIsSearch, getSearchData, initSe
     const searchUrl = ['/exhibition', '/artist'];
     let activeSearch = false;
     searchUrl.forEach(url => {
-      if (history.location.pathname.includes(url)) {
+      if (history.location.pathname === url) {
         activeSearch = true;
       }
     });

@@ -68,6 +68,7 @@ export const handleAsyncActions = (type, key, keepData = false, append = false) 
         return append
           ? {
               ...state,
+              isAllLoaded: state[key].data && state[key].data.length > 0,
               [key]: !state[key].data
                 ? reducerUtils.success(action.payload)
                 : {
@@ -78,6 +79,7 @@ export const handleAsyncActions = (type, key, keepData = false, append = false) 
             }
           : {
               ...state,
+              isAllLoaded: false,
               [key]: reducerUtils.success(action.payload)
             };
       case ERROR:

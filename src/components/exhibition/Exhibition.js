@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-css';
@@ -26,7 +26,6 @@ const Exhibition = ({
     500: 1
   };
   const dispatch = useDispatch();
-  const masonryRef = useRef();
   const noMoreLoadingCaption = '모든 작품을 불러왔습니다.';
 
   return (
@@ -36,27 +35,24 @@ const Exhibition = ({
           breakpointCols={breakpointColumnsObj}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
-          ref={masonryRef}
         >
-          {data && data.length > 0
-            ? data.map((item, idx) =>
+          {(data && data.length > 0) &&
+            data.map((item, idx) =>
               <MasonryItem
                 key={idx}
                 exhibitionItem={item}
-                masonry={masonryRef}
-              ></MasonryItem>)
-            : ''}
+              ></MasonryItem>)}
         </Masonry>
       </div>
-      {isAllLoaded ? <NoMoreLoading pageIdx={0} caption={noMoreLoadingCaption}></NoMoreLoading> : ''}
-      {loading
-        ? <MasonryLoading></MasonryLoading>
-        : !error
-            ? <div className="more">
-                <div onClick={loadMoreData}>더보기</div>
-              </div>
-            : ''}
-      {error ? <LoadingError error={error} getData={getData} getDataParams={getDataParams}></LoadingError> : ''}
+      {isAllLoaded && <NoMoreLoading pageIdx={0} caption={noMoreLoadingCaption}></NoMoreLoading>}
+      {error && <LoadingError error={error} getData={getData} getDataParams={getDataParams}></LoadingError>}
+      {isAllLoaded || error
+        ? ''
+        : loading
+          ? <MasonryLoading></MasonryLoading>
+          : <div className="more">
+              <div onClick={loadMoreData}>더보기</div>
+            </div>}
     </div>
   );
 

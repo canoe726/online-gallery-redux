@@ -23,8 +23,11 @@ function loadSearchPage (input) {
     error: null
   };
 
-  let isAllLoaded = false;
-  isAllLoaded = data ? data.length === 0 : false;
+  const { isAllLoaded } = useSelector(
+    state => state.exhibition
+  ) || {
+    isAllLoaded: false
+  };
 
   const dispatch = useDispatch();
 
@@ -55,8 +58,11 @@ function loadExhibitionPage () {
     error: null
   };
 
-  let isAllLoaded = false;
-  isAllLoaded = data ? data.length === 0 : false;
+  const { isAllLoaded } = useSelector(
+    state => state.exhibition
+  ) || {
+    isAllLoaded: false
+  };
 
   const dispatch = useDispatch();
 

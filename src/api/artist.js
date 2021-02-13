@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
+import addDomain from '../lib/addDomain';
 
 let artistPage = 0;
 let artistSize = 20;
@@ -19,6 +20,7 @@ export const getArtistData = async () => {
   const response = await axios.get(`${API.ROOT + API.ARTIST}`, { cancelToken: cancelTokenSource.token });
   // const response = await axios.get(`${API.ROOT + API.ARTIST}?page=${artistPage}&size=${artistSize}`, { cancelToken: cancelTokenSource.token });
   try {
+    response.data.result = addDomain('artist', response.data.result);
     clearTimeout(timer);
     artistSize = 10;
     artistPage += 1;

@@ -43,7 +43,8 @@ export function * exhibitionSaga () {
 // Initial State
 const initialState = {
   exhibitionList: reducerUtils.initial(),
-  searchList: reducerUtils.initial()
+  searchList: reducerUtils.initial(),
+  isAllLoaded: false
 };
 
 // Reducer

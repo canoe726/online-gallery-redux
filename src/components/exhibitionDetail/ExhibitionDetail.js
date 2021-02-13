@@ -7,7 +7,7 @@ import '../../stylesheets/exhibitionDetail/exhibitionDetail.scss';
 import ExhibitionDetailItem from './ExhibitionDetailItem';
 import ArtworkDot from './ArtworkDot';
 import ModalWrapper from './ModalWrapper';
-import { lazyLoad } from '../../lib/lazyLoading';
+import lazyLoad from '../../lib/lazyLoading';
 import { useDebounce } from '../../lib/useDebounce';
 
 const ExhibitionDetail = ({
@@ -34,7 +34,7 @@ const ExhibitionDetail = ({
       dispatch(toggleModal(0));
       dispatch(changeSlideIdx(0));
     };
-  }, [lazyLoad]);
+  }, []);
 
   return (
     <div

@@ -5,6 +5,7 @@
   position: relative;
 
   @import '../util/prevNext.scss';
+  @import '../util/skeleton.scss';
 
   .prev, .next {
     z-index: 99;

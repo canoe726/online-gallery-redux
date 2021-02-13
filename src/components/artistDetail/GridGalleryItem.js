@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { lazyLoad } from '../../lib/lazyLoading';
+import lazyLoad from '../../lib/lazyLoading';
 
 const GridGalleryItem = ({ history, item }) => {
   useEffect(() => {

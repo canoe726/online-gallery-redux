@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { lazyLoad } from '../../../lib/lazyLoading';
-
-import { onlineGalleryApiConstants as API } from '../../../api/onlineGalleryApiConstants';
+import SkeletonImage from '../../common/skeletonImage';
+import lazyLoad from '../../../lib/lazyLoading';
 
 const ArtistCard = ({ history, data }) => {
   const url = `/artist/${data.artistId}`;
+  const skletonRef = useRef();
 
   useEffect(() => {
     lazyLoad();
@@ -19,7 +19,11 @@ const ArtistCard = ({ history, data }) => {
       className="card-item"
       onClick={() => history.push(url)}
     >
-      <img className="cover-img lazy" data-src={API.ROOT_IMG + data.profileImage}></img>
+      <SkeletonImage ref={skletonRef}></SkeletonImage>
+      <img className="cover-img lazy"
+        data-src={data.profileImage}
+        onLoad={() => { skletonRef.current.style.display = 'none'; }}
+      ></img>
       <div className="caption-wrapper">
           <div className="caption-text title">{data.nickname}</div>
           <div className="caption-text">{data.introduction}</div>

@@ -1,32 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
-
 const BackgroundWrapper = ({ data, whenWheel }) => {
   return (
-    <div className="background-wrapper"
-      onWheel={whenWheel}
-    >
-      {data.type === 'IMAGE'
-        ? <img className="img lazy" data-src={API.ROOT_IMG + data.value} alt={'background-img-item'}></img>
-        : data.type === 'COLOR'
-          ? <div className="color"
-              style={{ backgroundColor: data.value }}
-            ></div>
-          : data.type === 'VIDEO'
-            ? <video
-                className="video play lazy"
-                data-src={API.ROOT_VIDEO + data.value}
-                alt={'background-img-item'}
-                autoPlay={true}
-                muted={true}
-                onClick={(e) => toggleVideo(e)}
-                onEnded={(e) => whenEnded(e)}
-                ></video>
-            : '잘못된 타입 입니다.'}
+    <div className="background-wrapper" onWheel={whenWheel}>
+      {data.type === 'IMAGE' && <img className="img lazy" data-src={data.value} alt={'background-img-item'}></img>}
+      {data.type === 'COLOR' && <div className="color" style={{ backgroundColor: data.value }}></div>}
+      {data.type === 'VIDEO' &&
+        <video
+          className="video play lazy"
+          data-src={data.value}
+          alt={'background-video-item'}
+          muted={true}
+          onClick={(e) => toggleVideo(e)}
+          onEnded={(e) => whenEnded(e)}
+          onLoadedData={(e) => onLoadedElement(e, 'video')}
+        ></video>}
     </div>
   );
+
+  function onLoadedElement (e, type) {
+    if (type === 'video') {
+      alert('play');
+      const target = e.target;
+      target.play();
+    }
+  }
 
   function toggleVideo (e) {
     const target = e.target;

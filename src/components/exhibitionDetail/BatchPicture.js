@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { onlineGalleryApiConstants as API } from '../../api/onlineGalleryApiConstants';
+import SkeletonImage from '../common/skeletonImage';
 
 const BatchPicture = ({ data, toggleModal }) => {
   const dispatch = useDispatch();
+  const skletonRef = useRef();
 
   return (
     <div
@@ -16,25 +17,36 @@ const BatchPicture = ({ data, toggleModal }) => {
         height: `${data.originalVertSize / 5}px`
       }}
     >
-      {data.type === 'IMAGE'
-        ? <img
-            className="img lazy"
-            data-src={API.ROOT_IMG + data.image}
-            alt={'batch-img-item'}
-          ></img>
-        : <video
-            className="video play lazy"
-            data-src={API.ROOT_VIDEO + data.image}
-            alt={'batch-img-item'}
-            autoPlay={true}
-            muted={true}
-          ></video>}
+      <SkeletonImage ref={skletonRef}></SkeletonImage>
+      {data.type === 'IMAGE' &&
+        <img
+          className="img lazy"
+          data-src={data.image}
+          alt={'batch-img-item'}
+          onLoad={(e) => onLoadedElement(e, 'image')}
+        ></img>}
+      {data.type === 'VIDEO' &&
+        <video
+          className="video lazy"
+          data-src={data.image}
+          alt={'batch-img-item'}
+          muted={true}
+          onLoadedData={(e) => onLoadedElement(e, 'video')}
+        ></video>}
     </div>
   );
 
   function activeModal () {
     // className of modalActive - 0 : '', 1 : sketch, 2 : sketch out
     dispatch(toggleModal(1));
+  }
+
+  function onLoadedElement (e, type) {
+    skletonRef.current.style.display = 'none';
+    if (type === 'video') {
+      const target = e.target;
+      target.play();
+    }
   }
 };
 

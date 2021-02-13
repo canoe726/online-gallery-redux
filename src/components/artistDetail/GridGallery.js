@@ -14,21 +14,21 @@ const GridGallery = ({ data, loading, error, isAllLoaded, getArtistDetailPicture
   return (
     <>
       <div className="grid-gallery">
-        {data && data.length > 0
-          ? data.map((item, idx) =>
+        {(data && data.length > 0) &&
+          data.map((item, idx) =>
             <GridGalleryItem
               key={idx}
               item={item}
-            ></GridGalleryItem>)
-          : ''}
+            ></GridGalleryItem>)}
       </div>
-      {isAllLoaded ? <NoMoreLoading pageIdx={2} caption={noMoreLoadingCaption}></NoMoreLoading> : ''}
+      {isAllLoaded && <NoMoreLoading pageIdx={2} caption={noMoreLoadingCaption}></NoMoreLoading>}
       {loading
         ? <MasonryLoading></MasonryLoading>
-        : <div className="more">
+        : !error &&
+          <div className="more">
             <div onClick={loadMoreData}>더보기</div>
           </div>}
-      {error ? <LoadingError error={error}></LoadingError> : ''}
+      {error && <LoadingError error={error}></LoadingError>}
     </>
   );
 
