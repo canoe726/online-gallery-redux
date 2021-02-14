@@ -62,8 +62,8 @@ function Artist ({
               ></MasonryItem>)}
         </Masonry>
       </div>
-      {isAllLoaded && <NoMoreLoading pageIdx={1} caption={noMoreLoadingCaption}></NoMoreLoading>}
       {error && <LoadingError error={error} getData={getData} getDataParams={getDataParams}></LoadingError>}
+      {isAllLoaded && <NoMoreLoading pageIdx={1} caption={noMoreLoadingCaption}></NoMoreLoading>}
       {isAllLoaded || error
         ? ''
         : loading

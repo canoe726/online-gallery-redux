@@ -20,17 +20,12 @@ function ArtistContainer ({ input }) {
 };
 
 const loadSearchPage = (input) => {
-  const { loading, data, error } = useSelector(
-    state => state.artist.searchList
+  const { loading, data, error, isAllLoaded } = useSelector(
+    state => state.artist.searchList[input]
   ) || {
     loading: false,
     data: null,
-    error: null
-  };
-
-  const { isAllLoaded } = useSelector(
-    state => state.exhibition
-  ) || {
+    error: null,
     isAllLoaded: false
   };
 
@@ -55,17 +50,12 @@ const loadSearchPage = (input) => {
 };
 
 const loadArtistPage = () => {
-  const { loading, data, error } = useSelector(
+  const { loading, data, error, isAllLoaded } = useSelector(
     state => state.artist.artistList
   ) || {
     loading: false,
     data: null,
-    error: null
-  };
-
-  const { isAllLoaded } = useSelector(
-    state => state.exhibition
-  ) || {
+    error: null,
     isAllLoaded: false
   };
 

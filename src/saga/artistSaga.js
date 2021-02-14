@@ -3,8 +3,10 @@ import { createAction } from 'redux-actions';
 import * as artistAPI from '../api/artist';
 import {
   reducerUtils,
-  createPromiseSaga,
-  handleAsyncActions
+  handleAsyncActionsById,
+  createPromiseSagaById,
+  handleAsyncActions,
+  createPromiseSaga
 } from '../lib/asyncUtils';
 
 // Action Types
@@ -19,20 +21,23 @@ const GET_ARTIST_SEARCH_DATA_ERROR = 'GET_ARTIST_SEARCH_DATA_ERROR';
 const INIT_ARTIST_SEARCH_LIST = 'INIT_ARTIST_SEARCH_LIST';
 
 // Action Constructor
-export const getArtistData = () => ({
-  type: GET_ARTIST_DATA
+export const getArtistData = (id = 'artistList') => ({
+  type: GET_ARTIST_DATA,
+  payload: id,
+  meta: id
 });
 
 export const getArtistSearchData = (input) => ({
   type: GET_ARTIST_SEARCH_DATA,
-  payload: input
+  payload: input,
+  meta: input
 });
 
 export const initArtistSearchList = createAction(INIT_ARTIST_SEARCH_LIST);
 
 // Create Sagas
 const getArtistDataSaga = createPromiseSaga(GET_ARTIST_DATA, artistAPI.getArtistData);
-const getArtistSearchDataSaga = createPromiseSaga(GET_ARTIST_SEARCH_DATA, artistAPI.getArtistSearchData);
+const getArtistSearchDataSaga = createPromiseSagaById(GET_ARTIST_SEARCH_DATA, artistAPI.getArtistSearchData);
 
 // Combine Sagas
 export function * artistSaga () {
@@ -43,8 +48,7 @@ export function * artistSaga () {
 // Initial State
 const initialState = {
   artistList: reducerUtils.initial(),
-  searchList: reducerUtils.initial(),
-  isAllLoaded: false
+  searchList: {}
 };
 
 // Reducer
@@ -57,7 +61,7 @@ export default function artist (state = initialState, action) {
     case GET_ARTIST_SEARCH_DATA:
     case GET_ARTIST_SEARCH_DATA_SUCCESS:
     case GET_ARTIST_SEARCH_DATA_ERROR:
-      return handleAsyncActions(GET_ARTIST_SEARCH_DATA, 'searchList', true, true)(state, action);
+      return handleAsyncActionsById(GET_ARTIST_SEARCH_DATA, 'searchList', true, true)(state, action);
     case INIT_ARTIST_SEARCH_LIST:
       return {
         ...state,

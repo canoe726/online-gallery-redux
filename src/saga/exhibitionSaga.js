@@ -4,7 +4,9 @@ import * as exhibitionAPI from '../api/exhibition';
 import {
   reducerUtils,
   createPromiseSaga,
-  handleAsyncActions
+  handleAsyncActions,
+  handleAsyncActionsById,
+  createPromiseSagaById
 } from '../lib/asyncUtils';
 
 // Action Types
@@ -25,14 +27,15 @@ export const getExhibitionData = () => ({
 
 export const getExhibitionSearchData = (input) => ({
   type: GET_EXHIBITION_SEARCH_DATA,
-  payload: input
+  payload: input,
+  meta: input
 });
 
 export const initExhibitionList = createAction(INIT_EXHIBITION_SEARCH_LIST);
 
 // Create Sagas
 const getExhibitionDataSaga = createPromiseSaga(GET_EXHIBITION_DATA, exhibitionAPI.getExhibitionData);
-const getExhibitionSearchDataSaga = createPromiseSaga(GET_EXHIBITION_SEARCH_DATA, exhibitionAPI.getExhibitionSearchData);
+const getExhibitionSearchDataSaga = createPromiseSagaById(GET_EXHIBITION_SEARCH_DATA, exhibitionAPI.getExhibitionSearchData);
 
 // Combine Sagas
 export function * exhibitionSaga () {
@@ -43,8 +46,7 @@ export function * exhibitionSaga () {
 // Initial State
 const initialState = {
   exhibitionList: reducerUtils.initial(),
-  searchList: reducerUtils.initial(),
-  isAllLoaded: false
+  searchList: {}
 };
 
 // Reducer
@@ -57,7 +59,7 @@ export default function exhibition (state = initialState, action) {
     case GET_EXHIBITION_SEARCH_DATA:
     case GET_EXHIBITION_SEARCH_DATA_SUCCESS:
     case GET_EXHIBITION_SEARCH_DATA_ERROR:
-      return handleAsyncActions(GET_EXHIBITION_SEARCH_DATA, 'searchList', true, true)(state, action);
+      return handleAsyncActionsById(GET_EXHIBITION_SEARCH_DATA, 'searchList', true, true)(state, action);
     case INIT_EXHIBITION_SEARCH_LIST:
       return {
         ...state,

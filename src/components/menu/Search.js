@@ -21,33 +21,28 @@ function Search ({
   initSearchData,
   initSearchListData
 }) {
+  // const [beforeSearchInput, setBeforeSearchInput] = useState('');
   const dispatch = useDispatch();
-
   const formFieldRef = useRef();
-  const formLabelRef = useRef();
 
   useEffect(() => {
+    // getBeforeSearchInput();
     changeIsSearch();
-    history.listen(changeIsSearch);
-  }, []);
+    // history.listen(changeIsSearch);
+  }, [history]);
 
   return (
     <div className={searchIsActive ? 'search-wrapper' : 'search-wrapper hidden'}>
       <div className="form-group field">
         <input
           type="input"
-          className="form-field active"
-          placeholder="input"
+          className="form-field hidden"
+          placeholder="작품 및 작가 검색"
           name="search"
           id="name"
           required
           ref={formFieldRef}
           />
-        <label
-          htmlFor="name"
-          className="form-label active"
-          ref={formLabelRef}
-        >작품 및 작가 검색</label>
       </div>
       <i
         className="fas fa-search"
@@ -57,37 +52,54 @@ function Search ({
   );
 
   function toggleInput () {
-    if (!formFieldRef.current.classList.contains('active')) {
-      formFieldRef.current.classList.add('active');
-      formLabelRef.current.classList.add('active');
+    if (formFieldRef.current.classList.contains('hidden')) {
+      formFieldRef.current.classList.remove('hidden');
       return;
     }
 
     if (formFieldRef.current.value.length > 0) {
-      const url = history.location.pathname;
-      const page = url.split('/')[1];
-      const value = formFieldRef.current.value;
-      history.push(`/${page}/search/${value}`);
-      dispatch(getSearchData({ value: value, url: url }));
-    } else {
       dispatch(initSearchData());
       dispatch(initSearchListData());
 
-      formFieldRef.current.classList.toggle('active');
-      formLabelRef.current.classList.toggle('active');
+      const url = history.location.pathname;
+      const page = url.split('/')[1];
+      const value = formFieldRef.current.value;
 
-      formFieldRef.current.value = '';
+      let curInput = null;
+      const paths = window.location.pathname.split('/');
+      if (paths.length >= 3 && paths[2] === 'search') {
+        curInput = paths[3];
+      }
+      console.log('curInput, value : ', curInput, value, curInput === value);
+      if (curInput === value) {
+        console.log('refresh');
+        location.reload(true);
+      } else {
+        history.push(`/${page}/search/${value}`);
+        dispatch(getSearchData({ value: value, url: url }));
+      }
     }
+    formFieldRef.current.value = '';
+    formFieldRef.current.classList.add('hidden');
   }
 
+  // function getBeforeSearchInput () {
+  //   const paths = window.location.pathname.split('/');
+  //   console.log(paths);
+  //   if (paths.length >= 3 && paths[2] === 'search') {
+  //     setBeforeSearchInput(paths[3]);
+  //   } else {
+  //     setBeforeSearchInput('');
+  //   }
+  // }
+
   function changeIsSearch () {
-    formFieldRef.current.classList.remove('active');
-    formLabelRef.current.classList.remove('active');
+    formFieldRef.current.classList.add('hidden');
 
     const searchUrl = ['/exhibition', '/artist'];
     let activeSearch = false;
     searchUrl.forEach(url => {
-      if (history.location.pathname === url) {
+      if (history.location.pathname.includes(url)) {
         activeSearch = true;
       }
     });

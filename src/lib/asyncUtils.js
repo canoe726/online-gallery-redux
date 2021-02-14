@@ -6,22 +6,26 @@ export const reducerUtils = {
   initial: (initialData = null) => ({
     loading: false,
     data: initialData,
-    error: null
+    error: null,
+    isAllLoaded: false
   }),
   loading: (prevState = null) => ({
     loading: true,
     data: prevState,
-    error: null
+    error: null,
+    isAllLoaded: false
   }),
-  success: payload => ({
+  success: (payload, isAllLoaded) => ({
     loading: false,
     data: payload,
-    error: null
+    error: null,
+    isAllLoaded: isAllLoaded
   }),
   error: error => ({
     loading: false,
     data: null,
-    error: error
+    error: error,
+    isAllLoaded: false
   })
 };
 
@@ -68,19 +72,18 @@ export const handleAsyncActions = (type, key, keepData = false, append = false) 
         return append
           ? {
               ...state,
-              isAllLoaded: state[key].data && state[key].data.length === 0,
               [key]: !state[key].data
-                ? reducerUtils.success(action.payload)
+                ? reducerUtils.success(action.payload, action.payload && action.payload.length === 0)
                 : {
                     loading: false,
                     data: state[key].data.concat(action.payload),
-                    error: null
+                    error: null,
+                    isAllLoaded: action.payload && action.payload.length === 0
                   }
             }
           : {
               ...state,
-              isAllLoaded: false,
-              [key]: reducerUtils.success(action.payload)
+              [key]: reducerUtils.success(action.payload, action.payload && action.payload.length === 0)
             };
       case ERROR:
         return {
@@ -93,7 +96,7 @@ export const handleAsyncActions = (type, key, keepData = false, append = false) 
   };
 };
 
-export const handleAsyncActionsById = (type, key, keepData = false) => {
+export const handleAsyncActionsById = (type, key, keepData = false, append = false) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
   return (state, action) => {
     const id = action.meta;
@@ -107,13 +110,28 @@ export const handleAsyncActionsById = (type, key, keepData = false) => {
           }
         };
       case SUCCESS:
-        return {
-          ...state,
-          [key]: {
-            ...state[key],
-            [id]: reducerUtils.success(action.payload)
-          }
-        };
+        return append
+          ? {
+              ...state,
+              [key]: {
+                ...state[key],
+                [id]: !state[key][id].data
+                  ? reducerUtils.success(action.payload, action.payload && action.payload.length === 0)
+                  : {
+                      loading: false,
+                      data: state[key][id].data.concat(action.payload),
+                      error: null,
+                      isAllLoaded: action.payload && action.payload.length === 0
+                    }
+              }
+            }
+          : {
+              ...state,
+              [key]: {
+                ...state[key],
+                [id]: reducerUtils.success(action.payload, action.payload && action.payload.length === 0)
+              }
+            };
       case ERROR:
         return {
           ...state,

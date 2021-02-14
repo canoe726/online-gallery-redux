@@ -35,6 +35,14 @@ export default function addDomain (path, data) {
         };
       });
       break;
+    case 'artist/search':
+      result = data.map(item => {
+        return {
+          ...item,
+          profileImage: `${API.ROOT_IMG + item.profileImage}?scaling=80`
+        };
+      });
+      break;
     case 'artist/:id':
       result = {
         ...data,

@@ -1,6 +1,10 @@
 $input-color: #666666;
 $input-hover-color: #5e7e9b;
 
+.hidden {
+  display: none;
+}
+
 .search-wrapper {
   transition: 1s ease;
 
@@ -30,7 +34,7 @@ $input-hover-color: #5e7e9b;
   .form-field {
     cursor: pointer;
     font-family: inherit;
-    width: 0px;
+    width: 220px;
     border: 0;
     border-bottom: 1.5px solid $input-color;
     outline: 0;
@@ -41,52 +45,8 @@ $input-hover-color: #5e7e9b;
     transition: border-color 0.2s;
 
     &::placeholder {
-      color: transparent;
-    }
-
-    &:placeholder-shown ~ .form-label {
-      font-size: 0.5em;
-      cursor: text;
-      top: 8px;
-    }
-  }
-
-  .form-field.active {
-    width: 220px;
-  }
-
-  .form-label {
-    position: absolute;
-    top: -8px;
-    display: none;
-    transition: 0.3s;
-    font-size: 0.5em;
-    color: $input-color;
-  }
-
-  .form-label.active {
-    display: block;
-  }
-
-  .form-field:focus {
-    ~ .form-label {
-      position: absolute;
-      top: -8px;
-      display: block;
-      transition: 0.3s;
-      font-size: 0.5em;
-      color: $input-hover-color;
-    }
-    padding-bottom: 6px;
-    border-width: 1.5px;
-    border-color: $input-hover-color;
-  }
-
-  /* reset input */
-  .form-field {
-    &:required,
-    &:invalid {
-      box-shadow: none;
+      padding-left: 1%;
+      font-size: 0.9em;
     }
   }
 }

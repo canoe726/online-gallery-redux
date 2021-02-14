@@ -15,17 +15,12 @@ function ExhibitionContainer ({ input }) {
 };
 
 function loadSearchPage (input) {
-  const { loading, data, error } = useSelector(
+  const { loading, data, error, isAllLoaded } = useSelector(
     state => state.exhibition.searchList
   ) || {
     loading: false,
     data: null,
-    error: null
-  };
-
-  const { isAllLoaded } = useSelector(
-    state => state.exhibition
-  ) || {
+    error: null,
     isAllLoaded: false
   };
 
@@ -50,17 +45,12 @@ function loadSearchPage (input) {
 }
 
 function loadExhibitionPage () {
-  const { loading, data, error } = useSelector(
+  const { loading, data, error, isAllLoaded } = useSelector(
     state => state.exhibition.exhibitionList
   ) || {
     loading: false,
     data: null,
-    error: null
-  };
-
-  const { isAllLoaded } = useSelector(
-    state => state.exhibition
-  ) || {
+    error: null,
     isAllLoaded: false
   };
 

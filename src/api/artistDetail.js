@@ -9,8 +9,8 @@ export const getArtistDetailData = async (id) => {
     cancelTokenSource.cancel();
   }, API.WAIT_TIME);
 
-  const response = await axios.get(`${API.ROOT + API.ARTIST_DETAIL}`, { cancelToken: cancelTokenSource.token });
-  // const response = await axios.get(`${API.ROOT + API.ARTIST}/${id}`, { cancelToken: cancelTokenSource.token });
+  // const response = await axios.get(`${API.ROOT + API.ARTIST_DETAIL}`, { cancelToken: cancelTokenSource.token });
+  const response = await axios.get(`${API.ROOT + API.ARTIST}/${id}`, { cancelToken: cancelTokenSource.token });
   try {
     console.log(response);
     response.data.result = addDomain('artist/:id', response.data.result);
