@@ -4,10 +4,14 @@ import PropTypes from 'prop-types';
 
 import BannerCard from './BannerCard';
 
-const HorizontalBanner = ({ homeBannerIdx, changeHomeBannerIdx, data }) => {
-  const dispatch = useDispatch();
+HorizontalBanner.propTypes = {
+  homeBannerIdx: PropTypes.number.isRequired,
+  changeHomeBannerIdx: PropTypes.func.isRequired,
+  data: PropTypes.array.isRequired
+};
 
-  let homeBannerInterval = null;
+function HorizontalBanner ({ homeBannerIdx, changeHomeBannerIdx, data }) {
+  const dispatch = useDispatch();
 
   useEffect(() => {
     homeBannerInterval = setInterval(() => {
@@ -32,7 +36,7 @@ const HorizontalBanner = ({ homeBannerIdx, changeHomeBannerIdx, data }) => {
       <div className="prev" onClick={() => changeSlide(-1)}>&#10094;</div>
       <div className="next" onClick={() => changeSlide(1)}>&#10095;</div>
       <div className="banner-dot">
-        {data.map((item, idx) =>
+        {[...Array(data.length)].map((n, idx) =>
           <span
             key={idx}
             className={idx === homeBannerIdx ? 'dot active' : 'dot'}
@@ -59,10 +63,6 @@ const HorizontalBanner = ({ homeBannerIdx, changeHomeBannerIdx, data }) => {
   }
 };
 
-HorizontalBanner.propTypes = {
-  homeBannerIdx: PropTypes.number,
-  changeHomeBannerIdx: PropTypes.func,
-  data: PropTypes.array
-};
+let homeBannerInterval = null;
 
 export default HorizontalBanner;

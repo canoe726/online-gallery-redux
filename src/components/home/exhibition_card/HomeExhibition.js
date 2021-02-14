@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 import ExhibitionCard from './ExhibitionCard';
 
-const HomeExhibition = ({ data }) => {
+HomeExhibition.propTypes = {
+  data: PropTypes.array.isRequired
+};
+
+function HomeExhibition ({ data }) {
   const cardWrapperRef = useRef();
   const prevRef = useRef();
   const nextRef = useRef();
@@ -79,10 +83,6 @@ const HomeExhibition = ({ data }) => {
       }
     }
   }
-};
-
-HomeExhibition.propTypes = {
-  data: PropTypes.array
 };
 
 export default HomeExhibition;

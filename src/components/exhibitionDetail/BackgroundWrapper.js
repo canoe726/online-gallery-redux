@@ -21,7 +21,7 @@ const BackgroundWrapper = ({ data, whenWheel }) => {
 
   function onLoadedElement (e, type) {
     if (type === 'video') {
-      alert('play');
+      // alert('play');
       const target = e.target;
       target.play();
     }

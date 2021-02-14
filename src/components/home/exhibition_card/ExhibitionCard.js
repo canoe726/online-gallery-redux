@@ -6,7 +6,12 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import SkeletonImage from '../../common/skeletonImage';
 import lazyLoad from '../../../lib/lazyLoading';
 
-const ExhibitionCard = ({ history, data }) => {
+ExhibitionCard.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
+  data: PropTypes.object.isRequired
+};
+
+function ExhibitionCard ({ history, data }) {
   const url = `/exhibition/${data.exhibitionId}`;
   const skletonRef = useRef();
 
@@ -29,11 +34,6 @@ const ExhibitionCard = ({ history, data }) => {
       </div>
     </div>
   );
-};
-
-ExhibitionCard.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
-  data: PropTypes.object
 };
 
 export default withRouter(ExhibitionCard);

@@ -1,12 +1,17 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
-const BackgroundMusic = ({ data }) => {
+const BackgroundMusic = ({ data, ref }) => {
   const musicRef = useRef();
 
   useEffect(() => {
     stopBackgroundMusic();
   });
+
+  // 코드 수정
+  useImperativeHandle(ref, () => ({
+    stopBackgroundMusic: stopBackgroundMusic
+  }));
 
   return (
     <div className={data.bgm.length > 0 ? 'background-music' : 'background-music active'}>
@@ -25,7 +30,7 @@ const BackgroundMusic = ({ data }) => {
     </div>
   );
 
-  function volumeBackgroundMusic (e) {
+  function volumeBackgroundMusic () {
     const music = musicRef.current;
     const curVolume = music.volume;
     if (curVolume === 1.0) {
@@ -37,7 +42,7 @@ const BackgroundMusic = ({ data }) => {
     }
   }
 
-  function playBackgroundMusic (e) {
+  function playBackgroundMusic () {
     const music = musicRef.current;
     const playPromise = music.play();
     if (playPromise !== undefined) {
@@ -53,7 +58,7 @@ const BackgroundMusic = ({ data }) => {
     }
   }
 
-  function stopBackgroundMusic (e) {
+  function stopBackgroundMusic () {
     const music = musicRef.current;
     const playPromise = music.play();
     if (playPromise !== undefined) {
@@ -69,7 +74,8 @@ const BackgroundMusic = ({ data }) => {
 };
 
 BackgroundMusic.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  ref: PropTypes.object
 };
 
-export default BackgroundMusic;
+export default forwardRef(BackgroundMusic);
