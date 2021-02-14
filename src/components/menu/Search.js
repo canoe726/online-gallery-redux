@@ -21,15 +21,13 @@ function Search ({
   initSearchData,
   initSearchListData
 }) {
-  // const [beforeSearchInput, setBeforeSearchInput] = useState('');
   const dispatch = useDispatch();
   const formFieldRef = useRef();
 
   useEffect(() => {
-    // getBeforeSearchInput();
     changeIsSearch();
-    // history.listen(changeIsSearch);
-  }, [history]);
+    history.listen(changeIsSearch);
+  }, []);
 
   return (
     <div className={searchIsActive ? 'search-wrapper' : 'search-wrapper hidden'}>
@@ -70,8 +68,8 @@ function Search ({
       if (paths.length >= 3 && paths[2] === 'search') {
         curInput = paths[3];
       }
-      console.log('curInput, value : ', curInput, value, curInput === value);
-      if (curInput === value) {
+      const decodedcurInput = decodeURI(decodeURIComponent(curInput));
+      if (decodedcurInput === value) {
         console.log('refresh');
         location.reload(true);
       } else {
@@ -82,16 +80,6 @@ function Search ({
     formFieldRef.current.value = '';
     formFieldRef.current.classList.add('hidden');
   }
-
-  // function getBeforeSearchInput () {
-  //   const paths = window.location.pathname.split('/');
-  //   console.log(paths);
-  //   if (paths.length >= 3 && paths[2] === 'search') {
-  //     setBeforeSearchInput(paths[3]);
-  //   } else {
-  //     setBeforeSearchInput('');
-  //   }
-  // }
 
   function changeIsSearch () {
     formFieldRef.current.classList.add('hidden');

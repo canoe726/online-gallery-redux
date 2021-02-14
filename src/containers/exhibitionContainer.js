@@ -16,7 +16,7 @@ function ExhibitionContainer ({ input }) {
 
 function loadSearchPage (input) {
   const { loading, data, error, isAllLoaded } = useSelector(
-    state => state.exhibition.searchList
+    state => state.exhibition.searchList[input]
   ) || {
     loading: false,
     data: null,

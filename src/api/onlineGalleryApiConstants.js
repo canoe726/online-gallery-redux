@@ -7,7 +7,7 @@ export const onlineGalleryApiConstants = {
   HOME_EXHIBITION: 'home/exhibition',
   HOME_ARTIST: 'home/artist',
   EXHIBITION: 'exhibition',
-  EXHIBITION_SEARCH: 'picture/search',
+  EXHIBITION_SEARCH: 'exhibition/search',
   PICTURE: 'picture',
   ARTIST: 'artist',
   ARTIST_SEARCH: 'artist/search',

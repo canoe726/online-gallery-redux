@@ -46,8 +46,8 @@ export const getExhibitionSearchData = async (input) => {
   }, API.WAIT_TIME);
 
   console.log('searchPage, searchSize : ', searchPage, searchSize);
-  const response = await axios.get(`${API.ROOT + API.EXHIBITION_SEARCH}`, { cancelToken: cancelTokenSource.token });
-  // const response = await axios.get(`${API.ROOT + API.EXHIBITION_SEARCH}/${input}?page=${searchPage}&size=${searchSize}`, { cancelToken: cancelTokenSource.token });
+  // const response = await axios.get(`${API.ROOT + API.EXHIBITION_SEARCH}`, { cancelToken: cancelTokenSource.token });
+  const response = await axios.get(`${API.ROOT + API.EXHIBITION_SEARCH}/${input}?page=${searchPage}&size=${searchSize}`, { cancelToken: cancelTokenSource.token });
   try {
     clearTimeout(timer);
     searchPage += 1;
