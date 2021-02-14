@@ -6,7 +6,12 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import SkeletonImage from '../common/skeletonImage';
 import lazyLoad from '../../lib/lazyLoading';
 
-const MasonryItem = ({ history, exhibitionItem }) => {
+MasonryItem.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
+  exhibitionItem: PropTypes.object
+};
+
+function MasonryItem ({ history, exhibitionItem }) {
   const url = `/exhibition/${exhibitionItem.exhibitionId}`;
   const skletonRef = useRef();
 
@@ -31,11 +36,6 @@ const MasonryItem = ({ history, exhibitionItem }) => {
       </div>
     </div>
   );
-};
-
-MasonryItem.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
-  exhibitionItem: PropTypes.object
 };
 
 export default withRouter(MasonryItem);

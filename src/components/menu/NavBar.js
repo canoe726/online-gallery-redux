@@ -3,7 +3,12 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const NavBar = ({ navBarIsClose, toggleNavBar }) => {
+NavBar.propTypes = {
+  navBarIsClose: PropTypes.bool,
+  toggleNavBar: PropTypes.func
+};
+
+function NavBar ({ navBarIsClose, toggleNavBar }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,11 +56,6 @@ const NavBar = ({ navBarIsClose, toggleNavBar }) => {
       }
     }
   }
-};
-
-NavBar.propTypes = {
-  navBarIsClose: PropTypes.bool,
-  toggleNavBar: PropTypes.func
 };
 
 export default NavBar;

@@ -1,7 +1,12 @@
 import React, { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
-const BackgroundMusic = ({ data, ref }) => {
+BackgroundMusic.propTypes = {
+  data: PropTypes.object,
+  ref: PropTypes.object
+};
+
+function BackgroundMusic ({ data, ref }) {
   const musicRef = useRef();
 
   useEffect(() => {
@@ -71,11 +76,6 @@ const BackgroundMusic = ({ data, ref }) => {
       console.log('음악을 재생할 수 없습니다.');
     }
   }
-};
-
-BackgroundMusic.propTypes = {
-  data: PropTypes.object,
-  ref: PropTypes.object
 };
 
 export default forwardRef(BackgroundMusic);

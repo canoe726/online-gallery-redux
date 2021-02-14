@@ -7,6 +7,10 @@ import ArtistDetail from '../../components/artistDetail/ArtistDetail';
 import PageLoading from '../../components/loading/PageLoading';
 import LoadingError from '../../components/error/LoadingError';
 
+ArtistDetailContainer.propTypes = {
+  id: PropTypes.string
+};
+
 function ArtistDetailContainer ({ id }) {
   const { loading, data, error } = useSelector(
     state => state.artistDetail.artistDetailList
@@ -29,10 +33,6 @@ function ArtistDetailContainer ({ id }) {
     <ArtistDetail
       data={data}
     ></ArtistDetail>);
-};
-
-ArtistDetailContainer.propTypes = {
-  id: PropTypes.string
 };
 
 export default ArtistDetailContainer;

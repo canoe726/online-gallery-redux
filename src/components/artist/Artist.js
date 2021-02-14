@@ -12,7 +12,17 @@ import NoMoreLoading from '../loading/NoMoreLoading';
 import LoadingError from '../error/LoadingError';
 // import Masonry from './Masonry';
 
-const Artist = ({
+Artist.propTypes = {
+  data: PropTypes.array,
+  loading: PropTypes.bool,
+  error: PropTypes.object,
+  getData: PropTypes.func,
+  getDataParams: PropTypes.array,
+  isAllLoaded: PropTypes.bool,
+  getArtistData: PropTypes.func
+};
+
+function Artist ({
   data,
   loading,
   error,
@@ -20,13 +30,7 @@ const Artist = ({
   getDataParams,
   isAllLoaded,
   getArtistData
-}) => {
-  const breakpointColumnsObj = {
-    default: 4,
-    1100: 3,
-    700: 2,
-    500: 1
-  };
+}) {
   const dispatch = useDispatch();
   const noMoreLoadingCaption = '모든 작가를 불러왔습니다.';
 
@@ -50,11 +54,12 @@ const Artist = ({
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
-          {(data && data.length > 0) && data.map((item, idx) =>
-            <MasonryItem
-              key={idx}
-              artistItem={item}
-            ></MasonryItem>)}
+          {(data && data.length > 0) &&
+            data.map((item, idx) =>
+              <MasonryItem
+                key={idx}
+                artistItem={item}
+              ></MasonryItem>)}
         </Masonry>
       </div>
       {isAllLoaded && <NoMoreLoading pageIdx={1} caption={noMoreLoadingCaption}></NoMoreLoading>}
@@ -87,14 +92,11 @@ const Artist = ({
   // }
 };
 
-Artist.propTypes = {
-  data: PropTypes.array,
-  loading: PropTypes.bool,
-  error: PropTypes.object,
-  getData: PropTypes.func,
-  getDataParams: PropTypes.array,
-  isAllLoaded: PropTypes.bool,
-  getArtistData: PropTypes.func
+const breakpointColumnsObj = {
+  default: 4,
+  1100: 3,
+  700: 2,
+  500: 1
 };
 
 export default Artist;

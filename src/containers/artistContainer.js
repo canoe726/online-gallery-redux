@@ -7,6 +7,10 @@ import Artist from '../components/artist/Artist';
 import PageLoading from '../components/loading/PageLoading';
 import MasonryLoading from '../components/loading/MasonryLoading';
 
+ArtistContainer.propTypes = {
+  input: PropTypes.string
+};
+
 function ArtistContainer ({ input }) {
   if (input) {
     return loadSearchPage(input);
@@ -83,10 +87,6 @@ const loadArtistPage = () => {
       isAllLoaded={isAllLoaded}
       getArtistData={getArtistData}
     ></Artist>);
-};
-
-ArtistContainer.propTypes = {
-  input: PropTypes.string
 };
 
 export default ArtistContainer;

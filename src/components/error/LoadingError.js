@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import '../../stylesheets/error/loadingError.scss';
 import { useDispatch } from 'react-redux';
 
-const LoadingError = ({ error, getData, getDataParams }) => {
+LoadingError.propTypes = {
+  error: PropTypes.object,
+  getData: PropTypes.func,
+  getDataParams: PropTypes.array
+};
+
+function LoadingError ({ error, getData, getDataParams }) {
   const dispatch = useDispatch();
   const backgroundImage = '/samples/artwork_d_8.jpg';
   return (
@@ -21,12 +27,6 @@ const LoadingError = ({ error, getData, getDataParams }) => {
   function refetchData () {
     dispatch(getData(...getDataParams));
   }
-};
-
-LoadingError.propTypes = {
-  error: PropTypes.object,
-  getData: PropTypes.func,
-  getDataParams: PropTypes.array
 };
 
 export default LoadingError;

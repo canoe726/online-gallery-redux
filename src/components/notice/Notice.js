@@ -6,25 +6,6 @@ import '../../stylesheets/notice/notice.scss';
 import Footer from '../footer/Footer';
 
 const Notice = () => {
-  const notices = [
-    {
-      title: '공지사항 1',
-      contents: '공지사항 1 입니다.'
-    },
-    {
-      title: '공지사항 2',
-      contents: '공지사항 2 입니다.'
-    },
-    {
-      title: '공지사항 3',
-      contents: '공지사항 3 입니다.'
-    },
-    {
-      title: '공지사항 4',
-      contents: '공지사항 4 입니다.'
-    }
-  ];
-
   const [activeIndex, setActiveIndex] = useState(-1);
 
   return (
@@ -57,5 +38,24 @@ const Notice = () => {
     setActiveIndex(newIndex);
   };
 };
+
+const notices = [
+  {
+    title: '공지사항 1',
+    contents: '공지사항 1 입니다.'
+  },
+  {
+    title: '공지사항 2',
+    contents: '공지사항 2 입니다.'
+  },
+  {
+    title: '공지사항 3',
+    contents: '공지사항 3 입니다.'
+  },
+  {
+    title: '공지사항 4',
+    contents: '공지사항 4 입니다.'
+  }
+];
 
 export default Notice;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { onlineGalleryApiConstants as API } from './onlineGalleryApiConstants';
-import addDomain from '../lib/addDomain';
+// import addDomain from '../lib/addDomain';
 
 let exhibitionPage = 0;
 let exhibitionSize = 20;
@@ -17,10 +17,11 @@ export const getExhibitionData = async () => {
 
   console.log('page, size : ', exhibitionPage, exhibitionSize);
 
-  // const response = await axios.get(API.ROOT + API.EXHIBITION, { cancelToken: cancelTokenSource.token });
-  const response = await axios.get(`${API.ROOT + API.EXHIBITION}?page=${exhibitionPage}&size=${exhibitionSize}`, { cancelToken: cancelTokenSource.token });
+  const response = await axios.get(API.ROOT + API.EXHIBITION, { cancelToken: cancelTokenSource.token });
+  // const response = await axios.get(`${API.ROOT + API.EXHIBITION}?page=${exhibitionPage}&size=${exhibitionSize}`, { cancelToken: cancelTokenSource.token });
   try {
-    response.data.result = addDomain('exhibition', response.data.result);
+    console.log(response.data.result);
+    // response.data.result = addDomain('exhibition', response.data.result);
     clearTimeout(timer);
     exhibitionSize = 10;
     exhibitionPage += 1;

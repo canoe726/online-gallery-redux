@@ -5,7 +5,12 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import lazyLoad from '../../lib/lazyLoading';
 
-const GridGalleryItem = ({ history, item }) => {
+GridGalleryItem.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
+  item: PropTypes.object
+};
+
+function GridGalleryItem ({ history, item }) {
   useEffect(() => {
     lazyLoad();
   }, []);
@@ -21,11 +26,6 @@ const GridGalleryItem = ({ history, item }) => {
       </div>
     </div>
   );
-};
-
-GridGalleryItem.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
-  item: PropTypes.object
 };
 
 export default withRouter(GridGalleryItem);

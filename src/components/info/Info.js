@@ -6,8 +6,12 @@ import '../../stylesheets/info/info.scss';
 import SliderItem from './SliderItem';
 import { setFullPage } from '../../lib/fullPage';
 
-const Info = ({ data, backgroundImages }) => {
-  console.log(data);
+Info.propTypes = {
+  data: PropTypes.object.isRequired,
+  backgroundImages: PropTypes.array
+};
+
+function Info ({ data, backgroundImages }) {
   useEffect(() => {
     window.addEventListener('wheel', setFullPage);
     // mobile wheel
@@ -35,11 +39,6 @@ const Info = ({ data, backgroundImages }) => {
       </div>
     </div>
   );
-};
-
-Info.propTypes = {
-  data: PropTypes.object,
-  backgroundImages: PropTypes.array
 };
 
 export default Info;

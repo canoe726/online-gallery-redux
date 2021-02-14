@@ -3,7 +3,11 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import '../../stylesheets/error/notFound.scss';
 
-const Error404 = ({ history }) => {
+Error404.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired
+};
+
+function Error404 ({ history }) {
   const backgroundImage = '/samples/artwork_d_6.jpg';
   return (
     <div className="not-found-page" style={{ backgroundImage: `url(${backgroundImage})` }}>
@@ -19,10 +23,6 @@ const Error404 = ({ history }) => {
   function goIndex () {
     history.replace('/');
   }
-};
-
-Error404.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired
 };
 
 export default Error404;

@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 import ArtistCard from './ArtistCard';
 
-const HomeArtist = ({ data }) => {
+HomeArtist.propTypes = {
+  data: PropTypes.array.isRequired
+};
+
+function HomeArtist ({ data }) {
   const cardWrapperRef = useRef();
   const prevRef = useRef();
   const nextRef = useRef();
@@ -79,10 +83,6 @@ const HomeArtist = ({ data }) => {
       }
     }
   }
-};
-
-HomeArtist.propTypes = {
-  data: PropTypes.array
 };
 
 export default HomeArtist;

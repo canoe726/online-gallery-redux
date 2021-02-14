@@ -10,13 +10,21 @@ import ModalWrapper from './ModalWrapper';
 import lazyLoad from '../../lib/lazyLoading';
 import { useDebounce } from '../../lib/useDebounce';
 
-const ExhibitionDetail = ({
+ExhibitionDetail.propTypes = {
+  data: PropTypes.array,
+  slideIdx: PropTypes.number,
+  modalActive: PropTypes.number,
+  changeSlideIdx: PropTypes.func,
+  toggleModal: PropTypes.func
+};
+
+function ExhibitionDetail ({
   data,
   slideIdx,
   modalActive,
   changeSlideIdx,
   toggleModal
-}) => {
+}) {
   const exhibitionDetailWrapperRef = useRef();
   const prevRef = useRef();
   const nextRef = useRef();
@@ -93,7 +101,7 @@ const ExhibitionDetail = ({
 
   function whenWheel (e) {
     const wheelDir = e.deltaY;
-    const isScrollUp = wheelDir < 0;
+    const isScrollUp = wheelDir > 0;
     if (debouncer.move === false) {
       setDebouncer({ move: true, isScrollUp: isScrollUp });
     } else {
@@ -157,14 +165,6 @@ const ExhibitionDetail = ({
       changeSlide(1);
     }
   }
-};
-
-ExhibitionDetail.propTypes = {
-  data: PropTypes.array,
-  slideIdx: PropTypes.number,
-  modalActive: PropTypes.number,
-  changeSlideIdx: PropTypes.func,
-  toggleModal: PropTypes.func
 };
 
 export default ExhibitionDetail;

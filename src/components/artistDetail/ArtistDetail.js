@@ -8,7 +8,11 @@ import ArtistInfoWrapper from './ArtistInfoWrapper';
 import { resizeAllMasonryItems } from '../../lib/masonry';
 import lazyLoad from '../../lib/lazyLoading';
 
-const ArtistDetail = ({ data }) => {
+ArtistDetail.propTypes = {
+  data: PropTypes.object
+};
+
+function ArtistDetail ({ data }) {
   const zoomImgRef = useRef();
 
   useEffect(() => {
@@ -66,10 +70,6 @@ const ArtistDetail = ({ data }) => {
       zoomImg.style.transform = `translate3d(-50%, -${scrollY / 50}%, 0) scale(${scaleRatio})`;
     }
   }
-};
-
-ArtistDetail.propTypes = {
-  data: PropTypes.object
 };
 
 export default ArtistDetail;

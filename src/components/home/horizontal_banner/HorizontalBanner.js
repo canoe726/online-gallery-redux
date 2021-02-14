@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import BannerCard from './BannerCard';
 
 HorizontalBanner.propTypes = {
-  homeBannerIdx: PropTypes.number.isRequired,
-  changeHomeBannerIdx: PropTypes.func.isRequired,
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  homeBannerIdx: PropTypes.number,
+  changeHomeBannerIdx: PropTypes.func.isRequired
 };
 
-function HorizontalBanner ({ homeBannerIdx, changeHomeBannerIdx, data }) {
+function HorizontalBanner ({ data, homeBannerIdx, changeHomeBannerIdx }) {
   const dispatch = useDispatch();
 
   useEffect(() => {

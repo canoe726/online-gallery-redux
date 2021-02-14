@@ -7,7 +7,21 @@ import MasonryLoading from '../loading/MasonryLoading';
 import NoMoreLoading from '../loading/NoMoreLoading';
 import LoadingError from '../error/LoadingError';
 
-const GridGallery = ({ data, loading, error, isAllLoaded, getArtistDetailPictureData }) => {
+GridGallery.propTypes = {
+  data: PropTypes.array,
+  loading: PropTypes.bool,
+  error: PropTypes.object,
+  isAllLoaded: PropTypes.bool,
+  getArtistDetailPictureData: PropTypes.func
+};
+
+function GridGallery ({
+  data,
+  loading,
+  error,
+  isAllLoaded,
+  getArtistDetailPictureData
+}) {
   const dispatch = useDispatch();
   const noMoreLoadingCaption = '작가의 모든 작품을 불러왔습니다.';
 
@@ -35,14 +49,6 @@ const GridGallery = ({ data, loading, error, isAllLoaded, getArtistDetailPicture
   function loadMoreData () {
     dispatch(getArtistDetailPictureData());
   }
-};
-
-GridGallery.propTypes = {
-  data: PropTypes.array,
-  loading: PropTypes.bool,
-  error: PropTypes.object,
-  isAllLoaded: PropTypes.bool,
-  getArtistDetailPictureData: PropTypes.func
 };
 
 export default GridGallery;

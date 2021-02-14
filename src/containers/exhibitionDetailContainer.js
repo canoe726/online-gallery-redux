@@ -8,6 +8,10 @@ import PageLoading from '../components/loading/PageLoading';
 import NoMoreLoading from '../components/loading/NoMoreLoading';
 import LoadingError from '../components/error/LoadingError';
 
+ExhibitionDetailContainer.propTypes = {
+  id: PropTypes.string
+};
+
 function ExhibitionDetailContainer ({ id }) {
   const noMoreLoadingCaption = '상세 작품 정보가 없습니다.';
 
@@ -49,10 +53,6 @@ function ExhibitionDetailContainer ({ id }) {
       changeSlideIdx={changeSlideIdx}
       toggleModal={toggleModal}
     ></ExhibitionDetail>);
-};
-
-ExhibitionDetailContainer.propTypes = {
-  id: PropTypes.string
 };
 
 export default ExhibitionDetailContainer;

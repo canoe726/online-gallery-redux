@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BatchNote = ({ data }) => {
+BatchNote.propTypes = {
+  data: PropTypes.object.isRequired
+};
+
+function BatchNote ({ data }) {
   const { note, textSize, textColor, bgColor, borderColor, round, padding, positionHorizSize, positionVertSize } = data;
 
   return (
@@ -38,10 +42,6 @@ const BatchNote = ({ data }) => {
       </div>
     </div>
   );
-};
-
-BatchNote.propTypes = {
-  data: PropTypes.object
 };
 
 export default BatchNote;

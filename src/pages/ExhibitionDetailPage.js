@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 import ExhibitionDetailContainer from '../containers/exhibitionDetailContainer';
 
-const ExhibitionDetailPage = ({ match }) => {
+ExhibitionDetailPage.propTypes = {
+  match: PropTypes.object
+};
+
+function ExhibitionDetailPage ({ match }) {
   const { id } = match.params;
   return (
     <ExhibitionDetailContainer id={id}></ExhibitionDetailContainer>
   );
-};
-
-ExhibitionDetailPage.propTypes = {
-  match: PropTypes.object
 };
 
 export default ExhibitionDetailPage;

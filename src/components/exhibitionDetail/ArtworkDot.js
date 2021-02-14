@@ -2,7 +2,21 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const ArtworkDot = ({ slideIdx, length, changeSlideIdx, buttonToggle, exhibitionDetailWrapperRef }) => {
+ArtworkDot.propTypes = {
+  slideIdx: PropTypes.number,
+  length: PropTypes.number,
+  changeSlideIdx: PropTypes.func,
+  buttonToggle: PropTypes.func,
+  exhibitionDetailWrapperRef: PropTypes.object
+};
+
+function ArtworkDot ({
+  slideIdx,
+  length,
+  changeSlideIdx,
+  buttonToggle,
+  exhibitionDetailWrapperRef
+}) {
   const artworkDotRef = useRef();
   const dispatch = useDispatch();
 
@@ -58,14 +72,6 @@ const ArtworkDot = ({ slideIdx, length, changeSlideIdx, buttonToggle, exhibition
       dispatch(changeSlideIdx(idx));
     }
   }
-};
-
-ArtworkDot.propTypes = {
-  slideIdx: PropTypes.number,
-  length: PropTypes.number,
-  changeSlideIdx: PropTypes.func,
-  buttonToggle: PropTypes.func,
-  exhibitionDetailWrapperRef: PropTypes.object
 };
 
 export default ArtworkDot;

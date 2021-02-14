@@ -10,7 +10,17 @@ import MasonryLoading from '../loading/MasonryLoading';
 import NoMoreLoading from '../loading/NoMoreLoading';
 import LoadingError from '../error/LoadingError';
 
-const Exhibition = ({
+Exhibition.propTypes = {
+  data: PropTypes.array,
+  loading: PropTypes.bool,
+  error: PropTypes.object,
+  getData: PropTypes.func,
+  getDataParams: PropTypes.array,
+  isAllLoaded: PropTypes.bool,
+  getExhibitionData: PropTypes.func
+};
+
+function Exhibition ({
   data,
   loading,
   error,
@@ -18,13 +28,7 @@ const Exhibition = ({
   getDataParams,
   isAllLoaded,
   getExhibitionData
-}) => {
-  const breakpointColumnsObj = {
-    default: 4,
-    1100: 3,
-    700: 2,
-    500: 1
-  };
+}) {
   const dispatch = useDispatch();
   const noMoreLoadingCaption = '모든 작품을 불러왔습니다.';
 
@@ -61,14 +65,11 @@ const Exhibition = ({
   }
 };
 
-Exhibition.propTypes = {
-  data: PropTypes.array,
-  loading: PropTypes.bool,
-  error: PropTypes.object,
-  getData: PropTypes.func,
-  getDataParams: PropTypes.array,
-  isAllLoaded: PropTypes.bool,
-  getExhibitionData: PropTypes.func
+const breakpointColumnsObj = {
+  default: 4,
+  1100: 3,
+  700: 2,
+  500: 1
 };
 
 export default Exhibition;

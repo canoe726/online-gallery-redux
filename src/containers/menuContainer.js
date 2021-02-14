@@ -8,6 +8,10 @@ import { toggleNavBar, toggleIsSearch, getSearchData, initSearchData } from '../
 import { initExhibitionList } from '../saga/exhibitionSaga';
 import { initArtistSearchList } from '../saga/artistSaga';
 
+MenuContainer.propTypes = {
+  url: PropTypes.string
+};
+
 function MenuContainer ({ url }) {
   const { navBarIsClose, searchIsActive } = useSelector(
     state => state.menu
@@ -33,10 +37,6 @@ function MenuContainer ({ url }) {
       initSearchData={initSearchData}
       initSearchListData={initSearchListData}
     ></Menu>);
-};
-
-MenuContainer.propTypes = {
-  url: PropTypes.string
 };
 
 export default MenuContainer;

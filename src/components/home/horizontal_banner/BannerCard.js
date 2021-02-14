@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 BannerCard.propTypes = {
   data: PropTypes.object.isRequired,
-  isShow: PropTypes.bool.isRequired
+  isShow: PropTypes.bool
 };
 
 function BannerCard ({ data, isShow }) {

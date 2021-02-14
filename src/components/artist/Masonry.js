@@ -1,7 +1,16 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const Masonry = ({ breakpointCols, className, columnClassName, ref, children }) => {
+Masonry.propTypes = {
+  breakpointCols: PropTypes.object,
+  className: PropTypes.string,
+  columnClassName: PropTypes.string,
+  ref: PropTypes.object,
+  child: PropTypes.object,
+  children: PropTypes.node.isRequired
+};
+
+function Masonry ({ breakpointCols, className, columnClassName, ref, children }) {
   let properCols = 4;
 
   useEffect(() => {
@@ -35,15 +44,6 @@ const Masonry = ({ breakpointCols, className, columnClassName, ref, children }) 
     }
     console.log(width, properCols);
   }
-};
-
-Masonry.propTypes = {
-  breakpointCols: PropTypes.object,
-  className: PropTypes.string,
-  columnClassName: PropTypes.string,
-  ref: PropTypes.object,
-  child: PropTypes.object,
-  children: PropTypes.node.isRequired
 };
 
 export default Masonry;

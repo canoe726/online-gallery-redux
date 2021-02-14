@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 
 import SkeletonImage from '../common/skeletonImage';
 
-const BatchPicture = ({ data, toggleModal }) => {
+BatchPicture.propTypes = {
+  data: PropTypes.object,
+  toggleModal: PropTypes.func
+};
+
+function BatchPicture ({ data, toggleModal }) {
   const dispatch = useDispatch();
   const skletonRef = useRef();
 
@@ -48,11 +53,6 @@ const BatchPicture = ({ data, toggleModal }) => {
       target.play();
     }
   }
-};
-
-BatchPicture.propTypes = {
-  data: PropTypes.object,
-  toggleModal: PropTypes.func
 };
 
 export default BatchPicture;

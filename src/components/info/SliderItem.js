@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SliderItem = ({ idx, length, notice, backgroundImage }) => {
+SliderItem.propTypes = {
+  idx: PropTypes.number,
+  length: PropTypes.number,
+  notice: PropTypes.string,
+  backgroundImage: PropTypes.string
+};
+
+function SliderItem ({ idx, length, notice, backgroundImage }) {
   return (
     <section className={
       idx === 0
@@ -18,13 +25,6 @@ const SliderItem = ({ idx, length, notice, backgroundImage }) => {
       </div>
     </section>
   );
-};
-
-SliderItem.propTypes = {
-  idx: PropTypes.number,
-  length: PropTypes.number,
-  notice: PropTypes.string,
-  backgroundImage: PropTypes.string
 };
 
 export default SliderItem;

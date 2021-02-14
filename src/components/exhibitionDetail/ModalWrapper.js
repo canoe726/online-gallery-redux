@@ -2,7 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const ModalWrapper = ({ modalActive, data, toggleModal }) => {
+ModalWrapper.propTypes = {
+  data: PropTypes.object.isRequired,
+  modalActive: PropTypes.number,
+  toggleModal: PropTypes.func
+};
+
+function ModalWrapper ({ data, modalActive, toggleModal }) {
   const dispatch = useDispatch();
 
   let isDown = false;
@@ -208,12 +214,6 @@ const ModalWrapper = ({ modalActive, data, toggleModal }) => {
       }
     }, 500);
   }
-};
-
-ModalWrapper.propTypes = {
-  modalActive: PropTypes.number,
-  data: PropTypes.object,
-  toggleModal: PropTypes.func
 };
 
 export default ModalWrapper;

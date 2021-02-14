@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ArtistInfoWrapper = ({ data }) => {
+ArtistInfoWrapper.propTypes = {
+  data: PropTypes.object
+};
+
+function ArtistInfoWrapper ({ data }) {
   return (
     <div className="container">
       <div className="item">
@@ -46,7 +50,11 @@ const ArtistInfoWrapper = ({ data }) => {
   );
 };
 
-const SectionGroup = ({ item }) => {
+SectionGroup.propTypes = {
+  item: PropTypes.object
+};
+
+function SectionGroup ({ item }) {
   return (
     <section className="secton-item-wrapper">
       <ul className="secton-item">
@@ -58,7 +66,11 @@ const SectionGroup = ({ item }) => {
   );
 };
 
-const SectionCareer = ({ item }) => {
+SectionCareer.propTypes = {
+  item: PropTypes.object
+};
+
+function SectionCareer ({ item }) {
   return (
     <section className="secton-item-wrapper">
       <ul className="secton-item">
@@ -71,7 +83,11 @@ const SectionCareer = ({ item }) => {
   );
 };
 
-const SectionEducation = ({ item }) => {
+SectionEducation.propTypes = {
+  item: PropTypes.object
+};
+
+function SectionEducation ({ item }) {
   return (
     <section className="secton-item-wrapper">
       <ul className="secton-item">
@@ -85,7 +101,11 @@ const SectionEducation = ({ item }) => {
   );
 };
 
-const SectionPrize = ({ item }) => {
+SectionPrize.propTypes = {
+  item: PropTypes.object
+};
+
+function SectionPrize ({ item }) {
   return (
     <section className="secton-item-wrapper">
       <ul className="secton-item">
@@ -95,26 +115,6 @@ const SectionPrize = ({ item }) => {
       </ul>
     </section>
   );
-};
-
-ArtistInfoWrapper.propTypes = {
-  data: PropTypes.object
-};
-
-SectionGroup.propTypes = {
-  item: PropTypes.object
-};
-
-SectionCareer.propTypes = {
-  item: PropTypes.object
-};
-
-SectionEducation.propTypes = {
-  item: PropTypes.object
-};
-
-SectionPrize.propTypes = {
-  item: PropTypes.object
 };
 
 export default ArtistInfoWrapper;

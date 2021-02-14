@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 import '../../stylesheets/loading/noMoreData.scss';
 
-const NoMoreLoading = ({ pageIdx, caption }) => {
+// exhibitionImage : 0, artistImage : 1, artistDetailImage : 2
+NoMoreLoading.propTypes = {
+  pageIdx: PropTypes.number.isRequired,
+  caption: PropTypes.string
+};
+
+function NoMoreLoading ({ pageIdx, caption }) {
   const exhibitionImage = '/samples/no_more_data_exhibition.jpg';
   const artistImage = '/samples/no_more_data_artist.jpg';
   const artistDetailImage = '/samples/no_more_data_artist_detail.jpg';
@@ -27,12 +33,6 @@ const NoMoreLoading = ({ pageIdx, caption }) => {
       >{caption}</div>
     </div>
   );
-};
-
-// exhibitionImage : 0, artistImage : 1, artistDetailImage : 2
-NoMoreLoading.propTypes = {
-  pageIdx: PropTypes.number,
-  caption: PropTypes.string
 };
 
 export default NoMoreLoading;

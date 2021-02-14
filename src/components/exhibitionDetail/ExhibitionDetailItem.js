@@ -6,7 +6,13 @@ import BackgroundWrapper from './BackgroundWrapper';
 import BatchPicture from './BatchPicture';
 import BatchNote from './BatchNote';
 
-const ExhibitionDetailItem = ({ data, toggleModal, whenWheel }) => {
+ExhibitionDetailItem.propTypes = {
+  data: PropTypes.object,
+  toggleModal: PropTypes.func,
+  whenWheel: PropTypes.func
+};
+
+function ExhibitionDetailItem ({ data, toggleModal, whenWheel }) {
   return (
     <>
       <BackgroundMusic
@@ -25,12 +31,6 @@ const ExhibitionDetailItem = ({ data, toggleModal, whenWheel }) => {
       ></BatchNote>
     </>
   );
-};
-
-ExhibitionDetailItem.propTypes = {
-  data: PropTypes.object,
-  toggleModal: PropTypes.func,
-  whenWheel: PropTypes.func
 };
 
 export default ExhibitionDetailItem;

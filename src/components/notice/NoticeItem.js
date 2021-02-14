@@ -1,7 +1,11 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-const NoticeItem = ({ notice }) => {
+NoticeItem.propTypes = {
+  notice: PropTypes.object
+};
+
+function NoticeItem ({ notice }) {
   const [isOpen, setIsOpen] = useState(false);
   const [maxHeight, setMaxHeight] = useState('0px');
   const contentRef = useRef();
@@ -26,10 +30,6 @@ const NoticeItem = ({ notice }) => {
     const elementHeight = contentRef.current.scrollHeight + 60;
     setMaxHeight(`${elementHeight}px`);
   }
-};
-
-NoticeItem.propTypes = {
-  notice: PropTypes.object
 };
 
 export default NoticeItem;

@@ -6,7 +6,12 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import SkeletonImage from '../common/skeletonImage';
 import lazyLoad from '../../lib/lazyLoading';
 
-const MasonryItem = ({ history, artistItem }) => {
+MasonryItem.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
+  artistItem: PropTypes.object
+};
+
+function MasonryItem ({ history, artistItem }) {
   const url = `/artist/${artistItem.artistId}`;
   const skletonRef = useRef();
 
@@ -31,11 +36,6 @@ const MasonryItem = ({ history, artistItem }) => {
       </div>
     </div>
   );
-};
-
-MasonryItem.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
-  artistItem: PropTypes.object
 };
 
 export default withRouter(MasonryItem);

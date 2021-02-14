@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react';
 
-const SkeletonImage = forwardRef((props, ref) => {
+SkeletonImage.displayName = 'SkeletonImage';
+
+function SkeletonImage (props, ref) {
   return (
     <div className="lightui1" ref={ref}>
       <div className="lightui1-shimmer">
@@ -18,8 +20,6 @@ const SkeletonImage = forwardRef((props, ref) => {
         <div className="_2ix0"></div>
       </div>
     </div>);
-});
+};
 
-SkeletonImage.displayName = 'SkeletonImage';
-
-export default SkeletonImage;
+export default forwardRef(SkeletonImage);

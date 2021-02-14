@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BackgroundWrapper = ({ data, whenWheel }) => {
+BackgroundWrapper.propTypes = {
+  data: PropTypes.object,
+  whenWheel: PropTypes.func
+};
+
+function BackgroundWrapper ({ data, whenWheel }) {
   return (
     <div className="background-wrapper" onWheel={whenWheel}>
       {data.type === 'IMAGE' && <img className="img lazy" data-src={data.value} alt={'background-img-item'}></img>}
@@ -50,11 +55,6 @@ const BackgroundWrapper = ({ data, whenWheel }) => {
     target.classList.remove('play');
     target.classList.add('ended');
   }
-};
-
-BackgroundWrapper.propTypes = {
-  data: PropTypes.object,
-  whenWheel: PropTypes.func
 };
 
 export default BackgroundWrapper;

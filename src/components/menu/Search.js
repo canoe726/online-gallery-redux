@@ -4,7 +4,23 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-const Search = ({ history, searchIsActive, toggleIsSearch, getSearchData, initSearchData, initSearchListData }) => {
+Search.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
+  searchIsActive: PropTypes.bool,
+  toggleIsSearch: PropTypes.func,
+  getSearchData: PropTypes.func,
+  initSearchData: PropTypes.func,
+  initSearchListData: PropTypes.func
+};
+
+function Search ({
+  history,
+  searchIsActive,
+  toggleIsSearch,
+  getSearchData,
+  initSearchData,
+  initSearchListData
+}) {
   const dispatch = useDispatch();
 
   const formFieldRef = useRef();
@@ -77,15 +93,6 @@ const Search = ({ history, searchIsActive, toggleIsSearch, getSearchData, initSe
     });
     dispatch(toggleIsSearch(activeSearch));
   }
-};
-
-Search.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
-  searchIsActive: PropTypes.bool,
-  toggleIsSearch: PropTypes.func,
-  getSearchData: PropTypes.func,
-  initSearchData: PropTypes.func,
-  initSearchListData: PropTypes.func
 };
 
 export default withRouter(Search);
