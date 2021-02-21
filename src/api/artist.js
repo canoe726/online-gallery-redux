@@ -12,6 +12,7 @@ export const getArtistData = async () => {
     cancelTokenSource.cancel();
   }, API.WAIT_TIME);
 
+  console.log('artistPage, artistSize', artistPage, artistSize);
   // const response = await axios.get(`${API.ROOT + API.ARTIST}`, { cancelToken: cancelTokenSource.token });
   const response = await axios.get(`${API.ROOT + API.ARTIST}?page=${artistPage}&size=${artistSize}`, { cancelToken: cancelTokenSource.token });
   try {

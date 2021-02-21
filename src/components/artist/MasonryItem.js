@@ -19,7 +19,7 @@ function MasonryItem ({ history, artistItem }) {
   useEffect(() => {
     itemImg.current.classList.add('lazy');
     itemImg.current.src = '';
-    lazyLoad();
+    lazyLoad(1);
   }, [artistItem, lazyLoad]);
 
   return (

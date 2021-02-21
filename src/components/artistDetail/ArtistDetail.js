@@ -5,7 +5,6 @@ import '../../stylesheets/artistDetail/artistDetail.scss';
 
 import ArtistInfoWrapper from './ArtistInfoWrapper';
 
-import { resizeAllMasonryItems } from '../../lib/masonry';
 import lazyLoad from '../../lib/lazyLoading';
 
 ArtistDetail.propTypes = {
@@ -20,13 +19,9 @@ function ArtistDetail ({ data }) {
 
     lazyLoad();
 
-    window.addEventListener('load', resizeAllMasonryItems);
-    window.addEventListener('resize', resizeAllMasonryItems);
     window.addEventListener('scroll', heroScrollZoom);
 
     return () => {
-      window.removeEventListener('load', resizeAllMasonryItems);
-      window.removeEventListener('resize', resizeAllMasonryItems);
       window.removeEventListener('scroll', heroScrollZoom);
     };
   }, []);

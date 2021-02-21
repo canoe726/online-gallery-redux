@@ -1,5 +1,10 @@
-function lazyLoad () {
+import masnory from './masonry';
+
+function lazyLoad (mode) {
   const lazyItems = [].slice.call(document.querySelectorAll('.lazy'));
+  if (mode === 1) {
+    masnory();
+  }
 
   if ('IntersectionObserver' in window) {
     const lazyItemObserver = new IntersectionObserver((entries, observer) => {

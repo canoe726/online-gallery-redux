@@ -12,7 +12,8 @@ export const getExhibitionData = async () => {
     cancelTokenSource.cancel();
   }, API.WAIT_TIME);
 
-  // const response = await axios.get(API.ROOT + API.EXHIBITION, { cancelToken: cancelTokenSource.token });
+  console.log('exhibitionPage, exhibitionSize : ', exhibitionPage, exhibitionSize);
+  // const response = await axios.get(`${API.ROOT + API.EXHIBITION}`, { cancelToken: cancelTokenSource.token });
   const response = await axios.get(`${API.ROOT + API.EXHIBITION}?page=${exhibitionPage}&size=${exhibitionSize}`, { cancelToken: cancelTokenSource.token });
   try {
     response.data.result = addDomain('exhibition', response.data.result);

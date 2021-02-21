@@ -14,10 +14,13 @@ MasonryItem.propTypes = {
 function MasonryItem ({ history, exhibitionItem }) {
   const url = `/exhibition/${exhibitionItem.exhibitionId}`;
   const skletonRef = useRef();
+  const itemImg = useRef();
 
   useEffect(() => {
-    lazyLoad();
-  }, []);
+    itemImg.current.classList.add('lazy');
+    itemImg.current.src = '';
+    lazyLoad(1);
+  }, [exhibitionItem, lazyLoad]);
 
   return (
     <div
@@ -25,7 +28,8 @@ function MasonryItem ({ history, exhibitionItem }) {
       onClick={() => history.push(url)}
     >
       <SkeletonImage ref={skletonRef}></SkeletonImage>
-      <img className="item-img lazy"
+      <img className="item-img"
+        ref={itemImg}
         data-src={exhibitionItem.posterImage}
         onLoad={() => { skletonRef.current.style.display = 'none'; }}
       ></img>

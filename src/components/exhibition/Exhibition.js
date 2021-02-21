@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import Masonry from 'react-masonry-css';
 
 import '../../stylesheets/exhibition/exhibition.scss';
+
+import masonry from '../../lib/masonry';
 
 import MasonryItem from './MasonryItem';
 import MasonryLoading from '../loading/MasonryLoading';
@@ -32,21 +33,27 @@ function Exhibition ({
   const dispatch = useDispatch();
   const noMoreLoadingCaption = '모든 작품을 불러왔습니다.';
 
+  useEffect(() => {
+    window.addEventListener('resize', masonry);
+    return () => {
+      window.removeEventListener('resize', masonry);
+    };
+  }, []);
+
   return (
     <div className="exhibition-wrapper">
       <div className="masonry-wrapper">
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="my-masonry-grid"
-          columnClassName="my-masonry-grid_column"
-        >
-          {(data && data.length > 0) &&
-            data.map((item, idx) =>
+        {(data && data.length > 0) &&
+          <div
+            className="masonry"
+            onLoad={masonry}
+          >
+            {data.map((item, idx) =>
               <MasonryItem
                 key={idx}
                 exhibitionItem={item}
               ></MasonryItem>)}
-        </Masonry>
+          </div>}
       </div>
       {error && <LoadingError error={error} getData={getData} getDataParams={getDataParams}></LoadingError>}
       {isAllLoaded && <NoMoreLoading pageIdx={0} caption={noMoreLoadingCaption}></NoMoreLoading>}
@@ -63,13 +70,6 @@ function Exhibition ({
   function loadMoreData () {
     dispatch(getExhibitionData(...getDataParams));
   }
-};
-
-const breakpointColumnsObj = {
-  default: 4,
-  1100: 3,
-  700: 2,
-  500: 1
 };
 
 export default Exhibition;
